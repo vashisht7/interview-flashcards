@@ -1,1 +1,1186 @@
-[{"id": 1, "topic": "CORE", "difficulty": "Easy", "question": "Tell me about yourself.", "answer": "I am an AI engineer with experience in production document extraction, Python services, and data pipelines. At Bank of America, my work includes fine-tuned extraction, validated JSON delivery, and MCP retrieval. My projects add two complementary examples: NoteEchoes for local model integration and reliable note capture, and MFlash for constrained action proposals and checked execution. This role combines those AI and software-engineering strengths.", "cue": "Production + Python + local AI + controlled actions.", "followup": "Keep this to 60 seconds. Use Bank of America for production experience; the projects for technical depth."}, {"id": 2, "topic": "CORE", "difficulty": "Easy", "question": "How do your projects match the four must-haves?", "answer": "For production GenAI and MCP, my strongest resume example is Bank of America's extraction and document-retrieval work. For Python and AI engineering, MFlash adds typed execution, classifiers, ranking, and local retrieval. NoteEchoes adds Qwen adaptation, evaluation, mobile inference, and persistence safeguards. NoteEchoes itself is Flutter/Dart with Swift integrations, not a Python or Node.js application.", "cue": "Use the right project for each requirement.", "followup": "Do not present MFlash or NoteEchoes as MCP implementations: neither briefing establishes that integration."}, {"id": 3, "topic": "CORE", "difficulty": "Easy", "question": "What is the difference between an LLM and a classifier?", "answer": "A classifier selects among labels. An LLM generates token sequences. MFlash's structured classifier selects action templates; it is a randomly initialized MLP, not a fine-tuned LLM. NoteEchoes uses a specialized pretrained Qwen3 model to produce structured action analysis. I choose a model according to the task's output space and operational constraints.", "cue": "MLP selects; Qwen generates.", "followup": "MFlash also has an MPNet candidate ranker, which is a third, separate role."}, {"id": 4, "topic": "CORE", "difficulty": "Easy", "question": "Explain transformers in simple terms.", "answer": "A transformer uses attention to combine relevant information from tokens, plus feed-forward layers to transform representations. In a causal language model, attention is masked so a position cannot use future tokens. NoteEchoes adapts a pretrained transformer; it does not pretrain a foundation model. MFlash's structured MLP is not a transformer.", "cue": "Attention connects context; adaptation specializes behavior.", "followup": "If asked for the formula: softmax(QK-transpose / sqrt(d_k)) V."}, {"id": 5, "topic": "CORE", "difficulty": "Easy", "question": "What are embeddings, and where did you use them?", "answer": "Embeddings represent inputs as numeric vectors for similarity comparisons. NoteEchoes uses multilingual E5-small with 384-dimensional normalized embeddings. MFlash has retrieval profiles using MPNet or EmbeddingGemma, and a separate MPNet action-ranking model. I keep model identity with embeddings because vectors from different spaces should not be directly compared.", "cue": "Same space before similarity.", "followup": "Do not mix the action ranker's learned projections with document retrieval embeddings."}, {"id": 6, "topic": "CORE", "difficulty": "Easy", "question": "When would you use retrieval versus fine-tuning?", "answer": "Retrieval finds relevant stored information at query time. Fine-tuning adapts behavior. NoteEchoes uses Qwen adaptation for structured intent/action analysis and retrieval for saved notes and documents. Its active conversation and PDF paths return cited excerpts rather than using the action model as a general document chatbot.", "cue": "Retrieval finds facts; tuning shapes behavior.", "followup": "A grounded retrieval feature does not necessarily use generative answer synthesis."}, {"id": 7, "topic": "CORE", "difficulty": "Easy", "question": "What is an agent, and are your apps agents?", "answer": "An agent uses model decisions to choose actions toward a goal. My projects combine deterministic workflows with model-assisted components. MFlash ordinary chat uses typed intents and deterministic proposals for supported routes; its workbench classifier and visual experiments are separate paths. NoteEchoes capture enhancement does not execute arbitrary model-selected tools.", "cue": "Describe the actual path, not a broad agent label.", "followup": "Explain why a fixed workflow can be simpler and safer for a bounded task."}, {"id": 8, "topic": "CORE", "difficulty": "Easy", "question": "What is MCP?", "answer": "MCP is a protocol for connecting AI applications to tools and context. My resume example is enterprise document retrieval at Bank of America. The host is the application, its client communicates with a server, and the server exposes capabilities. MCP standardizes integration; application code still needs authorization, validation, and reliable execution.", "cue": "Host -> client -> server.", "followup": "The supplied project briefings do not fill in the Bank of America MCP transport or server ownership."}, {"id": 9, "topic": "CORE", "difficulty": "Medium", "question": "How is MCP different from REST and tool calling?", "answer": "REST exposes application services over HTTP. Model tool calling expresses a proposed invocation. MCP standardizes how compatible applications discover and interact with capabilities and context. An MCP server can wrap REST services. In all cases, the trusted execution layer must authorize and validate the operation; a model proposal is not permission.", "cue": "Interface, proposal, protocol: different layers.", "followup": "Use MFlash as an example of an execution boundary, not as evidence that it uses MCP."}, {"id": 10, "topic": "CORE", "difficulty": "Easy", "question": "What is the difference between schema validity and correctness?", "answer": "Schema validity means the output follows its required structure. Correctness means the content and action are right for the request. NoteEchoes records schema passes on 1,080 synthetic action rows, while selected-field agreement is 1,040 out of 1,080. A perfectly structured response can choose the wrong mode or tool arguments.", "cue": "Valid shape does not mean correct meaning.", "followup": "This is one of the most important distinctions in your interview."}, {"id": 11, "topic": "CORE", "difficulty": "Medium", "question": "How do you evaluate an AI system in layers?", "answer": "I separate model output, policy decisions, execution, and user outcome. NoteEchoes selected-field matching evaluates structured outputs. MFlash candidate ranking evaluates selection from supplied actions. Neither establishes successful real-world execution. I would separately evaluate retrieval, authorization failures, side effects, recovery, latency, and business outcomes.", "cue": "Output -> policy -> execution -> outcome.", "followup": "Use a different denominator and acceptance criterion for each layer."}, {"id": 12, "topic": "CORE", "difficulty": "Medium", "question": "Explain Python async versus threads and processes.", "answer": "Async is useful for concurrent network or other cooperative I/O. Threads can keep a UI responsive or wrap blocking I/O. Processes can parallelize CPU-heavy Python work. MFlash runs controller work in a background thread; that alone does not prove CPU parallelism. In standard GIL-enabled CPython, Python bytecode threads generally do not run in parallel.", "cue": "I/O: async; blocking work: threads; CPU: consider processes.", "followup": "Never describe MFlash's background worker as asyncio unless the specific path uses it."}, {"id": 13, "topic": "NOTEECHOES", "difficulty": "Easy", "question": "Explain NoteEchoes in one minute.", "answer": "NoteEchoes is a Flutter/Dart iPhone app with native Swift integrations for voice capture, local model inference, OCR, and device features. It saves notes and checklists, imports documents, and retrieves information from a personal collection. Its Qwen action interpreter enhances an already-saved note. Fingerprint checks protect later edits, and retrieval returns cited excerpts. Its synthetic evaluation results are useful regression evidence, with important generalization limits.", "cue": "Capture -> save -> enhance -> validate -> retrieve.", "followup": "Position it as local-first application engineering, not proven large-scale production adoption."}, {"id": 14, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Walk through a spoken checklist request.", "answer": "Recorded speech first attempts WhisperKit transcription, with guarded Apple Speech fallback. The service sanitizes the transcript, applies deterministic parsing, creates the note, persists it, and schedules indexing. Optional Qwen enhancement then analyzes the original transcript. CoreV5 validation checks the JSON. Before applying changes, the service compares the note fingerprint with its earlier snapshot and discards stale enhancement.", "cue": "Save first; enhance second.", "followup": "This trace is an implemented request path, not a measured historical user session."}, {"id": 15, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Which exact model and runtime does NoteEchoes use?", "answer": "The main action interpreter is a specialized Qwen3-0.6B model deployed as an 8-bit MLX artifact. Dart calls a Flutter method channel, and native Swift performs local MLX inference. The configured artifact is pinned to revision b829d1d480c0bc0226326e36f009ae825af60f18. All recognition-language settings route to this combined action model in the inspected implementation.", "cue": "Qwen3-0.6B -> MLX 8-bit -> Swift bridge.", "followup": "Memorize model size and runtime; the full revision is reference material, not an interview recital."}, {"id": 16, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "What were the QLoRA training settings?", "answer": "The initial training configuration uses Qwen3-0.6B, 4-bit NF4 with double quantization, and rsLoRA with rank 32, alpha 64, and dropout 0.05. Targets include attention projections and gate/up/down projections. It uses completion-only causal loss, maximum length 1,024, learning rate 4e-5, batch 8, accumulation 2, and one epoch. These are configured settings, not a verified lineage for every distributed weight.", "cue": "0.6B / 4-bit / rank 32 / alpha 64 / 4e-5.", "followup": "The initial trainer saves the final adapter; it does not load the best model at the end."}, {"id": 17, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Why 4-bit training but 8-bit deployment?", "answer": "They are separate stages. QLoRA reduces training memory by keeping the base quantized while training adapters. The app uses a separately prepared 8-bit MLX deployment artifact. Training precision does not force deployment precision. I can explain that tradeoff, but the briefing does not establish that 8-bit was empirically optimal on devices.", "cue": "Training memory and deployment format are separate decisions.", "followup": "Do not invent latency, memory, or battery benchmarks."}, {"id": 18, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "What does completion-only loss mean?", "answer": "The training code masks prompt labels with -100, so loss is computed on the target completion instead of teaching the model to reproduce the input prompt. The model learns the desired structured output conditioned on the request. This is supervised adaptation of a pretrained model. A separate GRPO program exists, but there is no established evidence that it produced the deployed weights.", "cue": "Mask the prompt; learn the completion.", "followup": "Do not describe the deployed model as RLHF-trained on the available evidence."}, {"id": 19, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "How large was your training dataset?", "answer": "There are distinct packages. The original synthetic manifest lists 30,000 training requests paired into 60,000 SFT records. The English correction corpus has 6,000 training rows: 5,400 action and 600 normalization examples. Validation, test, and challenge each have 600 rows. The correction counts and hashes were checked in the supplied review; the original manifest counts were not freshly recounted.", "cue": "Original package != correction package.", "followup": "Do not combine counts from different releases or call synthetic rows real-user requests."}, {"id": 20, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "What exactly does the 96.3% score mean?", "answer": "It is 1,040 out of 1,080 archived synthetic action outputs passing the stored operational gate and exactly matching seven selected fields: intent, mode, items, entities, draft, requires_confirmation, and the full proposed_tool. It excludes title, language, confidence, normalized text, and clarification wording. The supplied review rescored saved outputs; it did not rerun model inference.", "cue": "1,040 / 1,080; seven fields; synthetic archive.", "followup": "Call it selected action-field exact match, not overall production accuracy."}, {"id": 21, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "How do the other NoteEchoes metrics differ?", "answer": "The archive contains 1,200 cases: 1,080 action and 120 normalization cases. Stored operational flags pass 1,200/1,200, while strict-check flags pass 1,097/1,200, or 91.417%. Stored schema flags pass all 1,080 action rows; schema validation was not rerun in the review. Normalization matches 120/120. These metrics test different conditions and use different denominators.", "cue": "Operational != selected fields != strict object match.", "followup": "The operational gate does not require full argument, mode, item, entity, or draft equality."}, {"id": 22, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "Was the test data independent of training?", "answer": "Files and row hashes are separate, but that does not ensure semantic independence. The supplied review normalized synthetic identifiers and found all 540 test action targets and all 540 challenge action targets matched templates present in training. That weakens evidence of generalization. It is not proof that identical test rows were intentionally trained on. I would add independently authored, scenario-disjoint holdouts.", "cue": "Different rows can share the same template.", "followup": "This is a proposed next evaluation, not a completed improvement."}, {"id": 23, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "How much better was the model than stock Qwen?", "answer": "I do not have a completed matched baseline comparison in the evidence provided. The 96.3% result is an absolute score on a specific synthetic evaluation, not an improvement over stock Qwen. I would compare stock and adapted models with the same prompts, decoding settings, runtime, and independently authored holdout, including per-language and failure slices.", "cue": "No baseline -> no improvement percentage.", "followup": "Do not turn a fine-tuned model's score into a gain over its base model."}, {"id": 24, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Which errors remained in the saved outputs?", "answer": "The supplied rescore found 22 mode differences, 14 complete tool-object differences, and 6 draft differences. Those categories overlap, so I would not add them to count unique failures. There were 40 failed selected-field cases overall. I would inspect mode selection and full tool arguments separately rather than focusing only on schema validity.", "cue": "40 failed cases; error categories overlap.", "followup": "No selected item/entity differences were found in that archive; that is not a universal guarantee."}, {"id": 25, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Explain NoteEchoes retrieval precisely.", "answer": "The hybrid note path combines SQLite FTS5/BM25 with optional multilingual E5-small semantic matches. It takes up to 15 lexical and 15 semantic matches and combines ranks with 1/(60+rank). One-hop relationships can add 0.005, and the default output is six candidates. Stored vectors are scanned directly. The inspected path has no learned reranker.", "cue": "15 + 15 -> reciprocal rank fusion -> 6.", "followup": "These are note-retrieval settings, not a claim that every document path uses identical settings."}, {"id": 26, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "How are PDFs parsed and chunked?", "answer": "The processor uses selectable PDF text and positional information to approximate reading order. Sparse-text pages attempt native Apple Vision OCR. Target chunks are 1,800 characters with 220-character overlap, preferring paragraph, line, or sentence boundaries. Chunks retain page and source-order information. These are character counts, not token counts.", "cue": "Text first -> OCR fallback -> 1,800 / 220.", "followup": "Layout annotations do not establish full diagram or table understanding."}, {"id": 27, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "How does the knowledge graph work?", "answer": "It has semantic note relationships and connected-component topic grouping. The visible graph displays topics and their member notes, with up to 60 note nodes. That is useful for navigation and organization. I would describe it as a note/topic graph, not an entity-predicate reasoning engine or a graph database.", "cue": "Related notes form topics; graph shows membership.", "followup": "The review identifies asymmetric relationship expansion as a potential improvement, not a completed fix."}, {"id": 28, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "What if a user edits a note during inference?", "answer": "The initial note is already saved. Before enhancement, the service records a fingerprint. When the model returns, it compares that fingerprint with the current note. If the note changed or was deleted, the enhancement is discarded. That protects user edits from late model output. A regression test was inspected in the briefing, but it was not run during that review.", "cue": "Snapshot -> generate -> compare -> apply or discard.", "followup": "A Dart timeout alone does not prove native inference stopped."}, {"id": 29, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "How do you prevent deleted notes from returning after recovery?", "answer": "Primary storage uses SQLite, with recovery snapshots and deletion tombstones. Recovery chooses a complete valid snapshot rather than unioning old snapshots, combines deletion IDs, and skips tombstoned notes. This addresses stale backups containing deleted records. Snapshot mirroring can finish after note saving, so I would not claim every mirror is synchronous or power-loss-proof.", "cue": "Choose one snapshot; respect tombstones.", "followup": "SQLite uses WAL with synchronous=NORMAL; no device power-loss experiment is established."}, {"id": 30, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Does the model execute reminders or arbitrary tools?", "answer": "The capture path treats model tool objects as proposals and converts accepted analysis into notes. Reminder scheduling uses a separate permission-controlled native bridge. A generic provider registry exists, but the review did not find it wired into application execution. I would not claim broad autonomous multi-tool execution from the presence of that registry.", "cue": "Proposal is not execution.", "followup": "Distinguish a wired feature, retained code, a stub, and a roadmap item."}, {"id": 31, "topic": "NOTEECHOES", "difficulty": "Medium", "question": "Is NoteEchoes fully offline and multilingual?", "answer": "It implements local inference, embeddings, note storage, and OCR. However, downloads need networking; Apple Speech fallback can use remote recognition; web lookup and feedback are remote-capable. It supports English, Hindi, Telugu, and mixed recognition settings, but the English correction score is not evidence of equal real-audio accuracy across languages.", "cue": "Local-first, with explicit remote exceptions.", "followup": "Do not claim fully offline operation or measured multilingual parity."}, {"id": 32, "topic": "NOTEECHOES", "difficulty": "Hard", "question": "What would you improve first in NoteEchoes?", "answer": "I would first add a fresh human-authored holdout and matched stock-versus-adapted evaluation, then measure real-device latency and resource use. I would also fix failed-PDF reimport handling: the current hash deduplication can return an existing failed document without reprocessing it. That is an identified code-grounded issue, not a historical incident I am claiming to have fixed.", "cue": "Independent evaluation + device measurement + retry recovery.", "followup": "Historical TestFlight evidence does not establish current availability, adoption, or crash-free usage."}, {"id": 33, "topic": "MFLASH", "difficulty": "Easy", "question": "Explain MFlash in one minute.", "answer": "MFlash is a Python/PyQt macOS assistant with local document retrieval, scoped file operations, and model-assisted proposals. It separates deterministic routes, a structured template classifier, an MPNet ranker, and experimental visual workflows. The execution layer checks authority, state, and results instead of trusting model confidence. Its strongest story is controlled execution and recovery evidence. The source identifies it as a Design Preview.", "cue": "Interpret -> propose -> authorize -> execute -> verify.", "followup": "Do not describe it as a production-ready general computer-use agent."}, {"id": 34, "topic": "MFLASH", "difficulty": "Medium", "question": "Walk through a folder question in MFlash.", "answer": "The request and attached folder become a typed local_rag_query intent with folder scope. The ordinary scheduler builds a deterministic proposal, checks capability and missing arguments, and constructs an application-policy grant. The retrieval engine reads indexed SQLite chunks, answers narrow labeled fields directly or retrieves evidence for a local answer. Source changes around answering cause rejection rather than publication of stale output.", "cue": "Typed intent -> policy -> scoped retrieval -> evidence.", "followup": "This ordinary chat route does not ask the structured classifier to choose the action."}, {"id": 35, "topic": "MFLASH", "difficulty": "Medium", "question": "What are the distinct model roles?", "answer": "The structured classifier is a randomly initialized MLP that predicts templates from request/state features. The MPNet ranker embeds textual state and supplied candidate actions, then scores learned projections. A local content model supports document answers. Visual-model workflows are separate experiments. Keeping these roles distinct makes it easier to evaluate what each component actually contributes.", "cue": "Classifier selects templates; ranker orders candidates.", "followup": "Neither the structured classifier nor the MPNet ranker is a screenshot encoder."}, {"id": 36, "topic": "MFLASH", "difficulty": "Medium", "question": "Are the 74 actions 74 tools?", "answer": "No. A historical structured run records 74 learned templates and 803 features. A template includes a tool and an argument-binding pattern, so several templates can relate to the same operation. The count comes from the training data; it is not a universal fixed capability count or proof that 74 end-to-end workflows work.", "cue": "74 templates, not 74 independent tools.", "followup": "Do not assume the active checkpoint matches the historical run without checking release identity."}, {"id": 37, "topic": "MFLASH", "difficulty": "Medium", "question": "What are observation-bound arguments?", "answer": "Instead of allowing a model to invent an arbitrary filesystem path, a template binds arguments to trusted observations or restricted derived fields. The workbench checks that the proposed action matches the selected operation and trusted inputs. This sacrifices some flexibility but makes argument provenance inspectable and limits what an incorrect prediction can request.", "cue": "Select from observed state; do not invent targets.", "followup": "Binding arguments narrows risk but does not remove the need for execution-time validation."}, {"id": 38, "topic": "MFLASH", "difficulty": "Hard", "question": "How is the structured classifier trained?", "answer": "The implemented trainer uses a random-initialized MLP, cross-entropy, AdamW with default learning rate 0.001 and weight decay 0.01, inverse-frequency sampling, batches up to 64, and gradient clipping at 1. Current checkpoint selection rewards accepted-correct minus accepted-wrong proposals, gated on zero wrong accepted mutations on development. A historical 2,000-step summary used older selection reporting.", "cue": "MLP + cross-entropy + cost-sensitive acceptance.", "followup": "Do not retroactively apply today's selection rule to historical runs."}, {"id": 39, "topic": "MFLASH", "difficulty": "Hard", "question": "Explain the MPNet ranking architecture.", "answer": "The backbone is frozen sentence-transformers/all-mpnet-base-v2. Separate state and action projection heads map 768 to 512 to 256 dimensions, with normalized outputs. Training learns similarity between a state and candidate action descriptions. At evaluation, the correct candidate is already supplied. The ranker is not discovering every possible action or verifying its eventual execution.", "cue": "Frozen encoder; learned heads; candidate similarity.", "followup": "The model can select poorly if the supplied candidate set omits the correct action."}, {"id": 40, "topic": "MFLASH", "difficulty": "Hard", "question": "What contrastive loss and negatives did you use?", "answer": "There are two recipes. One combines 0.7 hard-negative loss with 0.3 symmetric in-batch loss. The other uses per-example gold-versus-negative cross-entropy at temperature 0.07. The provided negatives are authored scenario alternatives or sampled distractors; online hard-negative mining is not established. The evidence does not identify which recipe produced the current root checkpoint.", "cue": "Two recipes; do not merge their hyperparameters.", "followup": "A negative called hard in code is not proof of measured difficulty."}, {"id": 41, "topic": "MFLASH", "difficulty": "Hard", "question": "What does the ranker's 100% score prove?", "answer": "A saved report records 1,381 correct selections out of 1,381 development candidate sets. That is candidate ranking, not 100% automation. It excludes candidate discovery, perception, authorization, execution, and end-state verification. The report was not rerun in the supplied inspection. I would use it as narrow development evidence and test fresh complete workflows separately.", "cue": "100% candidate selection != 100% task success.", "followup": "Repeated development use and authored negatives limit generalization claims."}, {"id": 42, "topic": "MFLASH", "difficulty": "Hard", "question": "What did the structured evaluation show?", "answer": "The saved evaluation reports 1,298/1,541 full-argument matches, or 84.23%, with 211 abstentions and zero wrong mutating proposals reported. Abstentions are not successful actions. The report explicitly does not evaluate executor safety. A separate training summary says 82.15%; those results have not been established as equivalent and should not be collapsed.", "cue": "84.23% proposal match; abstention is not success.", "followup": "Do not infer a complete confusion matrix from these aggregate counts alone."}, {"id": 43, "topic": "MFLASH", "difficulty": "Medium", "question": "How does MFlash authorization work?", "answer": "The workbench uses trusted caller approval and matching execution grants. Model confidence does not grant authority. Ordinary scheduler operations use application-policy grants, so not every action has a separate explicit confirmation. I would explain the specific path rather than claiming a universal approval rule across the whole application.", "cue": "Confidence proposes; trusted policy authorizes.", "followup": "The boundary should be audited across every mutation entry point."}, {"id": 44, "topic": "MFLASH", "difficulty": "Hard", "question": "What happens if a file changes after preview?", "answer": "The workbench captures a source digest during preview. Execution checks arguments against the grant and recomputes the digest. A changed source is rejected. An uncertain pending prior attempt returns needs_review rather than being blindly repeated. These checks reduce stale-state risk, but the briefing explicitly does not establish complete protection against external-process races.", "cue": "Preview hash -> grant check -> fresh hash.", "followup": "This is a code-grounded scenario, not a claimed production incident."}, {"id": 45, "topic": "MFLASH", "difficulty": "Hard", "question": "How are retries made safer?", "answer": "The executor uses stable retry keys plus action identity. Completed results are rechecked, changed arguments are rejected, and pending uncertain attempts require review. Reviewed batches use a snapshot digest and verify completed runs before replay. This is checked retry behavior, not a global exactly-once guarantee for every workflow.", "cue": "Same key + same action + verified result.", "followup": "An idempotency key must be scoped and tied to the intended payload."}, {"id": 46, "topic": "MFLASH", "difficulty": "Hard", "question": "How does crash recovery work for file moves?", "answer": "The safer move path records intent in a SQLite journal, creates a destination hard link, verifies content, removes the source, and records completion. A crash can occur between filesystem and database updates. Recovery inspects actual bytes and recorded state. The journal provides recoverable evidence; SQLite and the filesystem are not one distributed atomic transaction.", "cue": "Record -> link -> verify -> unlink -> commit.", "followup": "The same-volume path fails rather than silently using a different cross-volume behavior."}, {"id": 47, "topic": "MFLASH", "difficulty": "Medium", "question": "How does undo avoid destroying newer files?", "answer": "Undo checks the destination's bytes before restoration. If the original path is now occupied, it chooses a collision-safe restored name such as _restored_N rather than overwriting the new occupant. If destination content changed, undo can reject the operation. Restoring something safely requires revalidating current state, not only remembering the original path.", "cue": "Verify bytes; preserve occupied paths.", "followup": "SHA-256 supports content comparison; it does not provide encryption or authorization."}, {"id": 48, "topic": "MFLASH", "difficulty": "Hard", "question": "What did you actually test in MFlash?", "answer": "The supplied inspection reports 12 passing isolated executor tests in 0.064 seconds using temporary synthetic files. They cover retries, cancellation, collisions, mismatched arguments, changed sources, and pending receipts. I did not rerun those tests for this guide, and that suite is not evidence of installed-app, model, or production reliability.", "cue": "12 executor tests; narrow, concrete scope.", "followup": "Keep historical model reports separate from tests actually executed in that inspection."}, {"id": 49, "topic": "MFLASH", "difficulty": "Medium", "question": "Explain the local retrieval implementation.", "answer": "Documents become 400-character chunks with 80-character overlap. SQLite stores text, metadata, versions, and float32 vectors. Retrieval scans selected vectors with dot products, adds lexical, filename, and identifier bonuses, and sorts results. Different embedding spaces use rank-based fusion. Indexed folders and optional folder scope restrict the search. No separate learned cross-encoder reranker was found.", "cue": "400 / 80; SQLite; semantic + lexical bonuses.", "followup": "Simple local scanning has query work that grows with collection size."}, {"id": 50, "topic": "MFLASH", "difficulty": "Hard", "question": "How do you ground answers and handle stale sources?", "answer": "Generated answers are accepted only when the quoted text appears in supplied source content and the answer appears within that quote. The application returns source evidence. Changes detected around answering produce rag_source_changed. This reduces fabricated spans and stale answers, but does not prove that a quote is relevant, refers to the right entity, or came from correct OCR.", "cue": "Source contains quote; quote contains answer.", "followup": "A citation is evidence of location, not proof of semantic correctness."}, {"id": 51, "topic": "MFLASH", "difficulty": "Hard", "question": "What happened in the visual-model experiment?", "answer": "A recorded UI-TARS 7B QLoRA experiment used NF4, rank 16, alpha 32, and dropout 0.05. Results were mixed: original-action matching rose from 25/170 to 28/170, while native Mac grounding fell from 142/226 to 139/226. Synthetic held-out-family matching reached 166/168. Those synthetic gains do not establish reliable native workflows or deployment.", "cue": "Synthetic gains; native regression; report both.", "followup": "The coordinate matching metric permits tolerance; it is not byte-for-byte exact output."}, {"id": 52, "topic": "MFLASH", "difficulty": "Hard", "question": "What are MFlash's most important remaining limits?", "answer": "The app is not wholly offline: web search, Google Drive, and authentication include remote paths. Complete encryption and multi-user isolation are not established; the journal is a global singleton and retrieval has a shared fallback database path. I would prioritize fresh workflow tests, consistent authorization, privacy review, and fault-injected recovery before making broad production claims.", "cue": "Local processing != complete privacy or production readiness.", "followup": "These are recommendations; do not present them as completed fixes."}, {"id": 53, "topic": "ENGINEERING", "difficulty": "Medium", "question": "How would you build an enterprise MCP retrieval tool?", "answer": "I would expose a narrow document-search operation with a validated query, filters, and bounded limit. Identity would come from authenticated context, with permission checks before content reaches the model. Results would include source IDs and version metadata. MFlash's scoped retrieval and NoteEchoes' source-aware indexing offer design lessons, but enterprise tenant authorization is additional work.", "cue": "Authenticate -> authorize -> retrieve -> cite.", "followup": "This is a proposed design, not a description of either project's MCP implementation."}, {"id": 54, "topic": "ENGINEERING", "difficulty": "Hard", "question": "How would you defend against prompt injection?", "answer": "I would treat retrieved content and model output as untrusted data. A document cannot grant permission to access a secret or execute a command. I would use narrow tools, argument validation, external policy checks, and scoped execution. MFlash illustrates separating proposals from authority. Literal quote checks alone do not prevent prompt injection.", "cue": "Data cannot promote itself into authority.", "followup": "No prompt alone guarantees immunity; test malicious documents and tool outputs."}, {"id": 55, "topic": "ENGINEERING", "difficulty": "Medium", "question": "How would you apply TDD and domain-driven design?", "answer": "I would model intent, proposal, authorization, execution, and receipt as separate business concepts, as MFlash's typed boundaries illustrate. Deterministic tests can cover stale inputs, changed arguments, cancellations, and collisions. NoteEchoes adds edit-preservation and tombstone scenarios. Model behavior needs separate evaluation datasets. The briefings show tests and boundaries, not proof that every component was originally developed using TDD.", "cue": "Test business rules separately from model quality.", "followup": "Dataclasses do not automatically provide comprehensive runtime schema validation."}, {"id": 56, "topic": "ENGINEERING", "difficulty": "Hard", "question": "How would you deploy an AI change safely?", "answer": "I would bind application version, model identity, dataset hashes, prompts, and evaluation results in an immutable release manifest. I would run contract tests and regression evaluations, then deploy gradually with rollback criteria. The projects contain pieces of that evidence, but neither briefing establishes a complete verified chain from every training run to the current installed artifact.", "cue": "Version the system, not only the code.", "followup": "NoteEchoes CI includes checks and optional unsigned builds; it does not itself upload to TestFlight."}, {"id": 57, "topic": "ENGINEERING", "difficulty": "Hard", "question": "What would you monitor after deployment?", "answer": "I would track task success, correction and abstention rates, tool errors, stale-state rejections, latency, resource usage, and cost per successful outcome. For NoteEchoes, I would separate ASR, action interpretation, retrieval, and persistence. For MFlash, I would separate proposal quality from execution outcomes. I would not invent p95 latency or user-volume figures absent measured evidence.", "cue": "Measure each stage and the final outcome.", "followup": "The projects' diagnostics and receipts are useful starting points, not a full observability platform."}, {"id": 58, "topic": "ENGINEERING", "difficulty": "Hard", "question": "How would you optimize cost, latency, and drift?", "answer": "I would first measure where time and resources go. Both projects use exhaustive local vector search, which can become a bottleneck as collections grow. MFlash worker switching trades reload latency for memory residency. I would benchmark indexing and caching changes, then reevaluate quality. Drift monitoring would use new request/document slices rather than relying indefinitely on familiar synthetic templates.", "cue": "Measure -> change one bottleneck -> re-evaluate.", "followup": "Do not claim ANN indexing, caches, or production drift detection were implemented unless separately verified."}, {"id": 59, "topic": "ENGINEERING", "difficulty": "Hard", "question": "Design a safe airline rebooking assistant.", "answer": "I would separate policy retrieval, live reservation reads, option selection, approval, and booking execution. Before a write, I would recheck availability and price and bind approval to the exact proposed change. A timed-out booking would be reconciled by transaction identity before retry. MFlash's stale-state checks and checked retries are useful patterns, but airline business rules belong in authoritative services.", "cue": "Search -> propose -> approve -> revalidate -> commit.", "followup": "This is a system-design proposal; your resume does not establish airline experience."}, {"id": 60, "topic": "ENGINEERING", "difficulty": "Hard", "question": "How would you evaluate an enterprise RAG assistant?", "answer": "I would measure retrieval recall and ranking separately from answer correctness, citation support, and abstention. LLM-as-a-judge can scale rubric scoring but needs human calibration and versioning. Authorization requires deterministic checks. Neither project briefing establishes measured retrieval recall or general citation accuracy, so I would propose those evaluations rather than invent results.", "cue": "Retrieval quality + answer quality + access correctness.", "followup": "Your separate LangGraph codebase project lists Ragas; do not transfer its implementation to these apps."}, {"id": 61, "topic": "BEHAVIOR", "difficulty": "Easy", "question": "Explain your Bank of America production experience.", "answer": "My resume describes OCR-assisted PDF extraction using a fine-tuned model, JSON and field-level validation, scheduled secure API delivery, and a React review interface. I also worked on MCP-based document retrieval and gathered requirements from external clients. The two project briefings provide deeper personal-project implementation detail, but they do not establish the bank's base model, OCR vendor, hosting stack, or exact MCP transport.", "cue": "Lead with real production; use projects for deeper mechanics.", "followup": "Those bank-specific details remain personal confirmation items."}, {"id": 62, "topic": "BEHAVIOR", "difficulty": "Medium", "question": "How did you measure the 50-60% effort reduction?", "answer": "My resume describes an estimated reduction in manual effort for the extraction workflow. That is not model accuracy or necessarily measured financial savings. I should explain the actual baseline, remaining review effort, sample, and source of the estimate. The supplied documents do not establish that measurement method, so I cannot honestly fill it in from the project evidence.", "cue": "Estimated effort reduction != accuracy.", "followup": "Use only the time study or stakeholder estimate you actually used; no fabricated formula inputs."}, {"id": 63, "topic": "BEHAVIOR", "difficulty": "Medium", "question": "Tell me about a difficult design tradeoff.", "answer": "One concrete tradeoff is NoteEchoes saving a usable note before optional AI enhancement. It protects capture availability, but structured enrichment arrives later and must not overwrite user edits. Another is MFlash's observation-bound templates: they reduce flexibility but make action targets inspectable. I can explain the implemented tradeoffs; personal decision history should match my actual contribution.", "cue": "Reliability sometimes means less autonomy.", "followup": "Use a real decision you owned when the interviewer asks specifically what you chose."}, {"id": 64, "topic": "BEHAVIOR", "difficulty": "Hard", "question": "Tell me about a failure and what you learned.", "answer": "A useful code-grounded example is NoteEchoes' failed-PDF retry gap: hash deduplication can return an existing failed document without reprocessing it. The lesson is to make deduplication state-aware and distinguish successful completion from mere existence. I would add failed-state retry tests. This is an identified issue and proposed response, not a production incident or completed fix I can claim.", "cue": "Exists != completed successfully.", "followup": "For a behavioral incident question, use your own actual event, actions, and outcome."}, {"id": 65, "topic": "BEHAVIOR", "difficulty": "Medium", "question": "How do you gather requirements and estimate work?", "answer": "My resume supports direct client requirements gathering and end-to-end workflow delivery. I translate requests into inputs, required outputs, review conditions, and acceptance criteria. For uncertain model behavior, I would time-box a baseline experiment before committing to an accuracy target. NoteEchoes' distinction between schema and action correctness shows why acceptance criteria must be precise.", "cue": "Define success before promising a model score.", "followup": "Describe a specific client interaction from your experience if asked for a historical example."}, {"id": 66, "topic": "BEHAVIOR", "difficulty": "Medium", "question": "How would you discuss production readiness honestly?", "answer": "I would distinguish implemented code, tests actually run, archived model reports, and operational evidence. MFlash is identified as a Design Preview. NoteEchoes has historical TestFlight evidence but no verified current tester count or device reliability metrics in the briefing. My Bank of America resume experience is the stronger production example. Honest scope makes the engineering discussion more credible.", "cue": "Code -> tests -> release -> real operations.", "followup": "A build script or manifest is not proof of a successful deployment."}, {"id": 67, "topic": "BEHAVIOR", "difficulty": "Easy", "question": "What should you say about tools or domains you have not used?", "answer": "My strongest listed language is Python, my orchestration project uses LangGraph, and my enterprise experience includes APIs and data pipelines. I would describe actual exposure to Java, Semantic Kernel, Copilot Studio, Jenkins, or airline systems without implying equal depth. I can explain transferable architecture and learn the team's stack. Personal projects are not automatically verified open-source contributions.", "cue": "Specific strengths; clear boundaries; transferable skills.", "followup": "Mention Excel automation directly; give real examples for other Office tools if asked."}, {"id": 68, "topic": "BEHAVIOR", "difficulty": "Easy", "question": "What questions should you ask the interviewer?", "answer": "I would ask which AI workflows are already in production, what the engineer owns after deployment, how MCP permissions are managed, what evaluation gates block a release, and what success looks like in the first 90 days. I would also ask whether the main challenge is model quality, integration, reliability, latency, or adoption.", "cue": "Ownership + evaluation + operations + first 90 days.", "followup": "Choose four questions that fit what the interview has not already covered."}, {"id": 69, "topic": "PYTHON", "difficulty": "Easy", "question": "How do you deduplicate IDs while preserving order?", "answer": "Use a set for membership and a list for ordered results. For each ID, append it only if it has not been seen, then add it to the set. Average time is O(n), and memory is O(n). For an unbounded stream, I would define a deduplication window or persistent store instead of growing an in-memory set forever.", "cue": "Set checks; list remembers order.", "followup": "Practice empty input, repeated IDs, and all-unique input. See coding drill A."}, {"id": 70, "topic": "PYTHON", "difficulty": "Medium", "question": "How do you compute exact-match accuracy correctly?", "answer": "Align predictions and references by stable example ID, validate that reference fields exist, and define normalization before scoring. Count missing predictions as failures, not as matching missing values. NoteEchoes demonstrates why selected-field agreement and complete-object agreement need different metric names and denominators. An accuracy function is only meaningful when the evaluation contract is explicit.", "cue": "Alignment + denominator + equality rules.", "followup": "See coding drill B. Never silently zip unequal-length lists."}, {"id": 71, "topic": "PYTHON", "difficulty": "Medium", "question": "How do you bound concurrent API calls?", "answer": "Use a semaphore to cap active calls, a timeout per attempt, and an explicit error policy. For large inputs, use a bounded worker queue rather than creating all tasks at once. Distinguish an execution timeout from an overall deadline including queue wait. Preserve cancellation and avoid blocking synchronous calls inside the event loop.", "cue": "Concurrency limit + timeout + cancellation.", "followup": "See coding drill C. A semaphore is not itself a requests-per-second rate limiter."}, {"id": 72, "topic": "PYTHON", "difficulty": "Hard", "question": "How would you design a durable idempotency handler?", "answer": "Store a scoped key, request hash, state, and result under a uniqueness constraint. Reject a reused key with different arguments. Return verified completed results; report in-progress work; reconcile uncertain outcomes before retrying. MFlash supplies a concrete example of checked receipts and pending attempts requiring review. No local dictionary or database flag alone makes an external side effect exactly-once.", "cue": "Same request -> same outcome; uncertainty -> reconcile.", "followup": "See coding drill D for a state-machine exercise and failure cases."}]
+[
+  {
+    "id": 1,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "Tell me about yourself.",
+    "answer": "I am an AI engineer with experience in production document extraction, Python services, and data pipelines. At Bank of America, my work includes fine-tuned extraction, validated JSON delivery, and MCP retrieval. My projects add two complementary examples: NoteEchoes for local model integration and reliable note capture, and MFlash for constrained action proposals and checked execution. This role combines those AI and software-engineering strengths.",
+    "cue": "Production + Python + local AI + controlled actions.",
+    "followup": "Keep this to 60 seconds. Use Bank of America for production experience; the projects for technical depth."
+  },
+  {
+    "id": 2,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "How do your projects match the four must-haves?",
+    "answer": "For production GenAI and MCP, my strongest resume example is Bank of America's extraction and document-retrieval work. For Python and AI engineering, MFlash adds typed execution, classifiers, ranking, and local retrieval. NoteEchoes adds Qwen adaptation, evaluation, mobile inference, and persistence safeguards. NoteEchoes itself is Flutter/Dart with Swift integrations, not a Python or Node.js application.",
+    "cue": "Use the right project for each requirement.",
+    "followup": "Do not present MFlash or NoteEchoes as MCP implementations: neither briefing establishes that integration."
+  },
+  {
+    "id": 3,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "What is the difference between an LLM and a classifier?",
+    "answer": "A classifier selects among labels. An LLM generates token sequences. MFlash's structured classifier selects action templates; it is a randomly initialized MLP, not a fine-tuned LLM. NoteEchoes uses a specialized pretrained Qwen3 model to produce structured action analysis. I choose a model according to the task's output space and operational constraints.",
+    "cue": "MLP selects; Qwen generates.",
+    "followup": "MFlash also has an MPNet candidate ranker, which is a third, separate role."
+  },
+  {
+    "id": 4,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "Explain transformers in simple terms.",
+    "answer": "A transformer uses attention to combine relevant information from tokens, plus feed-forward layers to transform representations. In a causal language model, attention is masked so a position cannot use future tokens. NoteEchoes adapts a pretrained transformer; it does not pretrain a foundation model. MFlash's structured MLP is not a transformer.",
+    "cue": "Attention connects context; adaptation specializes behavior.",
+    "followup": "If asked for the formula: softmax(QK-transpose / sqrt(d_k)) V."
+  },
+  {
+    "id": 5,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "What are embeddings, and where did you use them?",
+    "answer": "Embeddings represent inputs as numeric vectors for similarity comparisons. NoteEchoes uses multilingual E5-small with 384-dimensional normalized embeddings. MFlash has retrieval profiles using MPNet or EmbeddingGemma, and a separate MPNet action-ranking model. I keep model identity with embeddings because vectors from different spaces should not be directly compared.",
+    "cue": "Same space before similarity.",
+    "followup": "Do not mix the action ranker's learned projections with document retrieval embeddings."
+  },
+  {
+    "id": 6,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "When would you use retrieval versus fine-tuning?",
+    "answer": "Retrieval finds relevant stored information at query time. Fine-tuning adapts behavior. NoteEchoes uses Qwen adaptation for structured intent/action analysis and retrieval for saved notes and documents. Its active conversation and PDF paths return cited excerpts rather than using the action model as a general document chatbot.",
+    "cue": "Retrieval finds facts; tuning shapes behavior.",
+    "followup": "A grounded retrieval feature does not necessarily use generative answer synthesis."
+  },
+  {
+    "id": 7,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "What is an agent, and are your apps agents?",
+    "answer": "An agent uses model decisions to choose actions toward a goal. My projects combine deterministic workflows with model-assisted components. MFlash ordinary chat uses typed intents and deterministic proposals for supported routes; its workbench classifier and visual experiments are separate paths. NoteEchoes capture enhancement does not execute arbitrary model-selected tools.",
+    "cue": "Describe the actual path, not a broad agent label.",
+    "followup": "Explain why a fixed workflow can be simpler and safer for a bounded task."
+  },
+  {
+    "id": 8,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "What is MCP?",
+    "answer": "MCP is a protocol for connecting AI applications to tools and context. My resume example is enterprise document retrieval at Bank of America. The host is the application, its client communicates with a server, and the server exposes capabilities. MCP standardizes integration; application code still needs authorization, validation, and reliable execution.",
+    "cue": "Host -> client -> server.",
+    "followup": "The supplied project briefings do not fill in the Bank of America MCP transport or server ownership."
+  },
+  {
+    "id": 9,
+    "topic": "CORE",
+    "difficulty": "Medium",
+    "question": "How is MCP different from REST and tool calling?",
+    "answer": "REST exposes application services over HTTP. Model tool calling expresses a proposed invocation. MCP standardizes how compatible applications discover and interact with capabilities and context. An MCP server can wrap REST services. In all cases, the trusted execution layer must authorize and validate the operation; a model proposal is not permission.",
+    "cue": "Interface, proposal, protocol: different layers.",
+    "followup": "Use MFlash as an example of an execution boundary, not as evidence that it uses MCP."
+  },
+  {
+    "id": 10,
+    "topic": "CORE",
+    "difficulty": "Easy",
+    "question": "What is the difference between schema validity and correctness?",
+    "answer": "Schema validity means the output follows its required structure. Correctness means the content and action are right for the request. NoteEchoes records schema passes on 1,080 synthetic action rows, while selected-field agreement is 1,040 out of 1,080. A perfectly structured response can choose the wrong mode or tool arguments.",
+    "cue": "Valid shape does not mean correct meaning.",
+    "followup": "This is one of the most important distinctions in your interview."
+  },
+  {
+    "id": 11,
+    "topic": "CORE",
+    "difficulty": "Medium",
+    "question": "How do you evaluate an AI system in layers?",
+    "answer": "I separate model output, policy decisions, execution, and user outcome. NoteEchoes selected-field matching evaluates structured outputs. MFlash candidate ranking evaluates selection from supplied actions. Neither establishes successful real-world execution. I would separately evaluate retrieval, authorization failures, side effects, recovery, latency, and business outcomes.",
+    "cue": "Output -> policy -> execution -> outcome.",
+    "followup": "Use a different denominator and acceptance criterion for each layer."
+  },
+  {
+    "id": 12,
+    "topic": "CORE",
+    "difficulty": "Medium",
+    "question": "Explain Python async versus threads and processes.",
+    "answer": "Async is useful for concurrent network or other cooperative I/O. Threads can keep a UI responsive or wrap blocking I/O. Processes can parallelize CPU-heavy Python work. MFlash runs controller work in a background thread; that alone does not prove CPU parallelism. In standard GIL-enabled CPython, Python bytecode threads generally do not run in parallel.",
+    "cue": "I/O: async; blocking work: threads; CPU: consider processes.",
+    "followup": "Never describe MFlash's background worker as asyncio unless the specific path uses it."
+  },
+  {
+    "id": 13,
+    "topic": "NOTEECHOES",
+    "difficulty": "Easy",
+    "question": "Explain NoteEchoes in one minute.",
+    "answer": "NoteEchoes is a Flutter/Dart iPhone app with native Swift integrations for voice capture, local model inference, OCR, and device features. It saves notes and checklists, imports documents, and retrieves information from a personal collection. Its Qwen action interpreter enhances an already-saved note. Fingerprint checks protect later edits, and retrieval returns cited excerpts. Its synthetic evaluation results are useful regression evidence, with important generalization limits.",
+    "cue": "Capture -> save -> enhance -> validate -> retrieve.",
+    "followup": "Position it as local-first application engineering, not proven large-scale production adoption."
+  },
+  {
+    "id": 14,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Walk through a spoken checklist request.",
+    "answer": "Recorded speech first attempts WhisperKit transcription, with guarded Apple Speech fallback. The service sanitizes the transcript, applies deterministic parsing, creates the note, persists it, and schedules indexing. Optional Qwen enhancement then analyzes the original transcript. CoreV5 validation checks the JSON. Before applying changes, the service compares the note fingerprint with its earlier snapshot and discards stale enhancement.",
+    "cue": "Save first; enhance second.",
+    "followup": "This trace is an implemented request path, not a measured historical user session."
+  },
+  {
+    "id": 15,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Which exact model and runtime does NoteEchoes use?",
+    "answer": "The main action interpreter is a specialized Qwen3-0.6B model deployed as an 8-bit MLX artifact. Dart calls a Flutter method channel, and native Swift performs local MLX inference. The configured artifact is pinned to revision b829d1d480c0bc0226326e36f009ae825af60f18. All recognition-language settings route to this combined action model in the inspected implementation.",
+    "cue": "Qwen3-0.6B -> MLX 8-bit -> Swift bridge.",
+    "followup": "Memorize model size and runtime; the full revision is reference material, not an interview recital."
+  },
+  {
+    "id": 16,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "What were the QLoRA training settings?",
+    "answer": "The initial training configuration uses Qwen3-0.6B, 4-bit NF4 with double quantization, and rsLoRA with rank 32, alpha 64, and dropout 0.05. Targets include attention projections and gate/up/down projections. It uses completion-only causal loss, maximum length 1,024, learning rate 4e-5, batch 8, accumulation 2, and one epoch. These are configured settings, not a verified lineage for every distributed weight.",
+    "cue": "0.6B / 4-bit / rank 32 / alpha 64 / 4e-5.",
+    "followup": "The initial trainer saves the final adapter; it does not load the best model at the end."
+  },
+  {
+    "id": 17,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Why 4-bit training but 8-bit deployment?",
+    "answer": "They are separate stages. QLoRA reduces training memory by keeping the base quantized while training adapters. The app uses a separately prepared 8-bit MLX deployment artifact. Training precision does not force deployment precision. I can explain that tradeoff, but the briefing does not establish that 8-bit was empirically optimal on devices.",
+    "cue": "Training memory and deployment format are separate decisions.",
+    "followup": "Do not invent latency, memory, or battery benchmarks."
+  },
+  {
+    "id": 18,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "What does completion-only loss mean?",
+    "answer": "The training code masks prompt labels with -100, so loss is computed on the target completion instead of teaching the model to reproduce the input prompt. The model learns the desired structured output conditioned on the request. This is supervised adaptation of a pretrained model. A separate GRPO program exists, but there is no established evidence that it produced the deployed weights.",
+    "cue": "Mask the prompt; learn the completion.",
+    "followup": "Do not describe the deployed model as RLHF-trained on the available evidence."
+  },
+  {
+    "id": 19,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "How large was your training dataset?",
+    "answer": "There are distinct packages. The original synthetic manifest lists 30,000 training requests paired into 60,000 SFT records. The English correction corpus has 6,000 training rows: 5,400 action and 600 normalization examples. Validation, test, and challenge each have 600 rows. The correction counts and hashes were checked in the supplied review; the original manifest counts were not freshly recounted.",
+    "cue": "Original package != correction package.",
+    "followup": "Do not combine counts from different releases or call synthetic rows real-user requests."
+  },
+  {
+    "id": 20,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "What exactly does the 96.3% score mean?",
+    "answer": "It is 1,040 out of 1,080 archived synthetic action outputs passing the stored operational gate and exactly matching seven selected fields: intent, mode, items, entities, draft, requires_confirmation, and the full proposed_tool. It excludes title, language, confidence, normalized text, and clarification wording. The supplied review rescored saved outputs; it did not rerun model inference.",
+    "cue": "1,040 / 1,080; seven fields; synthetic archive.",
+    "followup": "Call it selected action-field exact match, not overall production accuracy."
+  },
+  {
+    "id": 21,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "How do the other NoteEchoes metrics differ?",
+    "answer": "The archive contains 1,200 cases: 1,080 action and 120 normalization cases. Stored operational flags pass 1,200/1,200, while strict-check flags pass 1,097/1,200, or 91.417%. Stored schema flags pass all 1,080 action rows; schema validation was not rerun in the review. Normalization matches 120/120. These metrics test different conditions and use different denominators.",
+    "cue": "Operational != selected fields != strict object match.",
+    "followup": "The operational gate does not require full argument, mode, item, entity, or draft equality."
+  },
+  {
+    "id": 22,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "Was the test data independent of training?",
+    "answer": "Files and row hashes are separate, but that does not ensure semantic independence. The supplied review normalized synthetic identifiers and found all 540 test action targets and all 540 challenge action targets matched templates present in training. That weakens evidence of generalization. It is not proof that identical test rows were intentionally trained on. I would add independently authored, scenario-disjoint holdouts.",
+    "cue": "Different rows can share the same template.",
+    "followup": "This is a proposed next evaluation, not a completed improvement."
+  },
+  {
+    "id": 23,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "How much better was the model than stock Qwen?",
+    "answer": "I do not have a completed matched baseline comparison in the evidence provided. The 96.3% result is an absolute score on a specific synthetic evaluation, not an improvement over stock Qwen. I would compare stock and adapted models with the same prompts, decoding settings, runtime, and independently authored holdout, including per-language and failure slices.",
+    "cue": "No baseline -> no improvement percentage.",
+    "followup": "Do not turn a fine-tuned model's score into a gain over its base model."
+  },
+  {
+    "id": 24,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Which errors remained in the saved outputs?",
+    "answer": "The supplied rescore found 22 mode differences, 14 complete tool-object differences, and 6 draft differences. Those categories overlap, so I would not add them to count unique failures. There were 40 failed selected-field cases overall. I would inspect mode selection and full tool arguments separately rather than focusing only on schema validity.",
+    "cue": "40 failed cases; error categories overlap.",
+    "followup": "No selected item/entity differences were found in that archive; that is not a universal guarantee."
+  },
+  {
+    "id": 25,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Explain NoteEchoes retrieval precisely.",
+    "answer": "The hybrid note path combines SQLite FTS5/BM25 with optional multilingual E5-small semantic matches. It takes up to 15 lexical and 15 semantic matches and combines ranks with 1/(60+rank). One-hop relationships can add 0.005, and the default output is six candidates. Stored vectors are scanned directly. The inspected path has no learned reranker.",
+    "cue": "15 + 15 -> reciprocal rank fusion -> 6.",
+    "followup": "These are note-retrieval settings, not a claim that every document path uses identical settings."
+  },
+  {
+    "id": 26,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "How are PDFs parsed and chunked?",
+    "answer": "The processor uses selectable PDF text and positional information to approximate reading order. Sparse-text pages attempt native Apple Vision OCR. Target chunks are 1,800 characters with 220-character overlap, preferring paragraph, line, or sentence boundaries. Chunks retain page and source-order information. These are character counts, not token counts.",
+    "cue": "Text first -> OCR fallback -> 1,800 / 220.",
+    "followup": "Layout annotations do not establish full diagram or table understanding."
+  },
+  {
+    "id": 27,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "How does the knowledge graph work?",
+    "answer": "It has semantic note relationships and connected-component topic grouping. The visible graph displays topics and their member notes, with up to 60 note nodes. That is useful for navigation and organization. I would describe it as a note/topic graph, not an entity-predicate reasoning engine or a graph database.",
+    "cue": "Related notes form topics; graph shows membership.",
+    "followup": "The review identifies asymmetric relationship expansion as a potential improvement, not a completed fix."
+  },
+  {
+    "id": 28,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "What if a user edits a note during inference?",
+    "answer": "The initial note is already saved. Before enhancement, the service records a fingerprint. When the model returns, it compares that fingerprint with the current note. If the note changed or was deleted, the enhancement is discarded. That protects user edits from late model output. A regression test was inspected in the briefing, but it was not run during that review.",
+    "cue": "Snapshot -> generate -> compare -> apply or discard.",
+    "followup": "A Dart timeout alone does not prove native inference stopped."
+  },
+  {
+    "id": 29,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "How do you prevent deleted notes from returning after recovery?",
+    "answer": "Primary storage uses SQLite, with recovery snapshots and deletion tombstones. Recovery chooses a complete valid snapshot rather than unioning old snapshots, combines deletion IDs, and skips tombstoned notes. This addresses stale backups containing deleted records. Snapshot mirroring can finish after note saving, so I would not claim every mirror is synchronous or power-loss-proof.",
+    "cue": "Choose one snapshot; respect tombstones.",
+    "followup": "SQLite uses WAL with synchronous=NORMAL; no device power-loss experiment is established."
+  },
+  {
+    "id": 30,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Does the model execute reminders or arbitrary tools?",
+    "answer": "The capture path treats model tool objects as proposals and converts accepted analysis into notes. Reminder scheduling uses a separate permission-controlled native bridge. A generic provider registry exists, but the review did not find it wired into application execution. I would not claim broad autonomous multi-tool execution from the presence of that registry.",
+    "cue": "Proposal is not execution.",
+    "followup": "Distinguish a wired feature, retained code, a stub, and a roadmap item."
+  },
+  {
+    "id": 31,
+    "topic": "NOTEECHOES",
+    "difficulty": "Medium",
+    "question": "Is NoteEchoes fully offline and multilingual?",
+    "answer": "It implements local inference, embeddings, note storage, and OCR. However, downloads need networking; Apple Speech fallback can use remote recognition; web lookup and feedback are remote-capable. It supports English, Hindi, Telugu, and mixed recognition settings, but the English correction score is not evidence of equal real-audio accuracy across languages.",
+    "cue": "Local-first, with explicit remote exceptions.",
+    "followup": "Do not claim fully offline operation or measured multilingual parity."
+  },
+  {
+    "id": 32,
+    "topic": "NOTEECHOES",
+    "difficulty": "Hard",
+    "question": "What would you improve first in NoteEchoes?",
+    "answer": "I would first add a fresh human-authored holdout and matched stock-versus-adapted evaluation, then measure real-device latency and resource use. I would also fix failed-PDF reimport handling: the current hash deduplication can return an existing failed document without reprocessing it. That is an identified code-grounded issue, not a historical incident I am claiming to have fixed.",
+    "cue": "Independent evaluation + device measurement + retry recovery.",
+    "followup": "Historical TestFlight evidence does not establish current availability, adoption, or crash-free usage."
+  },
+  {
+    "id": 33,
+    "topic": "MFLASH",
+    "difficulty": "Easy",
+    "question": "Explain MFlash in one minute.",
+    "answer": "MFlash is a Python/PyQt macOS assistant with local document retrieval, scoped file operations, and model-assisted proposals. It separates deterministic routes, a structured template classifier, an MPNet ranker, and experimental visual workflows. The execution layer checks authority, state, and results instead of trusting model confidence. Its strongest story is controlled execution and recovery evidence. The source identifies it as a Design Preview.",
+    "cue": "Interpret -> propose -> authorize -> execute -> verify.",
+    "followup": "Do not describe it as a production-ready general computer-use agent."
+  },
+  {
+    "id": 34,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "Walk through a folder question in MFlash.",
+    "answer": "The request and attached folder become a typed local_rag_query intent with folder scope. The ordinary scheduler builds a deterministic proposal, checks capability and missing arguments, and constructs an application-policy grant. The retrieval engine reads indexed SQLite chunks, answers narrow labeled fields directly or retrieves evidence for a local answer. Source changes around answering cause rejection rather than publication of stale output.",
+    "cue": "Typed intent -> policy -> scoped retrieval -> evidence.",
+    "followup": "This ordinary chat route does not ask the structured classifier to choose the action."
+  },
+  {
+    "id": 35,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "What are the distinct model roles?",
+    "answer": "The structured classifier is a randomly initialized MLP that predicts templates from request/state features. The MPNet ranker embeds textual state and supplied candidate actions, then scores learned projections. A local content model supports document answers. Visual-model workflows are separate experiments. Keeping these roles distinct makes it easier to evaluate what each component actually contributes.",
+    "cue": "Classifier selects templates; ranker orders candidates.",
+    "followup": "Neither the structured classifier nor the MPNet ranker is a screenshot encoder."
+  },
+  {
+    "id": 36,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "Are the 74 actions 74 tools?",
+    "answer": "No. A historical structured run records 74 learned templates and 803 features. A template includes a tool and an argument-binding pattern, so several templates can relate to the same operation. The count comes from the training data; it is not a universal fixed capability count or proof that 74 end-to-end workflows work.",
+    "cue": "74 templates, not 74 independent tools.",
+    "followup": "Do not assume the active checkpoint matches the historical run without checking release identity."
+  },
+  {
+    "id": 37,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "What are observation-bound arguments?",
+    "answer": "Instead of allowing a model to invent an arbitrary filesystem path, a template binds arguments to trusted observations or restricted derived fields. The workbench checks that the proposed action matches the selected operation and trusted inputs. This sacrifices some flexibility but makes argument provenance inspectable and limits what an incorrect prediction can request.",
+    "cue": "Select from observed state; do not invent targets.",
+    "followup": "Binding arguments narrows risk but does not remove the need for execution-time validation."
+  },
+  {
+    "id": 38,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "How is the structured classifier trained?",
+    "answer": "The implemented trainer uses a random-initialized MLP, cross-entropy, AdamW with default learning rate 0.001 and weight decay 0.01, inverse-frequency sampling, batches up to 64, and gradient clipping at 1. Current checkpoint selection rewards accepted-correct minus accepted-wrong proposals, gated on zero wrong accepted mutations on development. A historical 2,000-step summary used older selection reporting.",
+    "cue": "MLP + cross-entropy + cost-sensitive acceptance.",
+    "followup": "Do not retroactively apply today's selection rule to historical runs."
+  },
+  {
+    "id": 39,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "Explain the MPNet ranking architecture.",
+    "answer": "The backbone is frozen sentence-transformers/all-mpnet-base-v2. Separate state and action projection heads map 768 to 512 to 256 dimensions, with normalized outputs. Training learns similarity between a state and candidate action descriptions. At evaluation, the correct candidate is already supplied. The ranker is not discovering every possible action or verifying its eventual execution.",
+    "cue": "Frozen encoder; learned heads; candidate similarity.",
+    "followup": "The model can select poorly if the supplied candidate set omits the correct action."
+  },
+  {
+    "id": 40,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What contrastive loss and negatives did you use?",
+    "answer": "There are two recipes. One combines 0.7 hard-negative loss with 0.3 symmetric in-batch loss. The other uses per-example gold-versus-negative cross-entropy at temperature 0.07. The provided negatives are authored scenario alternatives or sampled distractors; online hard-negative mining is not established. The evidence does not identify which recipe produced the current root checkpoint.",
+    "cue": "Two recipes; do not merge their hyperparameters.",
+    "followup": "A negative called hard in code is not proof of measured difficulty."
+  },
+  {
+    "id": 41,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What does the ranker's 100% score prove?",
+    "answer": "A saved report records 1,381 correct selections out of 1,381 development candidate sets. That is candidate ranking, not 100% automation. It excludes candidate discovery, perception, authorization, execution, and end-state verification. The report was not rerun in the supplied inspection. I would use it as narrow development evidence and test fresh complete workflows separately.",
+    "cue": "100% candidate selection != 100% task success.",
+    "followup": "Repeated development use and authored negatives limit generalization claims."
+  },
+  {
+    "id": 42,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What did the structured evaluation show?",
+    "answer": "The saved evaluation reports 1,298/1,541 full-argument matches, or 84.23%, with 211 abstentions and zero wrong mutating proposals reported. Abstentions are not successful actions. The report explicitly does not evaluate executor safety. A separate training summary says 82.15%; those results have not been established as equivalent and should not be collapsed.",
+    "cue": "84.23% proposal match; abstention is not success.",
+    "followup": "Do not infer a complete confusion matrix from these aggregate counts alone."
+  },
+  {
+    "id": 43,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "How does MFlash authorization work?",
+    "answer": "The workbench uses trusted caller approval and matching execution grants. Model confidence does not grant authority. Ordinary scheduler operations use application-policy grants, so not every action has a separate explicit confirmation. I would explain the specific path rather than claiming a universal approval rule across the whole application.",
+    "cue": "Confidence proposes; trusted policy authorizes.",
+    "followup": "The boundary should be audited across every mutation entry point."
+  },
+  {
+    "id": 44,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What happens if a file changes after preview?",
+    "answer": "The workbench captures a source digest during preview. Execution checks arguments against the grant and recomputes the digest. A changed source is rejected. An uncertain pending prior attempt returns needs_review rather than being blindly repeated. These checks reduce stale-state risk, but the briefing explicitly does not establish complete protection against external-process races.",
+    "cue": "Preview hash -> grant check -> fresh hash.",
+    "followup": "This is a code-grounded scenario, not a claimed production incident."
+  },
+  {
+    "id": 45,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "How are retries made safer?",
+    "answer": "The executor uses stable retry keys plus action identity. Completed results are rechecked, changed arguments are rejected, and pending uncertain attempts require review. Reviewed batches use a snapshot digest and verify completed runs before replay. This is checked retry behavior, not a global exactly-once guarantee for every workflow.",
+    "cue": "Same key + same action + verified result.",
+    "followup": "An idempotency key must be scoped and tied to the intended payload."
+  },
+  {
+    "id": 46,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "How does crash recovery work for file moves?",
+    "answer": "The safer move path records intent in a SQLite journal, creates a destination hard link, verifies content, removes the source, and records completion. A crash can occur between filesystem and database updates. Recovery inspects actual bytes and recorded state. The journal provides recoverable evidence; SQLite and the filesystem are not one distributed atomic transaction.",
+    "cue": "Record -> link -> verify -> unlink -> commit.",
+    "followup": "The same-volume path fails rather than silently using a different cross-volume behavior."
+  },
+  {
+    "id": 47,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "How does undo avoid destroying newer files?",
+    "answer": "Undo checks the destination's bytes before restoration. If the original path is now occupied, it chooses a collision-safe restored name such as _restored_N rather than overwriting the new occupant. If destination content changed, undo can reject the operation. Restoring something safely requires revalidating current state, not only remembering the original path.",
+    "cue": "Verify bytes; preserve occupied paths.",
+    "followup": "SHA-256 supports content comparison; it does not provide encryption or authorization."
+  },
+  {
+    "id": 48,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What did you actually test in MFlash?",
+    "answer": "The supplied inspection reports 12 passing isolated executor tests in 0.064 seconds using temporary synthetic files. They cover retries, cancellation, collisions, mismatched arguments, changed sources, and pending receipts. I did not rerun those tests for this guide, and that suite is not evidence of installed-app, model, or production reliability.",
+    "cue": "12 executor tests; narrow, concrete scope.",
+    "followup": "Keep historical model reports separate from tests actually executed in that inspection."
+  },
+  {
+    "id": 49,
+    "topic": "MFLASH",
+    "difficulty": "Medium",
+    "question": "Explain the local retrieval implementation.",
+    "answer": "Documents become 400-character chunks with 80-character overlap. SQLite stores text, metadata, versions, and float32 vectors. Retrieval scans selected vectors with dot products, adds lexical, filename, and identifier bonuses, and sorts results. Different embedding spaces use rank-based fusion. Indexed folders and optional folder scope restrict the search. No separate learned cross-encoder reranker was found.",
+    "cue": "400 / 80; SQLite; semantic + lexical bonuses.",
+    "followup": "Simple local scanning has query work that grows with collection size."
+  },
+  {
+    "id": 50,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "How do you ground answers and handle stale sources?",
+    "answer": "Generated answers are accepted only when the quoted text appears in supplied source content and the answer appears within that quote. The application returns source evidence. Changes detected around answering produce rag_source_changed. This reduces fabricated spans and stale answers, but does not prove that a quote is relevant, refers to the right entity, or came from correct OCR.",
+    "cue": "Source contains quote; quote contains answer.",
+    "followup": "A citation is evidence of location, not proof of semantic correctness."
+  },
+  {
+    "id": 51,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What happened in the visual-model experiment?",
+    "answer": "A recorded UI-TARS 7B QLoRA experiment used NF4, rank 16, alpha 32, and dropout 0.05. Results were mixed: original-action matching rose from 25/170 to 28/170, while native Mac grounding fell from 142/226 to 139/226. Synthetic held-out-family matching reached 166/168. Those synthetic gains do not establish reliable native workflows or deployment.",
+    "cue": "Synthetic gains; native regression; report both.",
+    "followup": "The coordinate matching metric permits tolerance; it is not byte-for-byte exact output."
+  },
+  {
+    "id": 52,
+    "topic": "MFLASH",
+    "difficulty": "Hard",
+    "question": "What are MFlash's most important remaining limits?",
+    "answer": "The app is not wholly offline: web search, Google Drive, and authentication include remote paths. Complete encryption and multi-user isolation are not established; the journal is a global singleton and retrieval has a shared fallback database path. I would prioritize fresh workflow tests, consistent authorization, privacy review, and fault-injected recovery before making broad production claims.",
+    "cue": "Local processing != complete privacy or production readiness.",
+    "followup": "These are recommendations; do not present them as completed fixes."
+  },
+  {
+    "id": 53,
+    "topic": "ENGINEERING",
+    "difficulty": "Medium",
+    "question": "How would you build an enterprise MCP retrieval tool?",
+    "answer": "I would expose a narrow document-search operation with a validated query, filters, and bounded limit. Identity would come from authenticated context, with permission checks before content reaches the model. Results would include source IDs and version metadata. MFlash's scoped retrieval and NoteEchoes' source-aware indexing offer design lessons, but enterprise tenant authorization is additional work.",
+    "cue": "Authenticate -> authorize -> retrieve -> cite.",
+    "followup": "This is a proposed design, not a description of either project's MCP implementation."
+  },
+  {
+    "id": 54,
+    "topic": "ENGINEERING",
+    "difficulty": "Hard",
+    "question": "How would you defend against prompt injection?",
+    "answer": "I would treat retrieved content and model output as untrusted data. A document cannot grant permission to access a secret or execute a command. I would use narrow tools, argument validation, external policy checks, and scoped execution. MFlash illustrates separating proposals from authority. Literal quote checks alone do not prevent prompt injection.",
+    "cue": "Data cannot promote itself into authority.",
+    "followup": "No prompt alone guarantees immunity; test malicious documents and tool outputs."
+  },
+  {
+    "id": 55,
+    "topic": "ENGINEERING",
+    "difficulty": "Medium",
+    "question": "How would you apply TDD and domain-driven design?",
+    "answer": "I would model intent, proposal, authorization, execution, and receipt as separate business concepts, as MFlash's typed boundaries illustrate. Deterministic tests can cover stale inputs, changed arguments, cancellations, and collisions. NoteEchoes adds edit-preservation and tombstone scenarios. Model behavior needs separate evaluation datasets. The briefings show tests and boundaries, not proof that every component was originally developed using TDD.",
+    "cue": "Test business rules separately from model quality.",
+    "followup": "Dataclasses do not automatically provide comprehensive runtime schema validation."
+  },
+  {
+    "id": 56,
+    "topic": "ENGINEERING",
+    "difficulty": "Hard",
+    "question": "How would you deploy an AI change safely?",
+    "answer": "I would bind application version, model identity, dataset hashes, prompts, and evaluation results in an immutable release manifest. I would run contract tests and regression evaluations, then deploy gradually with rollback criteria. The projects contain pieces of that evidence, but neither briefing establishes a complete verified chain from every training run to the current installed artifact.",
+    "cue": "Version the system, not only the code.",
+    "followup": "NoteEchoes CI includes checks and optional unsigned builds; it does not itself upload to TestFlight."
+  },
+  {
+    "id": 57,
+    "topic": "ENGINEERING",
+    "difficulty": "Hard",
+    "question": "What would you monitor after deployment?",
+    "answer": "I would track task success, correction and abstention rates, tool errors, stale-state rejections, latency, resource usage, and cost per successful outcome. For NoteEchoes, I would separate ASR, action interpretation, retrieval, and persistence. For MFlash, I would separate proposal quality from execution outcomes. I would not invent p95 latency or user-volume figures absent measured evidence.",
+    "cue": "Measure each stage and the final outcome.",
+    "followup": "The projects' diagnostics and receipts are useful starting points, not a full observability platform."
+  },
+  {
+    "id": 58,
+    "topic": "ENGINEERING",
+    "difficulty": "Hard",
+    "question": "How would you optimize cost, latency, and drift?",
+    "answer": "I would first measure where time and resources go. Both projects use exhaustive local vector search, which can become a bottleneck as collections grow. MFlash worker switching trades reload latency for memory residency. I would benchmark indexing and caching changes, then reevaluate quality. Drift monitoring would use new request/document slices rather than relying indefinitely on familiar synthetic templates.",
+    "cue": "Measure -> change one bottleneck -> re-evaluate.",
+    "followup": "Do not claim ANN indexing, caches, or production drift detection were implemented unless separately verified."
+  },
+  {
+    "id": 59,
+    "topic": "ENGINEERING",
+    "difficulty": "Hard",
+    "question": "Design a safe airline rebooking assistant.",
+    "answer": "I would separate policy retrieval, live reservation reads, option selection, approval, and booking execution. Before a write, I would recheck availability and price and bind approval to the exact proposed change. A timed-out booking would be reconciled by transaction identity before retry. MFlash's stale-state checks and checked retries are useful patterns, but airline business rules belong in authoritative services.",
+    "cue": "Search -> propose -> approve -> revalidate -> commit.",
+    "followup": "This is a system-design proposal; your resume does not establish airline experience."
+  },
+  {
+    "id": 60,
+    "topic": "ENGINEERING",
+    "difficulty": "Hard",
+    "question": "How would you evaluate an enterprise RAG assistant?",
+    "answer": "I would measure retrieval recall and ranking separately from answer correctness, citation support, and abstention. LLM-as-a-judge can scale rubric scoring but needs human calibration and versioning. Authorization requires deterministic checks. Neither project briefing establishes measured retrieval recall or general citation accuracy, so I would propose those evaluations rather than invent results.",
+    "cue": "Retrieval quality + answer quality + access correctness.",
+    "followup": "Your separate LangGraph codebase project lists Ragas; do not transfer its implementation to these apps."
+  },
+  {
+    "id": 61,
+    "topic": "BEHAVIOR",
+    "difficulty": "Easy",
+    "question": "Explain your Bank of America production experience.",
+    "answer": "My resume describes OCR-assisted PDF extraction using a fine-tuned model, JSON and field-level validation, scheduled secure API delivery, and a React review interface. I also worked on MCP-based document retrieval and gathered requirements from external clients. The two project briefings provide deeper personal-project implementation detail, but they do not establish the bank's base model, OCR vendor, hosting stack, or exact MCP transport.",
+    "cue": "Lead with real production; use projects for deeper mechanics.",
+    "followup": "Those bank-specific details remain personal confirmation items."
+  },
+  {
+    "id": 62,
+    "topic": "BEHAVIOR",
+    "difficulty": "Medium",
+    "question": "How did you measure the 50-60% effort reduction?",
+    "answer": "My resume describes an estimated reduction in manual effort for the extraction workflow. That is not model accuracy or necessarily measured financial savings. I should explain the actual baseline, remaining review effort, sample, and source of the estimate. The supplied documents do not establish that measurement method, so I cannot honestly fill it in from the project evidence.",
+    "cue": "Estimated effort reduction != accuracy.",
+    "followup": "Use only the time study or stakeholder estimate you actually used; no fabricated formula inputs."
+  },
+  {
+    "id": 63,
+    "topic": "BEHAVIOR",
+    "difficulty": "Medium",
+    "question": "Tell me about a difficult design tradeoff.",
+    "answer": "One concrete tradeoff is NoteEchoes saving a usable note before optional AI enhancement. It protects capture availability, but structured enrichment arrives later and must not overwrite user edits. Another is MFlash's observation-bound templates: they reduce flexibility but make action targets inspectable. I can explain the implemented tradeoffs; personal decision history should match my actual contribution.",
+    "cue": "Reliability sometimes means less autonomy.",
+    "followup": "Use a real decision you owned when the interviewer asks specifically what you chose."
+  },
+  {
+    "id": 64,
+    "topic": "BEHAVIOR",
+    "difficulty": "Hard",
+    "question": "Tell me about a failure and what you learned.",
+    "answer": "A useful code-grounded example is NoteEchoes' failed-PDF retry gap: hash deduplication can return an existing failed document without reprocessing it. The lesson is to make deduplication state-aware and distinguish successful completion from mere existence. I would add failed-state retry tests. This is an identified issue and proposed response, not a production incident or completed fix I can claim.",
+    "cue": "Exists != completed successfully.",
+    "followup": "For a behavioral incident question, use your own actual event, actions, and outcome."
+  },
+  {
+    "id": 65,
+    "topic": "BEHAVIOR",
+    "difficulty": "Medium",
+    "question": "How do you gather requirements and estimate work?",
+    "answer": "My resume supports direct client requirements gathering and end-to-end workflow delivery. I translate requests into inputs, required outputs, review conditions, and acceptance criteria. For uncertain model behavior, I would time-box a baseline experiment before committing to an accuracy target. NoteEchoes' distinction between schema and action correctness shows why acceptance criteria must be precise.",
+    "cue": "Define success before promising a model score.",
+    "followup": "Describe a specific client interaction from your experience if asked for a historical example."
+  },
+  {
+    "id": 66,
+    "topic": "BEHAVIOR",
+    "difficulty": "Medium",
+    "question": "How would you discuss production readiness honestly?",
+    "answer": "I would distinguish implemented code, tests actually run, archived model reports, and operational evidence. MFlash is identified as a Design Preview. NoteEchoes has historical TestFlight evidence but no verified current tester count or device reliability metrics in the briefing. My Bank of America resume experience is the stronger production example. Honest scope makes the engineering discussion more credible.",
+    "cue": "Code -> tests -> release -> real operations.",
+    "followup": "A build script or manifest is not proof of a successful deployment."
+  },
+  {
+    "id": 67,
+    "topic": "BEHAVIOR",
+    "difficulty": "Easy",
+    "question": "What should you say about tools or domains you have not used?",
+    "answer": "My strongest listed language is Python, my orchestration project uses LangGraph, and my enterprise experience includes APIs and data pipelines. I would describe actual exposure to Java, Semantic Kernel, Copilot Studio, Jenkins, or airline systems without implying equal depth. I can explain transferable architecture and learn the team's stack. Personal projects are not automatically verified open-source contributions.",
+    "cue": "Specific strengths; clear boundaries; transferable skills.",
+    "followup": "Mention Excel automation directly; give real examples for other Office tools if asked."
+  },
+  {
+    "id": 68,
+    "topic": "BEHAVIOR",
+    "difficulty": "Easy",
+    "question": "What questions should you ask the interviewer?",
+    "answer": "I would ask which AI workflows are already in production, what the engineer owns after deployment, how MCP permissions are managed, what evaluation gates block a release, and what success looks like in the first 90 days. I would also ask whether the main challenge is model quality, integration, reliability, latency, or adoption.",
+    "cue": "Ownership + evaluation + operations + first 90 days.",
+    "followup": "Choose four questions that fit what the interview has not already covered."
+  },
+  {
+    "id": 69,
+    "topic": "PYTHON",
+    "difficulty": "Easy",
+    "question": "How do you deduplicate IDs while preserving order?",
+    "answer": "Use a set for membership and a list for ordered results. For each ID, append it only if it has not been seen, then add it to the set. Average time is O(n), and memory is O(n). For an unbounded stream, I would define a deduplication window or persistent store instead of growing an in-memory set forever.",
+    "cue": "Set checks; list remembers order.",
+    "followup": "Practice empty input, repeated IDs, and all-unique input. See coding drill A."
+  },
+  {
+    "id": 70,
+    "topic": "PYTHON",
+    "difficulty": "Medium",
+    "question": "How do you compute exact-match accuracy correctly?",
+    "answer": "Align predictions and references by stable example ID, validate that reference fields exist, and define normalization before scoring. Count missing predictions as failures, not as matching missing values. NoteEchoes demonstrates why selected-field agreement and complete-object agreement need different metric names and denominators. An accuracy function is only meaningful when the evaluation contract is explicit.",
+    "cue": "Alignment + denominator + equality rules.",
+    "followup": "See coding drill B. Never silently zip unequal-length lists."
+  },
+  {
+    "id": 71,
+    "topic": "PYTHON",
+    "difficulty": "Medium",
+    "question": "How do you bound concurrent API calls?",
+    "answer": "Use a semaphore to cap active calls, a timeout per attempt, and an explicit error policy. For large inputs, use a bounded worker queue rather than creating all tasks at once. Distinguish an execution timeout from an overall deadline including queue wait. Preserve cancellation and avoid blocking synchronous calls inside the event loop.",
+    "cue": "Concurrency limit + timeout + cancellation.",
+    "followup": "See coding drill C. A semaphore is not itself a requests-per-second rate limiter."
+  },
+  {
+    "id": 72,
+    "topic": "PYTHON",
+    "difficulty": "Hard",
+    "question": "How would you design a durable idempotency handler?",
+    "answer": "Store a scoped key, request hash, state, and result under a uniqueness constraint. Reject a reused key with different arguments. Return verified completed results; report in-progress work; reconcile uncertain outcomes before retrying. MFlash supplies a concrete example of checked receipts and pending attempts requiring review. No local dictionary or database flag alone makes an external side effect exactly-once.",
+    "cue": "Same request -> same outcome; uncertainty -> reconcile.",
+    "followup": "See coding drill D for a state-machine exercise and failure cases."
+  },
+  {
+    "id": 73,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Easy",
+    "question": "How does an LLM turn a prompt into an answer?",
+    "answer": "Text is tokenized, tokens become vectors, and transformer layers build context-aware representations. A generation model assigns probabilities to possible next tokens, selects one, and repeats. Its answer reflects learned patterns and supplied context; it is not automatically a lookup of verified facts.",
+    "example": "For invoice extraction, the prompt and OCR text are input tokens; the output tokens form the proposed JSON.",
+    "deeper": "Input and output share a token budget. Long prompts increase work and can crowd out the evidence or output you need.",
+    "cue": "Tokens -> representations -> next-token probabilities -> output.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 74,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Medium",
+    "question": "Explain self-attention, causal masks, and positional information.",
+    "answer": "Attention lets a token combine information from relevant tokens. Queries and keys produce relevance scores, and those scores weight values. A causal mask prevents looking at future tokens during next-token training. Positional information helps represent order, since attention alone does not encode sequence order.",
+    "example": "In \"the invoice total is 500,\" attention can connect \"total\" and \"500\" instead of treating every word independently.",
+    "deeper": "Attention is softmax(QK-transpose / sqrt(d_k)) V. Multiple heads learn different relationships. Standard full attention has quadratic pairwise score growth with sequence length.",
+    "cue": "Queries ask; keys match; values contribute.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 75,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Easy",
+    "question": "What do temperature and top-p control?",
+    "answer": "They influence how output tokens are sampled. Temperature changes how sharply probability favors likely tokens. Top-p restricts sampling to a set whose cumulative probability reaches a threshold. Lower randomness can improve consistency, but it cannot guarantee correctness or identical outputs across systems.",
+    "example": "For extraction I would start with restrained sampling and explicit output constraints, then evaluate field correctness.",
+    "deeper": "Changing sampling can affect both quality and variability. Keep settings fixed when comparing model or prompt versions.",
+    "cue": "Sampling controls variety, not truth.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 76,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Easy",
+    "question": "How do you write a useful production prompt?",
+    "answer": "Specify the task, the input boundaries, the required output, and how to handle missing or ambiguous information. Add only relevant examples. Treat external documents as data. Version the prompt and evaluate changes against representative cases.",
+    "example": "\"Extract invoice_id and amount from the document. Return the required schema. Use null for a missing value. Do not invent values.\"",
+    "deeper": "Prompt instructions help behavior; server-side schema validation and business checks still enforce the contract.",
+    "cue": "Task + evidence + format + uncertainty rules.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 77,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Medium",
+    "question": "When do zero-shot and few-shot prompting help?",
+    "answer": "Zero-shot gives instructions without task examples. Few-shot includes examples demonstrating the desired mapping. Few-shot can clarify ambiguous labels and formatting, but examples consume context and can bias behavior toward familiar patterns. Choose examples covering important edge cases, not just easy successes.",
+    "example": "Show one complete invoice, one missing amount, and one document that is not an invoice.",
+    "deeper": "Use held-out evaluation to select examples. Putting test answers in the prompt invalidates an independent evaluation.",
+    "cue": "Examples teach the pattern; holdouts test it.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 78,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Medium",
+    "question": "What is chain-of-thought prompting, and how should you use it?",
+    "answer": "It encourages intermediate reasoning before a result. Reasoning-oriented models may handle that internally. For users and evaluation, request a concise explanation, relevant evidence, and a validated final output. A convincing reasoning trace is not proof of correctness.",
+    "example": "For a rebooking recommendation, show the applicable policy and price difference, then validate eligibility in backend rules.",
+    "deeper": "Do not depend on hidden reasoning text as an audit trail. Audit the inputs, selected action, evidence, permissions, and observed outcome.",
+    "cue": "Verify evidence and outcomes, not fluent reasoning.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 79,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Medium",
+    "question": "How would you optimize a prompt systematically?",
+    "answer": "Create a baseline and an evaluation set. Change one meaningful element, such as instructions or examples. Compare correctness, failure slices, latency, and token usage. Keep version history and avoid repeatedly tuning against the final test set.",
+    "example": "A new missing-value instruction might reduce invented fields but increase unnecessary nulls. Measure both effects.",
+    "deeper": "Prefer the smallest prompt that meets acceptance criteria. More instructions can introduce conflicts instead of improving quality.",
+    "cue": "Baseline -> one change -> evaluation -> regression check.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 80,
+    "topic": "LLM_PROMPTS",
+    "difficulty": "Hard",
+    "question": "How do fine-tuning, overfitting, and quantization relate?",
+    "answer": "Fine-tuning updates parameters to specialize behavior. Overfitting happens when the model learns training-specific patterns that do not generalize. Quantization uses lower-precision representations to reduce resource needs, with quality tradeoffs that must be measured. These are distinct concerns.",
+    "example": "NoteEchoes has 4-bit QLoRA training configuration and an 8-bit MLX artifact. Its template overlap limits what the evaluation proves about unfamiliar requests.",
+    "deeper": "Compare to a matched base-model baseline and test new scenarios. Do not infer that tuning improved quality or that a precision setting is optimal without measurements.",
+    "cue": "Specialize behavior; test generalization; measure precision tradeoffs.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 81,
+    "topic": "RAG_DATA",
+    "difficulty": "Easy",
+    "question": "Walk through a RAG pipeline from documents to answers.",
+    "answer": "Ingest documents, extract text, create chunks, compute embeddings, and store text plus metadata. At query time retrieve relevant authorized chunks, optionally rerank them, and supply evidence to an answer component. Return sources and abstain when support is insufficient.",
+    "example": "A policy assistant retrieves the current baggage policy before answering a question about fees.",
+    "deeper": "Evaluate ingestion, retrieval, and answer quality separately. If OCR drops a fee table, prompt changes cannot recover the missing evidence.",
+    "cue": "Ingest -> chunk -> index -> retrieve -> answer with sources.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 82,
+    "topic": "RAG_DATA",
+    "difficulty": "Medium",
+    "question": "How do you choose chunk size and overlap?",
+    "answer": "A chunk should contain enough context to interpret its facts while staying focused. Overlap preserves context around boundaries but increases storage and duplicate evidence. Start with document structure, then evaluate retrieval and answer quality rather than assuming one universal size.",
+    "example": "NoteEchoes PDF chunks target 1,800 characters with 220 overlap. MFlash uses 400 with 80. These reflect different implementations, not token counts.",
+    "deeper": "Keep titles, page references, and version metadata. Test tables and multi-column layouts separately. A bigger chunk can reduce retrieval precision.",
+    "cue": "Context without clutter; measure the boundary cases.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 83,
+    "topic": "RAG_DATA",
+    "difficulty": "Medium",
+    "question": "How do Pinecone, FAISS, Weaviate, and Chroma differ conceptually?",
+    "answer": "They help store or search vector representations, but they are not interchangeable operationally. FAISS is a similarity-search library; database and managed-service options can provide additional persistence, filtering, and operational features. Choose by scale, access controls, update patterns, hosting needs, and cost.",
+    "example": "For a small local collection, SQLite plus an exact vector scan may be enough. A large shared service may need indexing and stronger operational facilities.",
+    "deeper": "Check the actual product and version before choosing. Approximate nearest-neighbor search trades some recall for speed; compare it against an exact-search baseline.",
+    "cue": "Choose by workload and operations, not popularity.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 84,
+    "topic": "RAG_DATA",
+    "difficulty": "Medium",
+    "question": "What are precision, recall, and F1?",
+    "answer": "Precision asks: of the positive predictions, how many were correct? Recall asks: of the actual positives, how many did we find? F1 is their harmonic mean. Accuracy alone can hide rare-class failures. Decide which error is more expensive before selecting a metric.",
+    "example": "If 10 flagged documents contain 8 true issues, precision is 8/10. If 20 documents truly contain issues, recall is 8/20.",
+    "deeper": "For retrieval, define relevance and the cutoff k. Recall@k concerns retrieved evidence; it is not the same as final answer accuracy.",
+    "cue": "Precision = trust the hits; recall = find the positives.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 85,
+    "topic": "RAG_DATA",
+    "difficulty": "Hard",
+    "question": "How do LLM-as-a-judge and regression evaluations work?",
+    "answer": "A judge scores output using a rubric, references, or source evidence. Regression evaluation repeats a fixed suite after changes to detect losses. Judges can be inconsistent or biased, so calibrate against human labels and use deterministic checks where possible. Track results by meaningful slice.",
+    "example": "A new prompt may improve summary clarity but invent more dates. Keep a factuality slice and exact date checks alongside judge scores.",
+    "deeper": "Version the dataset, judge, rubric, and generation settings. Blind comparisons and order randomization help reduce some judging biases but do not eliminate them.",
+    "cue": "A rubric scales review; calibration makes it useful.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 86,
+    "topic": "RAG_DATA",
+    "difficulty": "Hard",
+    "question": "How do you prevent data leakage and evaluate generalization?",
+    "answer": "Separate training, validation, and final testing. Fit preprocessing only on training data. Split related documents, users, templates, or time periods together when needed. Duplicate-free rows are insufficient if almost identical patterns occur in both training and testing.",
+    "example": "NoteEchoes correction rows had separate hashes, yet normalized action templates overlapped training. A fresh human-authored scenario holdout would be stronger evidence.",
+    "deeper": "Validation guides development; the final test should remain independent. Time-based tasks often need chronological evaluation. Report uncertainty and subgroup results, not just one percentage.",
+    "cue": "Separate the underlying scenario, not only the row.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work.",
+    "sources": [
+      {
+        "label": "scikit-learn: common pitfalls",
+        "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "topic": "RAG_DATA",
+    "difficulty": "Medium",
+    "question": "When do you need a classifier or ranker instead of an LLM?",
+    "answer": "Use a classifier for a stable label set and a ranker for ordering supplied candidates. They can offer predictable cost and latency. Use an LLM when flexible language generation or interpretation is necessary. Compare alternatives using task quality and operational needs.",
+    "example": "MFlash separates an MLP template classifier from an MPNet candidate ranker; neither is the local document-answer generator.",
+    "deeper": "For an imbalanced classifier, use suitable per-class metrics. For ranking, specify candidate construction because easy candidate sets can inflate scores.",
+    "cue": "Choose the simplest model that meets the task.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 88,
+    "topic": "AGENT_MCP",
+    "difficulty": "Easy",
+    "question": "What makes a tool call different from executing code?",
+    "answer": "A model emits a structured proposal containing a tool name and arguments. Application code parses it, checks permission and validity, and decides whether to invoke the implementation. The model does not become authorized just because its output matches the tool schema.",
+    "example": "A proposed move_file call must refer to allowed paths and current file state before MFlash-like execution checks permit a write.",
+    "deeper": "Unknown tools, invalid arguments, stale state, and excessive call volume should fail safely. Return structured errors the workflow can handle.",
+    "cue": "Model proposes; trusted code validates and executes.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 89,
+    "topic": "AGENT_MCP",
+    "difficulty": "Medium",
+    "question": "How would you choose LangChain, LangGraph, Semantic Kernel, or Copilot Studio?",
+    "answer": "Compare the workflow, ecosystem, deployment needs, and team skills. LangGraph supports explicit stateful graph workflows. Semantic Kernel is an SDK for integrating models and application code. Copilot Studio provides a graphical low-code environment for agents and workflows. Framework choice does not replace application-level security and evaluation.",
+    "example": "A developer-owned branching workflow may suit a code-first graph; a business-managed enterprise workflow may benefit from a low-code environment.",
+    "deeper": "My strongest resume framework example is LangGraph. If asked about the others, explain this comparison and be clear about actual hands-on exposure.",
+    "cue": "Choose workflow fit and ownership before framework.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work.",
+    "sources": [
+      {
+        "label": "Semantic Kernel overview",
+        "url": "https://learn.microsoft.com/en-us/semantic-kernel/overview/"
+      },
+      {
+        "label": "Copilot Studio overview",
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+      },
+      {
+        "label": "LangGraph reference",
+        "url": "https://reference.langchain.com/python/langgraph/overview"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "topic": "AGENT_MCP",
+    "difficulty": "Medium",
+    "question": "What are the steps in an MCP integration?",
+    "answer": "Connect a compatible client and server, discover the exposed capabilities, validate a selected operation, invoke it, and interpret its response. Distinguish the AI host, its protocol client, and the service exposing tools or context. Implement access checks at the service boundary.",
+    "example": "A document server might expose search_documents while the host decides when to use it in an answer workflow.",
+    "deeper": "Protocol details differ by version. Confirm the negotiated or configured version instead of memorizing one lifecycle as universal.",
+    "cue": "Connect -> discover -> validate -> invoke -> handle result.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work.",
+    "sources": [
+      {
+        "label": "MCP architecture and documentation",
+        "url": "https://modelcontextprotocol.io/docs/learn/architecture"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "topic": "AGENT_MCP",
+    "difficulty": "Hard",
+    "question": "How do local and remote MCP transports affect security?",
+    "answer": "Local stdio commonly connects an application to a subprocess. Streamable HTTP supports remote communication. Local process access and remote authentication need different controls. Neither transport automatically establishes that a caller may perform every exposed action.",
+    "example": "A local filesystem server should be restricted to allowed locations. A remote document server should authenticate requests and enforce document permissions.",
+    "deeper": "Do not log credentials or blindly forward tokens to unrelated services. Bound result sizes and timeouts, and check current protocol guidance for the chosen implementation.",
+    "cue": "Transport moves messages; authorization controls access.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work.",
+    "sources": [
+      {
+        "label": "MCP architecture and documentation",
+        "url": "https://modelcontextprotocol.io/docs/learn/architecture"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "topic": "AGENT_MCP",
+    "difficulty": "Hard",
+    "question": "How should an agent handle memory and tool failures?",
+    "answer": "Separate temporary workflow state from durable user facts. Store only justified information with suitable retention and access controls. On failures, classify transient errors, invalid requests, denied access, and uncertain side effects. Retry only when the failure model makes it safe.",
+    "example": "Retrying a read may be reasonable after a network error. Retrying a booking after a timeout first requires checking whether the booking already succeeded.",
+    "deeper": "A checkpoint does not make external writes exactly-once. Bind approval to exact arguments and revalidate before execution.",
+    "cue": "Remember selectively; retry deliberately; reconcile uncertainty.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 93,
+    "topic": "AGENT_MCP",
+    "difficulty": "Medium",
+    "question": "When should you use several agents instead of one?",
+    "answer": "Use multiple agents only when distinct roles or parallel independent work improve a measurable outcome. More agents add coordination, latency, cost, and more failure paths. Often a single model with clear tools and a deterministic workflow is sufficient.",
+    "example": "Independent document reviews can run in parallel, but two agents should not both commit the same booking.",
+    "deeper": "Define ownership of shared state, stopping conditions, budgets, and conflict resolution. Compare with a simpler baseline before keeping the extra agents.",
+    "cue": "More agents require a reason and a coordination contract.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 94,
+    "topic": "SOFTWARE",
+    "difficulty": "Easy",
+    "question": "Explain OOP using an AI service.",
+    "answer": "Encapsulation hides internal details behind a useful interface. Abstraction exposes the behavior consumers need. Polymorphism lets implementations share that interface. Inheritance reuses or specializes behavior, although composition often provides simpler flexibility.",
+    "example": "A Retriever interface could have SQLiteRetriever and RemoteRetriever implementations; the workflow uses search without knowing their storage details.",
+    "deeper": "Keep model calls, validation, persistence, and business policy separable. A class that handles everything becomes difficult to test or replace.",
+    "cue": "Hide details; expose behavior; swap implementations.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 95,
+    "topic": "SOFTWARE",
+    "difficulty": "Medium",
+    "question": "What are the SOLID principles in practical terms?",
+    "answer": "Give a component a clear responsibility, allow extensions without rewriting unrelated behavior, preserve interface expectations, keep interfaces focused, and depend on abstractions. These principles help manage change; they are not a requirement to create many tiny classes.",
+    "example": "Inject a ModelClient into an extraction service so tests can supply controlled responses and production can use a real provider.",
+    "deeper": "A replacement must preserve behavior such as error and timeout contracts, not merely use the same method names.",
+    "cue": "Clear responsibilities and replaceable boundaries.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 96,
+    "topic": "SOFTWARE",
+    "difficulty": "Medium",
+    "question": "Explain domain-driven design with a business example.",
+    "answer": "Model the business language and rules explicitly. Use bounded contexts to separate areas with different responsibilities. An entity has identity, a value object represents a value, and an aggregate defines an internal consistency boundary. Keep business invariants out of prompt text alone.",
+    "example": "Reservation and payment can be separate contexts. A reservation service enforces allowed transitions even if an agent requests an invalid change.",
+    "deeper": "Not every class needs domain terminology. Start with actual business rules and boundaries, then choose the implementation.",
+    "cue": "Business rules define the model and its boundaries.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 97,
+    "topic": "SOFTWARE",
+    "difficulty": "Medium",
+    "question": "How do unit, integration, contract, and end-to-end tests differ?",
+    "answer": "Unit tests isolate a small component. Integration tests check cooperating components. Contract tests verify interface expectations. End-to-end tests exercise a complete supported journey. AI evaluations measure output behavior across examples and complement these tests.",
+    "example": "Test a validator alone, test SQLite persistence, test an MCP response schema, then test a user request through result delivery.",
+    "deeper": "Mocking every dependency can miss real integration failures. Keep a small set of meaningful live integration checks with controlled cost and data.",
+    "cue": "Small behavior -> connections -> contract -> user journey.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 98,
+    "topic": "SOFTWARE",
+    "difficulty": "Easy",
+    "question": "How does test-driven development apply to AI engineering?",
+    "answer": "Write a failing test for a defined behavior, implement the smallest solution, then refactor with tests passing. Apply it directly to deterministic rules. For model quality, define evaluation cases and acceptance thresholds before making changes; model outputs often need more than binary unit assertions.",
+    "example": "First write a test that stale AI output cannot overwrite an edited note. Then implement the fingerprint check.",
+    "deeper": "The briefings show relevant tests and safeguards, but do not establish that every component was originally built with TDD.",
+    "cue": "Red -> green -> refactor; evaluate model behavior separately.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 99,
+    "topic": "SOFTWARE",
+    "difficulty": "Medium",
+    "question": "What should a well-designed REST API include?",
+    "answer": "Use meaningful resources, appropriate HTTP methods, validated JSON, clear status codes, authentication, authorization, and stable error shapes. Define pagination, versioning, and retry behavior. Long-running work can return a job reference instead of holding a connection open indefinitely.",
+    "example": "POST /extraction-jobs can return 202 Accepted with a job ID; GET /extraction-jobs/{id} returns progress or a result.",
+    "deeper": "Use 401 for missing/invalid authentication, 403 for denied access, and 429 for rate limits. POST writes need an explicit idempotency contract when retried.",
+    "cue": "Clear resource + contract + errors + retry semantics.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 100,
+    "topic": "SOFTWARE",
+    "difficulty": "Medium",
+    "question": "When are microservices useful, and when are they costly?",
+    "answer": "Microservices allow independently owned and deployed services, but add network failures, tracing, data consistency, and operational work. A modular monolith may be easier for a small team. Split services when real scaling or ownership boundaries justify it.",
+    "example": "OCR workers could scale separately from an interactive API if document processing is the bottleneck.",
+    "deeper": "Cross-service writes may need asynchronous coordination or compensating actions. A local database transaction cannot make several remote services atomic.",
+    "cue": "Independent scale comes with distributed-system costs.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 101,
+    "topic": "SOFTWARE",
+    "difficulty": "Easy",
+    "question": "What Python and Java concepts should you explain in an enterprise interview?",
+    "answer": "For Python, know mutability, exceptions, context managers, generators, typing, and concurrency. For Java, understand static types, interfaces, classes, exceptions, and garbage collection. Explain the concepts you know while being accurate about your language experience.",
+    "example": "A Python context manager closes a file even on an exception; Java try-with-resources serves a related resource-cleanup purpose.",
+    "deeper": "Typing annotations do not automatically validate incoming Python JSON. Use runtime validation at system boundaries and avoid mutable default arguments.",
+    "cue": "Know resource ownership, error handling, and types.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 102,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Easy",
+    "question": "How would you host an AI service in the cloud?",
+    "answer": "Separate the API, durable storage, processing workers, queue, model access, and monitoring. Use managed identity or scoped credentials. Choose managed inference or self-hosting according to privacy, latency, scale, and operational requirements. Cloud hosting alone does not make a service resilient.",
+    "example": "Upload a PDF to object storage, enqueue a job, process it in a worker, store validated output, and deliver it through an authorized API.",
+    "deeper": "Azure, AWS, and GCP offer building blocks for these roles, but service selection and configuration must be checked for the actual platform.",
+    "cue": "API + queue + workers + storage + identity + monitoring.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 103,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Medium",
+    "question": "What do containers, serverless, and Kubernetes solve?",
+    "answer": "A container packages an application and dependencies. Serverless services manage much of execution and scaling, with platform limits and cold-start considerations. Kubernetes orchestrates containers, but adds complexity. Pick the deployment pattern based on workload and team capacity.",
+    "example": "A bursty short API may suit serverless. A long GPU inference job may need a different managed or containerized runtime.",
+    "deeper": "Check timeouts, concurrency, startup cost, memory, and networking limits. Do not choose Kubernetes just because an application uses AI.",
+    "cue": "Match runtime behavior to workload requirements.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 104,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Medium",
+    "question": "Walk through CI/CD for an AI application.",
+    "answer": "Continuous integration checks each change; continuous delivery prepares a deployable artifact, and deployment releases it. Include code tests, contract checks, dependency scanning, representative model evaluations, versioned configuration, and rollback criteria. Separate secrets from source control.",
+    "example": "A prompt change should run regression cases before a gradual rollout, just as an API change runs contract tests.",
+    "deeper": "Git manages versions; GitHub Actions, Jenkins, and Azure DevOps pipelines execute automated steps. Tool names matter less than repeatable checks and trustworthy artifacts.",
+    "cue": "Change -> checks -> artifact -> rollout -> monitor -> rollback.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 105,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Hard",
+    "question": "What is the difference between logs, metrics, and traces?",
+    "answer": "Logs describe events, metrics summarize numeric behavior over time, and traces connect operations within a request. Together they help explain an incident. Capture useful context without exposing secrets or unnecessary sensitive document content.",
+    "example": "A trace shows OCR took 2 seconds, retrieval 0.1 seconds, and inference 8 seconds; a failure log records the stage and error category.",
+    "deeper": "Track p50 and p95 latency, errors, queue depth, correction rates, and cost per successful result. A fast median can hide painful tail latency.",
+    "cue": "Events explain; metrics alert; traces connect.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 106,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Hard",
+    "question": "How do timeouts, backoff, rate limits, and circuit breakers differ?",
+    "answer": "A timeout bounds waiting. Backoff spaces retries, often with jitter. A rate limiter controls request frequency. A circuit breaker temporarily stops calls to a failing dependency. Together they prevent overload, but retries can worsen an outage if applied indiscriminately.",
+    "example": "If a model provider returns 429, honor retry guidance where available and limit new work rather than launching unlimited parallel retries.",
+    "deeper": "Use an overall deadline and retry budget. A concurrency semaphore limits active calls; it does not guarantee requests per second.",
+    "cue": "Bound time, space retries, limit traffic, stop cascading failure.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 107,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Medium",
+    "question": "What is drift, and how do you maintain an AI application?",
+    "answer": "Inputs, source documents, usage patterns, or model behavior can change after release. Monitor quality by slice, review fresh labeled samples, and compare with a stable baseline. Fix the failing stage rather than automatically retraining.",
+    "example": "A new invoice layout may reduce extraction quality because OCR ordering changed; a retrieval index may miss a newly effective policy.",
+    "deeper": "Track model, prompt, index, and data versions. Keep rollback options and refresh procedures, including deletion and access-permission updates.",
+    "cue": "Watch fresh inputs and outcomes; fix the actual stage.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 108,
+    "topic": "CLOUD_OPS",
+    "difficulty": "Hard",
+    "question": "How do you optimize latency and cost without guessing?",
+    "answer": "Profile the full request, then change the largest avoidable cost. Options include smaller models for simpler tasks, shorter context, parallel independent reads, safe caches, and batch work. Compare quality and cost per successful outcome after the change.",
+    "example": "Caching an answer might save inference cost, but the cache must respect user permissions and document versions.",
+    "deeper": "Cache keys may need model, prompt, source version, language, and identity scope. A cheaper request is not cheaper overall if manual correction increases.",
+    "cue": "Measure the bottleneck; protect quality; count complete outcomes.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 109,
+    "topic": "GOVERNANCE",
+    "difficulty": "Easy",
+    "question": "What does responsible-AI governance mean in engineering?",
+    "answer": "It means defined ownership, acceptable uses, risk assessment, evaluation, access controls, monitoring, and incident response across the system lifecycle. Translate policy into controls that can be tested and audited. Governance involves people and process as well as code.",
+    "example": "An extraction system can require review for critical fields, restrict sensitive documents, and record model versions and delivery decisions.",
+    "deeper": "Your project safeguards are relevant examples, but do not claim ownership of an enterprise governance program unless you actually had that role.",
+    "cue": "Policy -> enforceable controls -> evidence -> accountable owner.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 110,
+    "topic": "GOVERNANCE",
+    "difficulty": "Medium",
+    "question": "How do you protect privacy, fairness, and user control?",
+    "answer": "Collect only needed data, restrict access, define retention, protect data in transit and at rest, and review logs. Evaluate meaningful user or document slices for uneven failures. Provide correction, escalation, or approval where appropriate. A local deployment does not automatically provide encryption or full isolation.",
+    "example": "A voice app should report quality separately for supported languages instead of applying an English text score to every speaker.",
+    "deeper": "Removing a name is not comprehensive anonymization. Check what leaves the device, who can access it, and what persists after deletion.",
+    "cue": "Minimize, restrict, measure slices, and preserve user control.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 111,
+    "topic": "GOVERNANCE",
+    "difficulty": "Medium",
+    "question": "How would you run an A/B test for an AI feature?",
+    "answer": "Define a primary outcome, guardrail metrics, the randomization unit, and a planned analysis period. Compare a control and treatment under comparable conditions. Measure uncertainty and practical impact, not only whether a number increased.",
+    "example": "Compare two assistance workflows on successful resolution, with guardrails for incorrect actions, review burden, latency, and cost.",
+    "deeper": "Repeated requests from the same user can be correlated. Randomizing by user may avoid cross-treatment contamination. Avoid repeatedly stopping a test whenever results look favorable.",
+    "cue": "Randomize fairly; measure outcomes and guardrails.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 112,
+    "topic": "GOVERNANCE",
+    "difficulty": "Medium",
+    "question": "What are KPIs, instrumentation, and operational analytics?",
+    "answer": "A KPI measures an important business objective. Instrumentation records the events needed to compute it. Operational analytics uses those events to identify bottlenecks and trends. Agree on definitions so metrics match the workflow people care about.",
+    "example": "Measure documents correctly delivered without correction, not just the number of model calls. Record ingestion, review, correction, delivery, and failure events with a shared job ID.",
+    "deeper": "Specify numerator, denominator, exclusions, and time window. Estimate manual effort savings transparently and include remaining review effort.",
+    "cue": "Define the outcome, then collect the right events.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 113,
+    "topic": "GOVERNANCE",
+    "difficulty": "Easy",
+    "question": "How do Agile teams turn an AI idea into an estimate and deliverable?",
+    "answer": "Clarify the user problem, define acceptance criteria, break work into increments, and expose uncertainty early. Use a time-boxed experiment for unknown model behavior. In Scrum, planning, reviews, and retrospectives support feedback and improvement; they do not replace engineering evidence.",
+    "example": "First deliver a baseline extraction endpoint on representative documents, then add validation, review, integration, and monitoring.",
+    "deeper": "State assumptions about data access, labeling, security review, and downstream dependencies. Include validation and release work in the estimate.",
+    "cue": "Small increments + explicit assumptions + measurable acceptance.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  },
+  {
+    "id": 114,
+    "topic": "GOVERNANCE",
+    "difficulty": "Easy",
+    "question": "How should you use AI coding assistants and Office tools?",
+    "answer": "Use coding assistants for drafts, exploration, and test ideas, then review logic, permissions, dependencies, and failure cases. Keep confidential content within approved tooling. Use Excel for reconciliation and analysis, Word for specifications, PowerPoint for decisions, and Project where schedules require it.",
+    "example": "Ask an assistant for retry code, then check whether it could repeat a payment or booking after a timeout.",
+    "deeper": "Describe tools you actually used. Your resume supports Excel automation; it does not establish equal experience with every Office application or coding assistant.",
+    "cue": "Assistants accelerate drafts; engineers remain accountable.",
+    "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
+    "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."
+  }
+]

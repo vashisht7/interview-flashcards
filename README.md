@@ -1,6 +1,6 @@
 # Interview Studio
 
-72 personalized AI engineering interview flashcards covering NoteEchoes, MFlash, Python, production engineering, MCP, and behavioral questions.
+114 personalized AI engineering interview flashcards covering NoteEchoes, MFlash, Python, production engineering, MCP, and behavioral questions.
 
 ## Use
 
@@ -30,3 +30,9 @@ GitHub Pages serves the root of the main branch. The .nojekyll file preserves th
 ## Content
 
 Answers reflect supplied resume and technical briefings. They distinguish implementation evidence, archived evaluation results, proposed improvements, and personal confirmation items. Confidence ratings are self-assessment, not a measured readiness score.
+
+## JD fundamentals expansion
+
+Cards 73-114 add LLMs and prompting, RAG and data science, agents and MCP, software engineering, cloud operations, governance, experimentation, and Agile delivery. Each adds a short answer, example, optional deeper explanation, and guidance for discussing knowledge without inventing experience. Original IDs and browser storage keys are retained.
+
+The downloadable PDF remains the original 72-card project guide. The additional cards are available on the site.
