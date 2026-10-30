@@ -715,7 +715,7 @@
     "id": "term-73",
     "term": "Reciprocal rank fusion",
     "expansion": "Combining result positions",
-    "definition": "Combine ordered result lists using scores such as 1/(60+rank) instead of directly comparing incompatible raw scores.",
+    "definition": "Combine ordered result lists using reciprocal-rank contributions, as shown in the equation below, instead of directly comparing incompatible raw scores.",
     "example": "A note ranking well in both keyword and semantic search gains combined support.",
     "aliases": [
       "rank-based fusion",
@@ -1362,7 +1362,7 @@
     "id": "term-144",
     "term": "F1",
     "expansion": "Harmonic mean of precision and recall",
-    "definition": "A combined score: 2 times precision times recall divided by their sum, with an appropriate zero convention.",
+    "definition": "A combined score using the harmonic mean of precision and recall. The equation below shows how to compute it, including the zero-case convention.",
     "example": "A model needs both useful hits and good coverage to get a strong F1.",
     "aliases": []
   },

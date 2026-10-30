@@ -40,3 +40,12 @@ assert.equal(searchTerms(glossary,'zzzznonexistent').length,0);
 assert.equal(flows.length,9);
 for(const f of flows){assert(f.steps.length>=3);for(const s of f.steps)assert(s.label&&s.explanation);for(const id of f.cards)assert(cards.some(c=>c.id===id));}
 console.log(`Passed: all ${cards.length} cards have definitions; ${glossary.length} unique glossary terms; boundary-safe matching and search; nine valid flows.`);
+
+const {formulas,cardFormulas,termFormulas}=await import('./math-content.mjs');
+const arities={mfrac:2,msub:2,msup:2,msqrt:1,munder:2,munderover:3};
+function checkMath(tree){assert(tree&&tree.tag&&Array.isArray(tree.children));if(tree.tag in arities)assert.equal(tree.children.length,arities[tree.tag]);for(const child of tree.children)if(typeof child!=='string')checkMath(child);}
+for(const f of Object.values(formulas)){checkMath(f.expression);assert(f.symbols.length&&f.meaning&&f.example);for(const s of f.symbols){checkMath(s.symbol);assert(s.meaning);}}
+for(const ids of [...Object.values(cardFormulas),...Object.values(termFormulas)])for(const id of ids)assert(formulas[id]);
+assert(!JSON.stringify(cards).includes('softmax(QK-transpose'));
+assert(!JSON.stringify(cards).includes('1/(60+rank)'));
+console.log('Passed: 11 structured equations, symbol explanations, MathML node arities, card/glossary mappings, removed text-form formulas.');

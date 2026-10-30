@@ -33,7 +33,7 @@
     "question": "Explain transformers in simple terms.",
     "answer": "A transformer uses attention to combine relevant information from tokens, plus feed-forward layers to transform representations. In a causal language model, attention is masked so a position cannot use future tokens. NoteEchoes adapts a pretrained transformer; it does not pretrain a foundation model. MFlash's structured MLP is not a transformer.",
     "cue": "Attention connects context; adaptation specializes behavior.",
-    "followup": "If asked for the formula: softmax(QK-transpose / sqrt(d_k)) V."
+    "followup": "Use the attention equation and its symbol guide above to explain the calculation."
   },
   {
     "id": 5,
@@ -220,7 +220,7 @@
     "topic": "NOTEECHOES",
     "difficulty": "Medium",
     "question": "Explain NoteEchoes retrieval precisely.",
-    "answer": "The hybrid note path combines SQLite FTS5/BM25 with optional multilingual E5-small semantic matches. It takes up to 15 lexical and 15 semantic matches and combines ranks with 1/(60+rank). One-hop relationships can add 0.005, and the default output is six candidates. Stored vectors are scanned directly. The inspected path has no learned reranker.",
+    "answer": "The hybrid note path combines SQLite FTS5/BM25 with optional multilingual E5-small semantic matches. It takes up to 15 lexical and 15 semantic matches and combines ranks using the reciprocal-rank formula shown below. One-hop relationships can add 0.005, and the default output is six candidates. Stored vectors are scanned directly. The inspected path has no learned reranker.",
     "cue": "15 + 15 -> reciprocal rank fusion -> 6.",
     "followup": "These are note-retrieval settings, not a claim that every document path uses identical settings."
   },
@@ -666,7 +666,7 @@
     "question": "Explain self-attention, causal masks, and positional information.",
     "answer": "Attention lets a token combine information from relevant tokens. Queries and keys produce relevance scores, and those scores weight values. A causal mask prevents looking at future tokens during next-token training. Positional information helps represent order, since attention alone does not encode sequence order.",
     "example": "In \"the invoice total is 500,\" attention can connect \"total\" and \"500\" instead of treating every word independently.",
-    "deeper": "Attention is softmax(QK-transpose / sqrt(d_k)) V. Multiple heads learn different relationships. Standard full attention has quadratic pairwise score growth with sequence length.",
+    "deeper": "The attention equation and symbol guide above show how the calculation works. Multiple heads learn different relationships. Standard full attention has quadratic pairwise score growth with sequence length.",
     "cue": "Queries ask; keys match; values contribute.",
     "followup": "Practice: explain the example in your own words, then describe one failure and how you would test it.",
     "experience": "If you have not implemented this: say \"I understand the approach and would apply it this way,\" then explain the example. Use a project claim only when it matches your actual work."

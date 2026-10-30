@@ -1,3 +1,4 @@
+import {writeMathText,formulaPanel,cardFormulas,termFormulas} from './math-content.mjs';
 import {termsForCard,searchTerms} from './glossary-core.mjs';
 import {topics,filterCards,shuffleCards,stats,sanitizeProgress} from './study-core.mjs';
 const $=id=>document.getElementById(id), KEY='vashisht-interview-studio-v1';
@@ -14,10 +15,11 @@ function render(){stopFlow();const empty=!deck.length;$('empty').hidden=!empty;$
  $('study-view').setAttribute('aria-pressed',String(view==='study'));$('browse-view').setAttribute('aria-pressed',String(view==='browse'));
  if(empty)return;if(view==='browse'){renderBrowse();return;}if(completed){if(readingMode)exitReadingMode();$('complete-description').textContent=`You reached the end of these ${deck.length} cards and rated ${reviewed.size} this session. Keep building on what you know.`;return;}
  const c=deck[index];$('position').textContent=`CARD ${index+1} OF ${deck.length}`;$('studied-session').textContent=`${reviewed.size} reviewed this session`;$('session-bar').style.width=`${(index+1)/deck.length*100}%`;
- $('card-topic').textContent=label(c.topic);$('card-difficulty').textContent=c.difficulty;$('card-difficulty').className=`difficulty ${c.difficulty.toLowerCase()}`;$('question').textContent=c.question;$('answer-question').textContent=c.question;$('answer').textContent=c.answer;$('cue').textContent=c.cue;$('followup').textContent=c.followup;
+ $('card-topic').textContent=label(c.topic);$('card-difficulty').textContent=c.difficulty;$('card-difficulty').className=`difficulty ${c.difficulty.toLowerCase()}`;$('question').textContent=c.question;$('answer-question').textContent=c.question;writeMathText($('answer'),c.answer);writeMathText($('cue'),c.cue);writeMathText($('followup'),c.followup);
  $('learning-extras').hidden=!c.example;
- $('simple-example').textContent=c.example||'';$('deeper-explanation').textContent=c.deeper||'';$('experience-note').textContent=c.experience||'';$('deeper-details').open=false;
+ writeMathText($('simple-example'),c.example||'');writeMathText($('deeper-explanation'),c.deeper||'');$('experience-note').textContent=c.experience||'';$('deeper-details').open=false;
  $('card-sources').replaceChildren();for(const source of c.sources||[]){const a=document.createElement('a');a.textContent=source.label+' ↗';a.href=source.url;a.target='_blank';a.rel='noopener noreferrer';$('card-sources').append(a);}
+ const equations=cardFormulas[c.id]||[];$('card-formulas').hidden=!equations.length;$('formula-list').replaceChildren(...equations.map(formulaPanel));
  renderTerms(c);renderFlow(c);
  $('question-side').hidden=revealed;$('answer-side').hidden=!revealed;$('learning').disabled=!revealed;$('confident').disabled=!revealed;$('previous').disabled=index===0;
  const bookmarked=!!progress[c.id]?.saved;$('bookmark').textContent=bookmarked?'★':'☆';$('bookmark').setAttribute('aria-pressed',String(bookmarked));$('bookmark').setAttribute('aria-label',bookmarked?'Remove bookmark':'Bookmark this card');
@@ -82,17 +84,17 @@ async function exitReadingMode(){
 $('fullscreen-toggle').addEventListener('click',()=>readingMode?exitReadingMode():enterReadingMode());
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&readingMode)setReadingMode(false);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(readingMode){e.preventDefault();exitReadingMode();}else closeMobileSidebar();}});
-document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||document.querySelector('dialog[open]')||e.target.closest('#flow-section,#card-terms')||e.target.tagName==='SUMMARY'||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.code==='Space'){if(e.target.tagName==='BUTTON'&&!['hide-answer','reveal'].includes(e.target.id))return;e.preventDefault();flip();}else if(e.key==='ArrowRight'){e.preventDefault();move(1);}else if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}else if(e.key==='1')rate('learning');else if(e.key==='2')rate('confident');});
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||document.querySelector('dialog[open]')||e.target.closest('#flow-section,#card-terms,#card-formulas')||e.target.tagName==='SUMMARY'||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.code==='Space'){if(e.target.tagName==='BUTTON'&&!['hide-answer','reveal'].includes(e.target.id))return;e.preventDefault();flip();}else if(e.key==='ArrowRight'){e.preventDefault();move(1);}else if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}else if(e.key==='1')rate('learning');else if(e.key==='2')rate('confident');});
 try{const responses=await Promise.all(['cards.json','glossary.json','flows.json'].map(path=>fetch(path)));if(responses.some(r=>!r.ok))throw new Error('Study content loading failed');[cards,glossary,flows]=await Promise.all(responses.map(r=>r.json()));try{progress=sanitizeProgress(JSON.parse(localStorage.getItem(KEY)||'{}'),cards);}catch{progress={};try{localStorage.setItem(KEY,'{}');}catch{storageAvailable=false;$('save-note').textContent='Progress is temporary in this browser';}}updateStats();refresh();}catch{$('study-area').hidden=true;$('empty').hidden=false;$('empty').querySelector('h3').textContent='The cards could not load';$('empty').querySelector('p').textContent='Refresh the page to try again.';$('clear-filters').textContent='Reload page';$('clear-filters').onclick=()=>location.reload();}
 
 function termElement(term){
  const details=document.createElement('details');details.className='term-definition';
- const summary=document.createElement('summary');summary.textContent=term.term;
+ const summary=document.createElement('summary');writeMathText(summary,term.term);
  const expansion=document.createElement('strong');expansion.className='term-expansion';expansion.textContent=term.expansion;
- const definition=document.createElement('p');definition.textContent=term.definition;
+ const definition=document.createElement('p');writeMathText(definition,term.definition);
  const example=document.createElement('p');example.className='term-example';
- const prefix=document.createElement('b');prefix.textContent='Example: ';example.append(prefix,document.createTextNode(term.example));
- details.append(summary,expansion,definition,example);return details;
+ const prefix=document.createElement('b');prefix.textContent='Example: ';const exampleText=document.createElement('span');writeMathText(exampleText,term.example);example.append(prefix,exampleText);
+ details.append(summary,expansion,definition,example);for(const id of termFormulas[term.term]||[])details.append(formulaPanel(id));return details;
 }
 function renderTerms(card){
  const terms=termsForCard(card,glossary);$('card-terms').hidden=!terms.length;

@@ -42,3 +42,7 @@ The downloadable PDF remains the original 72-card project guide. The additional 
 All 114 cards are scanned for matching technical terms. Each match has a plain-language definition and an example in the answer. The sidebar's Technical terms button opens the searchable glossary. Nine diagrams cover classification, attention, adapter training, retrieval, note capture, authorization, evaluation, crash recovery, and release. Use Next/Previous Step or Play/Pause; nothing auto-plays on opening a card.
 
 Glossary reference sources include scikit-learn neural-network documentation, PyTorch CrossEntropyLoss and AdamW documentation, SQLite FTS5 and WAL documentation, the QLoRA paper, and the rank-stabilized LoRA paper. Definitions are simplified learning explanations, not additional claims about personal project ownership.
+
+## Mathematical notation
+
+Equations use native MathML with symbol keys, plain-language interpretations, and examples. Attention, softmax, reciprocal rank fusion, precision/recall/F1, dot products, complexity, initial learning rate, loss weighting, and exact-match rate are covered. Scientific notation and numeric fractions also render inline in card and glossary content. There is no external math-script dependency.
