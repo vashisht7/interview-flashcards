@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {filterCards,shuffleCards,stats,sanitizeProgress} from './study-core.mjs';
+const cards=JSON.parse(readFileSync(new URL('./cards.json',import.meta.url)));
+assert.equal(cards.length,72);assert.equal(new Set(cards.map(c=>c.id)).size,72);
+assert.equal(filterCards(cards,{topic:'NOTEECHOES'}).length,20);
+assert.equal(filterCards(cards,{topic:'MFLASH'}).length,20);
+assert(filterCards(cards,{query:'96.3%'}).length>0);
+const progress={1:{rating:'confident',saved:true},2:{rating:'learning'}};
+assert.deepEqual(stats(cards,progress),{total:72,learning:1,confident:1});
+assert.equal(filterCards(cards,{status:'new'},progress).length,70);
+assert.equal(filterCards(cards,{status:'saved'},progress)[0].id,1);
+assert.equal(filterCards(cards,{status:'confident'},progress).length,1);
+assert.equal(filterCards(cards,{topic:'PYTHON',difficulty:'Easy'}).length,1);
+assert.equal(shuffleCards(cards,()=>.5).length,72);assert.equal(new Set(shuffleCards(cards).map(c=>c.id)).size,72);
+assert.equal(sanitizeProgress({1:{rating:'bad',saved:'true'}},cards)[1].saved,false);
+console.log('Passed: 72 cards, topic/difficulty/search filters, ratings, bookmarks, shuffle integrity, storage validation.');
