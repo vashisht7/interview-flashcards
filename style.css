@@ -3,3 +3,34 @@
 
 /* Extended JD study material */
 .sidebar{overflow-y:auto}.sidebar-bottom{flex-shrink:0}.sidebar nav{flex-shrink:0}nav button{padding-top:9px;padding-bottom:9px}.example-box{background:#f5f6f0;border-radius:8px;padding:15px 17px;margin:0 0 16px}.example-box strong{font-size:11px;color:var(--green)}.example-box p,#deeper-details p{font-size:13px;line-height:1.8;margin:7px 0 0;color:#52624e}#deeper-details{border:1px solid var(--line);border-radius:8px;padding:13px 16px;margin-bottom:19px}#deeper-details summary{cursor:pointer;font-size:12px;font-weight:600;color:var(--green)}#deeper-details .experience-note{font-size:11px;border-top:1px solid var(--line);padding-top:12px;margin-top:12px;color:#7b806d}#card-sources a{display:block;margin-top:10px;font-size:11px;color:var(--green);text-decoration:underline}#answer-side .memory{margin-top:14px}
+
+/* Sidebar controls and distraction-free reading */
+#menu{display:block;flex-shrink:0}header .breadcrumb{margin-right:auto}
+#sidebar-close{position:absolute;right:7px;top:7px;font-size:23px;line-height:1}
+.sidebar-collapsed .sidebar{transform:translateX(-100%);visibility:hidden}
+.sidebar-collapsed .main-shell{margin-left:0}
+.reading-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
+.reading-toolbar>span{font-size:9px;letter-spacing:1.2px;color:var(--muted)}
+.reading-mode{overflow:hidden}
+.reading-mode .sidebar,.reading-mode header,.reading-mode main>:not(#study-area){display:none!important}
+.reading-mode .main-shell{margin:0}
+.reading-active{position:fixed;inset:0;z-index:30;overflow-y:auto;background:var(--bg);padding:24px max(24px,calc((100vw - 960px)/2));height:100dvh;width:100%;overscroll-behavior:contain}
+.reading-active:fullscreen{background:var(--bg);overflow-y:auto}
+.reading-active .reading-toolbar{position:sticky;top:-24px;z-index:2;background:var(--bg);padding:14px 0;margin-top:-10px}
+.reading-active .flashcard{min-height:55vh;padding:32px 40px}
+.reading-active #question-side{padding:65px 0 35px}
+.reading-active #question{font-size:clamp(27px,3vw,40px)}
+.reading-active #answer-side h3{font-size:25px}
+.reading-active #answer{font-size:19px;line-height:1.9}
+.reading-active .example-box p,.reading-active #deeper-details p,.reading-active .memory p{font-size:16px;line-height:1.85}
+.reading-active .followup{font-size:14px}
+@media(max-width:760px){
+ .sidebar-collapsed .sidebar.open,.sidebar.open{transform:none;visibility:visible}
+ .sidebar:not(.open){visibility:hidden}
+ .reading-active{padding:16px 15px}
+ .reading-active .reading-toolbar{top:-16px}
+ .reading-active .flashcard{padding:22px 19px}
+ .reading-active #answer{font-size:17px}
+ .reading-active #answer-side h3{font-size:22px}
+ .reading-toolbar>span{font-size:8px}
+}

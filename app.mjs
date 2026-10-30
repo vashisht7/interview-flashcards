@@ -6,11 +6,11 @@ const label=topic=>topics.find(t=>t[0]===topic)?.[1]||topic;
 function announce(text){$('announcement').textContent=text;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(progress));}catch{storageAvailable=false;$('save-note').textContent='Progress is temporary in this browser';}updateStats();}
 function updateStats(){const s=stats(cards,progress);$('total-count').textContent=s.total;$('ring').querySelector('span').textContent=`of ${s.total} confident`;$('learning-count').textContent=s.learning;$('ready-count').textContent=s.confident;$('mastered-count').textContent=s.confident;$('ring').style.setProperty('--progress',`${s.confident/s.total*100}%`);}
-function renderTopics(){const nav=$('topics');nav.replaceChildren();for(const [id,name,icon] of topics){const b=document.createElement('button');b.type='button';b.dataset.topic=id;b.className=id===filter.topic?'active':'';b.setAttribute('aria-pressed',String(id===filter.topic));const glyph=document.createElement('span');glyph.className='nav-icon';glyph.textContent=icon;const text=document.createElement('span');text.textContent=name;const count=document.createElement('span');count.className='count';count.textContent=id==='all'?cards.length:cards.filter(c=>c.topic===id).length;b.append(glyph,text,count);b.addEventListener('click',()=>{filter.topic=id;completed=false;refresh();$('sidebar').classList.remove('open');$('menu').setAttribute('aria-expanded','false');});nav.append(b);}}
+function renderTopics(){const nav=$('topics');nav.replaceChildren();for(const [id,name,icon] of topics){const b=document.createElement('button');b.type='button';b.dataset.topic=id;b.className=id===filter.topic?'active':'';b.setAttribute('aria-pressed',String(id===filter.topic));const glyph=document.createElement('span');glyph.className='nav-icon';glyph.textContent=icon;const text=document.createElement('span');text.textContent=name;const count=document.createElement('span');count.className='count';count.textContent=id==='all'?cards.length:cards.filter(c=>c.topic===id).length;b.append(glyph,text,count);b.addEventListener('click',()=>{filter.topic=id;completed=false;refresh();closeMobileSidebar();});nav.append(b);}}
 function refresh(){deck=filterCards(cards,filter,progress);index=0;revealed=false;completed=false;reviewed=new Set();renderTopics();const t=topics.find(t=>t[0]===filter.topic);$('deck-title').textContent=t[1];$('deck-description').textContent=t[3];render();}
 function render(){const empty=!deck.length;$('empty').hidden=!empty;$('study-area').hidden=empty||view!=='study'||completed;$('browse-area').hidden=empty||view!=='browse';$('complete').hidden=empty||!completed||view!=='study';$('shuffle').disabled=empty;
  $('study-view').setAttribute('aria-pressed',String(view==='study'));$('browse-view').setAttribute('aria-pressed',String(view==='browse'));
- if(empty)return;if(view==='browse'){renderBrowse();return;}if(completed){$('complete-description').textContent=`You reached the end of these ${deck.length} cards and rated ${reviewed.size} this session. Keep building on what you know.`;return;}
+ if(empty)return;if(view==='browse'){renderBrowse();return;}if(completed){if(readingMode)exitReadingMode();$('complete-description').textContent=`You reached the end of these ${deck.length} cards and rated ${reviewed.size} this session. Keep building on what you know.`;return;}
  const c=deck[index];$('position').textContent=`CARD ${index+1} OF ${deck.length}`;$('studied-session').textContent=`${reviewed.size} reviewed this session`;$('session-bar').style.width=`${(index+1)/deck.length*100}%`;
  $('card-topic').textContent=label(c.topic);$('card-difficulty').textContent=c.difficulty;$('card-difficulty').className=`difficulty ${c.difficulty.toLowerCase()}`;$('question').textContent=c.question;$('answer-question').textContent=c.question;$('answer').textContent=c.answer;$('cue').textContent=c.cue;$('followup').textContent=c.followup;
  $('learning-extras').hidden=!c.example;
@@ -33,7 +33,51 @@ $('clear-filters').addEventListener('click',()=>{filter={topic:'all',difficulty:
 $('restart').addEventListener('click',refresh);$('review-learning').addEventListener('click',()=>{filter.status='learning';$('status').value='learning';refresh();});
 $('about').addEventListener('click',()=>$('about-dialog').showModal());$('reset').addEventListener('click',()=>$('reset-dialog').showModal());document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
 $('confirm-reset').addEventListener('click',()=>{progress={};save();$('reset-dialog').close();refresh();announce('Progress reset.');});
-$('menu').addEventListener('click',()=>{$('sidebar').classList.toggle('open');$('menu').setAttribute('aria-expanded',String($('sidebar').classList.contains('open')));});
-document.addEventListener('click',e=>{if($('sidebar').classList.contains('open')&&!e.target.closest('#sidebar')&&!e.target.closest('#menu')){$('sidebar').classList.remove('open');$('menu').setAttribute('aria-expanded','false');}});
+const mobileSidebar=window.matchMedia('(max-width:760px)');
+let sidebarCollapsed=false;
+try{sidebarCollapsed=localStorage.getItem('interview-sidebar-collapsed')==='true';}catch{}
+function syncSidebar(){
+ const open=mobileSidebar.matches?$('sidebar').classList.contains('open'):!sidebarCollapsed;
+ document.body.classList.toggle('sidebar-collapsed',sidebarCollapsed);
+ $('sidebar').inert=!open;
+ $('menu').setAttribute('aria-expanded',String(open));
+ $('menu').setAttribute('aria-label',open?'Collapse sidebar':'Expand sidebar');
+}
+function closeMobileSidebar(){if(mobileSidebar.matches){$('sidebar').classList.remove('open');syncSidebar();}}
+function toggleSidebar(){
+ if(mobileSidebar.matches)$('sidebar').classList.toggle('open');
+ else{sidebarCollapsed=!sidebarCollapsed;try{localStorage.setItem('interview-sidebar-collapsed',String(sidebarCollapsed));}catch{}}
+ syncSidebar();if($('sidebar').inert)$('menu').focus();
+}
+$('menu').addEventListener('click',toggleSidebar);
+$('sidebar-close').addEventListener('click',toggleSidebar);
+mobileSidebar.addEventListener('change',()=>{$('sidebar').classList.remove('open');syncSidebar();});
+document.addEventListener('click',e=>{if(mobileSidebar.matches&&$('sidebar').classList.contains('open')&&!e.target.closest('#sidebar')&&!e.target.closest('#menu'))closeMobileSidebar();});
+syncSidebar();
+let readingMode=false,readingScroll=0;
+function setReadingMode(on){
+ readingMode=on;document.body.classList.toggle('reading-mode',on);
+ $('study-area').classList.toggle('reading-active',on);
+ $('fullscreen-toggle').textContent=on?'↙ Exit full screen':'⛶ Full screen';
+ $('fullscreen-toggle').setAttribute('aria-pressed',String(on));
+ $('fullscreen-toggle').setAttribute('aria-label',on?'Exit full-screen reading':'Read flashcards full screen');
+ // Keep the surrounding application out of keyboard navigation in reading mode.
+ for(const el of [$('sidebar'),document.querySelector('header'),...document.querySelector('main').children]){
+  if(el!==$('study-area'))el.inert=on;
+ }
+ if(!on){syncSidebar();window.scrollTo(0,readingScroll);}
+ $('fullscreen-toggle').focus();
+}
+async function enterReadingMode(){
+ readingScroll=window.scrollY;setReadingMode(true);$('study-area').scrollTop=0;
+ try{if($('study-area').requestFullscreen)await $('study-area').requestFullscreen();}catch{/* The full-window reading layout remains available. */}
+}
+async function exitReadingMode(){
+ setReadingMode(false);
+ try{if(document.fullscreenElement=== $('study-area'))await document.exitFullscreen();}catch{}
+}
+$('fullscreen-toggle').addEventListener('click',()=>readingMode?exitReadingMode():enterReadingMode());
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&readingMode)setReadingMode(false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(readingMode){e.preventDefault();exitReadingMode();}else closeMobileSidebar();}});
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||document.querySelector('dialog[open]')||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.code==='Space'){if(e.target.tagName==='BUTTON'&&!['hide-answer','reveal'].includes(e.target.id))return;e.preventDefault();flip();}else if(e.key==='ArrowRight'){e.preventDefault();move(1);}else if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}else if(e.key==='1')rate('learning');else if(e.key==='2')rate('confident');});
 try{const response=await fetch('cards.json');if(!response.ok)throw new Error('Card loading failed');cards=await response.json();try{progress=sanitizeProgress(JSON.parse(localStorage.getItem(KEY)||'{}'),cards);}catch{progress={};try{localStorage.setItem(KEY,'{}');}catch{storageAvailable=false;$('save-note').textContent='Progress is temporary in this browser';}}updateStats();refresh();}catch{$('study-area').hidden=true;$('empty').hidden=false;$('empty').querySelector('h3').textContent='The cards could not load';$('empty').querySelector('p').textContent='Refresh the page to try again.';$('clear-filters').textContent='Reload page';$('clear-filters').onclick=()=>location.reload();}
