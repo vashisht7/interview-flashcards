@@ -1,0 +1,2312 @@
+[
+  {
+    "id": "term-1",
+    "term": "MLP",
+    "expansion": "Multilayer perceptron",
+    "definition": "A neural network with an input layer, one or more hidden layers, and an output layer. It learns how input numbers map to predictions.",
+    "example": "MFlash feeds request/state features into an MLP to score action templates.",
+    "aliases": [
+      "multilayer perceptron"
+    ]
+  },
+  {
+    "id": "term-2",
+    "term": "LLM",
+    "expansion": "Large language model",
+    "definition": "A large neural network trained on language that can generate text or structured output from context.",
+    "example": "Qwen3 proposes a structured interpretation of a spoken request.",
+    "aliases": [
+      "LLMs"
+    ]
+  },
+  {
+    "id": "term-3",
+    "term": "AI",
+    "expansion": "Artificial intelligence",
+    "definition": "Software techniques that perform tasks such as prediction, language interpretation, or decision support.",
+    "example": "A document extractor identifies fields in an invoice.",
+    "aliases": []
+  },
+  {
+    "id": "term-4",
+    "term": "GenAI",
+    "expansion": "Generative artificial intelligence",
+    "definition": "AI that produces content such as text, code, or structured records.",
+    "example": "Generating an extraction result as JSON.",
+    "aliases": [
+      "generative AI"
+    ]
+  },
+  {
+    "id": "term-5",
+    "term": "Classifier",
+    "expansion": "Model that selects a label",
+    "definition": "A model that assigns an input to a defined category.",
+    "example": "Select copy, move, or rename from the supported action templates.",
+    "aliases": [
+      "classifiers",
+      "classification"
+    ]
+  },
+  {
+    "id": "term-6",
+    "term": "Ranker",
+    "expansion": "Model that orders candidates",
+    "definition": "A model that scores supplied choices so the most suitable ones appear first.",
+    "example": "Rank possible file targets for a request.",
+    "aliases": [
+      "ranking",
+      "rankers"
+    ]
+  },
+  {
+    "id": "term-7",
+    "term": "MPNet",
+    "expansion": "Masked and Permuted Pre-training",
+    "definition": "A pretrained language-model approach; the sentence-transformers variant used here turns text into vectors for comparison.",
+    "example": "MFlash's ranker compares request and candidate-action representations.",
+    "aliases": [
+      "all-mpnet-base-v2"
+    ]
+  },
+  {
+    "id": "term-8",
+    "term": "Qwen3",
+    "expansion": "Pretrained model family",
+    "definition": "A family of pretrained models used as a starting point for adaptation. The 0.6B label indicates roughly 600 million parameters.",
+    "example": "NoteEchoes specializes Qwen3-0.6B for action interpretation.",
+    "aliases": [
+      "Qwen",
+      "Qwen3-0.6B"
+    ]
+  },
+  {
+    "id": "term-9",
+    "term": "Transformer",
+    "expansion": "Attention-based neural network architecture",
+    "definition": "A network that uses attention and other layers to build context-aware token representations.",
+    "example": "Connect an amount with the invoice field it describes.",
+    "aliases": [
+      "transformers"
+    ]
+  },
+  {
+    "id": "term-10",
+    "term": "Token",
+    "expansion": "Model text unit",
+    "definition": "A piece of text processed by a model; it can be a word, part of a word, or punctuation.",
+    "example": "A long identifier may become several tokens.",
+    "aliases": [
+      "tokens",
+      "tokenized",
+      "tokenization"
+    ]
+  },
+  {
+    "id": "term-11",
+    "term": "Embedding",
+    "expansion": "Numeric representation",
+    "definition": "A list of numbers representing text or other input so similarity can be computed.",
+    "example": "Nearby vectors can correspond to notes about similar subjects.",
+    "aliases": [
+      "embeddings",
+      "embed",
+      "embeds"
+    ]
+  },
+  {
+    "id": "term-12",
+    "term": "Vector",
+    "expansion": "Ordered list of numbers",
+    "definition": "A numeric representation with one value per dimension.",
+    "example": "A 384-dimensional embedding has 384 numbers.",
+    "aliases": [
+      "vectors"
+    ]
+  },
+  {
+    "id": "term-13",
+    "term": "Normalization",
+    "expansion": "Putting values into a standard form",
+    "definition": "Its meaning depends on context: text normalization standardizes wording; vector normalization adjusts vector length.",
+    "example": "Trim whitespace for a text comparison, or make a vector's length equal to one.",
+    "aliases": [
+      "normalized",
+      "normalizes",
+      "L2 normalization"
+    ]
+  },
+  {
+    "id": "term-14",
+    "term": "Attention",
+    "expansion": "Selecting relevant context",
+    "definition": "A learned calculation that determines how strongly a token uses information from other tokens.",
+    "example": "The token for an amount can use the nearby currency label.",
+    "aliases": [
+      "self-attention"
+    ]
+  },
+  {
+    "id": "term-15",
+    "term": "Feed-forward layer",
+    "expansion": "Per-position transformation",
+    "definition": "A neural-network block that transforms each token's current representation using learned weights and nonlinear operations.",
+    "example": "After attention gathers context, a block transforms the resulting representation.",
+    "aliases": [
+      "feed-forward layers"
+    ]
+  },
+  {
+    "id": "term-16",
+    "term": "Causal mask",
+    "expansion": "No-looking-ahead rule",
+    "definition": "A restriction that prevents a token position from using future positions during next-token prediction.",
+    "example": "The model predicts the next word without seeing that word first.",
+    "aliases": [
+      "causal masks",
+      "masked",
+      "masking"
+    ]
+  },
+  {
+    "id": "term-17",
+    "term": "Q, K, V",
+    "expansion": "Queries, keys, and values",
+    "definition": "Learned representations used by attention: queries match keys to decide how to combine values.",
+    "example": "A query asks which nearby token representations are useful.",
+    "aliases": [
+      "queries",
+      "keys",
+      "values",
+      "QK-transpose"
+    ]
+  },
+  {
+    "id": "term-18",
+    "term": "Softmax",
+    "expansion": "Scores into probabilities",
+    "definition": "A function that converts a set of numeric scores into positive values summing to one.",
+    "example": "Turn action logits into a distribution over action labels.",
+    "aliases": [
+      "softmax"
+    ]
+  },
+  {
+    "id": "term-19",
+    "term": "Parameter",
+    "expansion": "Learned model number",
+    "definition": "A weight or other learned value adjusted during training.",
+    "example": "A 0.6B model has approximately 600 million parameters.",
+    "aliases": [
+      "parameters",
+      "weights"
+    ]
+  },
+  {
+    "id": "term-20",
+    "term": "Pretraining",
+    "expansion": "Initial broad model training",
+    "definition": "Training on a broad task and large corpus before specializing for a particular application.",
+    "example": "Start with pretrained Qwen instead of building its language knowledge from scratch.",
+    "aliases": [
+      "pretrained",
+      "pretrain",
+      "foundation model"
+    ]
+  },
+  {
+    "id": "term-21",
+    "term": "Fine-tuning",
+    "expansion": "Specializing a pretrained model",
+    "definition": "Further training that adapts a model's behavior using task-specific examples.",
+    "example": "Teach Qwen the required action-output format.",
+    "aliases": [
+      "fine-tuned",
+      "fine-tune",
+      "adaptation",
+      "adapted"
+    ]
+  },
+  {
+    "id": "term-22",
+    "term": "Inference",
+    "expansion": "Running a trained model",
+    "definition": "Using model weights to produce a prediction; weights are normally unchanged.",
+    "example": "The iPhone interprets a new transcript locally.",
+    "aliases": []
+  },
+  {
+    "id": "term-23",
+    "term": "LoRA",
+    "expansion": "Low-Rank Adaptation",
+    "definition": "A tuning method that learns small update matrices while leaving the base weights frozen.",
+    "example": "Train adapters instead of updating every base-model weight.",
+    "aliases": [
+      "adapters",
+      "adapter"
+    ]
+  },
+  {
+    "id": "term-24",
+    "term": "QLoRA",
+    "expansion": "Quantized Low-Rank Adaptation",
+    "definition": "A method that trains low-rank adapters through a frozen, quantized base model to reduce training memory.",
+    "example": "NoteEchoes configures a 4-bit base for adapter training.",
+    "aliases": []
+  },
+  {
+    "id": "term-25",
+    "term": "rsLoRA",
+    "expansion": "Rank-stabilized LoRA",
+    "definition": "A LoRA variant using rank-dependent scaling designed to stabilize learning as adapter rank changes.",
+    "example": "The NoteEchoes configuration enables rsLoRA.",
+    "aliases": []
+  },
+  {
+    "id": "term-26",
+    "term": "NF4",
+    "expansion": "4-bit NormalFloat",
+    "definition": "A 4-bit number format designed for representing normally distributed weights efficiently.",
+    "example": "QLoRA stores base weights with NF4 to save memory.",
+    "aliases": []
+  },
+  {
+    "id": "term-27",
+    "term": "Quantization",
+    "expansion": "Lower-precision representation",
+    "definition": "Representing model numbers with fewer bits to reduce storage or memory, with quality effects that must be measured.",
+    "example": "Use 8-bit model weights instead of a higher-precision format.",
+    "aliases": [
+      "quantized",
+      "quantizes"
+    ]
+  },
+  {
+    "id": "term-28",
+    "term": "Double quantization",
+    "expansion": "Quantizing quantization metadata",
+    "definition": "Compressing the scaling constants used in quantization as well as the weights.",
+    "example": "Reduce some extra memory needed to interpret 4-bit weights.",
+    "aliases": []
+  },
+  {
+    "id": "term-29",
+    "term": "Rank",
+    "expansion": "Matrix size or result position",
+    "definition": "In LoRA, rank controls the size of learned update matrices. In retrieval, rank is a result's position in an ordered list.",
+    "example": "LoRA rank 32 and search-result rank 2 describe different concepts.",
+    "aliases": [
+      "rank 32",
+      "rank 16"
+    ]
+  },
+  {
+    "id": "term-30",
+    "term": "Alpha",
+    "expansion": "Adapter scaling setting",
+    "definition": "A setting that affects how strongly LoRA updates are scaled, together with the chosen scaling rule.",
+    "example": "NoteEchoes configures alpha 64; this is not an accuracy percentage.",
+    "aliases": []
+  },
+  {
+    "id": "term-31",
+    "term": "Dropout",
+    "expansion": "Training-time regularization",
+    "definition": "Randomly disable a fraction of activations or adapter paths during training to discourage reliance on exact patterns.",
+    "example": "Dropout 0.05 means a 5% drop probability in the configured component.",
+    "aliases": []
+  },
+  {
+    "id": "term-32",
+    "term": "Loss",
+    "expansion": "Training error objective",
+    "definition": "A number the training process tries to reduce; its definition determines what errors are penalized.",
+    "example": "Cross-entropy penalizes assigning too little probability to the correct class.",
+    "aliases": [
+      "objective"
+    ]
+  },
+  {
+    "id": "term-33",
+    "term": "Cross-entropy",
+    "expansion": "Probability-based loss",
+    "definition": "A loss that penalizes a model when the correct label or token receives low probability.",
+    "example": "Predicting 0.01 probability for the correct action incurs more loss than predicting 0.9.",
+    "aliases": []
+  },
+  {
+    "id": "term-34",
+    "term": "Contrastive learning",
+    "expansion": "Learning by comparison",
+    "definition": "Train matching representations to score better than nonmatching ones.",
+    "example": "A request should match its correct action better than a distractor.",
+    "aliases": [
+      "contrastive loss",
+      "contrastive objective"
+    ]
+  },
+  {
+    "id": "term-35",
+    "term": "Hard negative",
+    "expansion": "Plausible wrong example",
+    "definition": "An incorrect candidate that is difficult to distinguish from the correct one.",
+    "example": "Two files with similar names, but only one matches the requested date.",
+    "aliases": [
+      "hard-negative",
+      "hard negatives",
+      "negatives",
+      "distractors"
+    ]
+  },
+  {
+    "id": "term-36",
+    "term": "In-batch loss",
+    "expansion": "Using batch examples as comparisons",
+    "definition": "A loss that uses other examples in the same training batch as comparison candidates.",
+    "example": "A different request's action can supply a negative comparison.",
+    "aliases": [
+      "in-batch"
+    ]
+  },
+  {
+    "id": "term-37",
+    "term": "AdamW",
+    "expansion": "Adaptive optimizer with decoupled weight decay",
+    "definition": "A training algorithm that adjusts weights using gradient statistics and applies weight decay separately.",
+    "example": "MFlash's trainer uses AdamW to update classifier parameters.",
+    "aliases": []
+  },
+  {
+    "id": "term-38",
+    "term": "Optimizer",
+    "expansion": "Rule for updating weights",
+    "definition": "An algorithm that uses training gradients to choose parameter updates.",
+    "example": "AdamW is one optimizer choice.",
+    "aliases": [
+      "optimization"
+    ]
+  },
+  {
+    "id": "term-39",
+    "term": "Learning rate",
+    "expansion": "Update step-size setting",
+    "definition": "A setting controlling how strongly training updates change parameters.",
+    "example": "4e-5 means 0.00004; an overly large step can destabilize training.",
+    "aliases": []
+  },
+  {
+    "id": "term-40",
+    "term": "Weight decay",
+    "expansion": "Regularization on weights",
+    "definition": "A training technique that shrinks weights to discourage excessive growth.",
+    "example": "An AdamW configuration can apply weight decay separately from its gradient update.",
+    "aliases": []
+  },
+  {
+    "id": "term-41",
+    "term": "Gradient",
+    "expansion": "Direction of loss change",
+    "definition": "Numbers describing how a small parameter change would affect the loss.",
+    "example": "Training follows gradients toward lower loss.",
+    "aliases": [
+      "gradients"
+    ]
+  },
+  {
+    "id": "term-42",
+    "term": "Gradient clipping",
+    "expansion": "Limiting extreme gradients",
+    "definition": "Cap gradient magnitude to reduce unusually large training updates.",
+    "example": "Clipping at 1 limits the configured gradient norm.",
+    "aliases": []
+  },
+  {
+    "id": "term-43",
+    "term": "Batch",
+    "expansion": "Examples processed together",
+    "definition": "A group of examples used in a training step or inference operation.",
+    "example": "Batch size 8 means eight examples per configured device step.",
+    "aliases": [
+      "batches"
+    ]
+  },
+  {
+    "id": "term-44",
+    "term": "Gradient accumulation",
+    "expansion": "Combining several steps before updating",
+    "definition": "Accumulate gradients across smaller batches to simulate a larger effective batch.",
+    "example": "Batch 8 and accumulation 2 contribute 16 examples per update on one device.",
+    "aliases": [
+      "accumulation"
+    ]
+  },
+  {
+    "id": "term-45",
+    "term": "Epoch",
+    "expansion": "Pass through training data",
+    "definition": "One complete traversal of the training dataset under the training procedure.",
+    "example": "One epoch is not the same as one optimizer step.",
+    "aliases": [
+      "epochs"
+    ]
+  },
+  {
+    "id": "term-46",
+    "term": "Checkpoint",
+    "expansion": "Saved state for resuming or selection",
+    "definition": "For training, saved model/optimizer state; for workflows, saved application state.",
+    "example": "Resume a graph after interruption, or reload a trained adapter.",
+    "aliases": [
+      "checkpoints",
+      "checkpointing"
+    ]
+  },
+  {
+    "id": "term-47",
+    "term": "Frozen backbone",
+    "expansion": "Unchanged pretrained weights",
+    "definition": "The base representation model remains fixed while other components are trained.",
+    "example": "MFlash trains projection heads while keeping MPNet frozen.",
+    "aliases": [
+      "frozen",
+      "backbone"
+    ]
+  },
+  {
+    "id": "term-48",
+    "term": "Projection head",
+    "expansion": "Learned vector transformation",
+    "definition": "A small model that maps a representation into another vector space or size.",
+    "example": "MFlash maps 768-dimensional vectors through 512 to 256 dimensions.",
+    "aliases": [
+      "projection heads",
+      "projections"
+    ]
+  },
+  {
+    "id": "term-49",
+    "term": "Feature",
+    "expansion": "Input signal for a model",
+    "definition": "A measurable value used to make a prediction.",
+    "example": "A request-word indicator or an observation about available files.",
+    "aliases": [
+      "features",
+      "feature vector"
+    ]
+  },
+  {
+    "id": "term-50",
+    "term": "Random initialization",
+    "expansion": "Starting from initial random weights",
+    "definition": "Set weights to random values before learning instead of loading pretrained ones.",
+    "example": "MFlash's MLP starts with randomly initialized parameters.",
+    "aliases": [
+      "random-initialized",
+      "randomly initialized"
+    ]
+  },
+  {
+    "id": "term-51",
+    "term": "SFT",
+    "expansion": "Supervised fine-tuning",
+    "definition": "Train a pretrained model on examples pairing inputs with desired outputs.",
+    "example": "A request is paired with its target action JSON.",
+    "aliases": []
+  },
+  {
+    "id": "term-52",
+    "term": "GRPO",
+    "expansion": "Group Relative Policy Optimization",
+    "definition": "A reinforcement-learning method that compares rewards among groups of generated outputs to guide updates.",
+    "example": "An experimental training script can exist without proving it trained the deployed model.",
+    "aliases": []
+  },
+  {
+    "id": "term-53",
+    "term": "RLHF",
+    "expansion": "Reinforcement learning from human feedback",
+    "definition": "Use human preference signals, often through a reward model, to guide model optimization.",
+    "example": "Do not call ordinary supervised adapter training RLHF.",
+    "aliases": [
+      "RLHF-trained"
+    ]
+  },
+  {
+    "id": "term-54",
+    "term": "Completion-only loss",
+    "expansion": "Train on answer tokens",
+    "definition": "Ignore prompt positions in the loss and train on the desired completion.",
+    "example": "A label value of -100 marks ignored positions in the configured loss.",
+    "aliases": []
+  },
+  {
+    "id": "term-55",
+    "term": "Temperature",
+    "expansion": "Probability scaling setting",
+    "definition": "In generation it changes sampling sharpness; in contrastive learning it scales similarity scores before comparison.",
+    "example": "Contrastive temperature 0.07 and generation temperature refer to different uses.",
+    "aliases": []
+  },
+  {
+    "id": "term-56",
+    "term": "Top-p",
+    "expansion": "Cumulative-probability sampling",
+    "definition": "Choose from likely next tokens whose combined probability reaches a threshold.",
+    "example": "A smaller set can reduce sampling variety; it does not verify facts.",
+    "aliases": []
+  },
+  {
+    "id": "term-57",
+    "term": "Few-shot",
+    "expansion": "Prompting with examples",
+    "definition": "Include a small number of input/output examples in the prompt.",
+    "example": "Show how to represent a missing invoice amount.",
+    "aliases": [
+      "few-shot prompting"
+    ]
+  },
+  {
+    "id": "term-58",
+    "term": "Zero-shot",
+    "expansion": "Prompting without examples",
+    "definition": "Give instructions without task demonstrations.",
+    "example": "Ask for an invoice's fields using only the task and schema.",
+    "aliases": [
+      "zero-shot prompting"
+    ]
+  },
+  {
+    "id": "term-59",
+    "term": "Chain-of-thought",
+    "expansion": "Intermediate reasoning approach",
+    "definition": "Encouraging reasoning steps before a result; the explanation still needs independent validation.",
+    "example": "Verify the cited policy and final action, not only the explanation's fluency.",
+    "aliases": []
+  },
+  {
+    "id": "term-60",
+    "term": "Context window",
+    "expansion": "Model token capacity",
+    "definition": "The amount of context a model can handle in a request, subject to model-specific input and output limits.",
+    "example": "Large documents may need retrieval instead of being pasted in full.",
+    "aliases": [
+      "context-aware",
+      "token budget"
+    ]
+  },
+  {
+    "id": "term-61",
+    "term": "Hallucination",
+    "expansion": "Unsupported generated content",
+    "definition": "A model output that invents or misstates information.",
+    "example": "An extractor supplies an amount absent from the source.",
+    "aliases": [
+      "hallucinations",
+      "invented"
+    ]
+  },
+  {
+    "id": "term-62",
+    "term": "RAG",
+    "expansion": "Retrieval-augmented generation",
+    "definition": "Retrieve evidence and use it as context for generating an answer.",
+    "example": "Retrieve the relevant policy before producing a sourced response.",
+    "aliases": [
+      "retrieval-augmented"
+    ]
+  },
+  {
+    "id": "term-63",
+    "term": "Retrieval",
+    "expansion": "Finding relevant stored information",
+    "definition": "Select documents, chunks, or notes that may answer a query.",
+    "example": "Find saved passages about a baggage limit.",
+    "aliases": []
+  },
+  {
+    "id": "term-64",
+    "term": "Chunk",
+    "expansion": "Smaller piece of source content",
+    "definition": "A section of a document stored and retrieved independently.",
+    "example": "Keep a PDF passage with its page reference.",
+    "aliases": [
+      "chunks",
+      "chunking"
+    ]
+  },
+  {
+    "id": "term-65",
+    "term": "Overlap",
+    "expansion": "Shared content between adjacent chunks",
+    "definition": "Repeat some text at a boundary so context is not abruptly lost.",
+    "example": "An 80-character overlap repeats the end of one chunk in the next.",
+    "aliases": []
+  },
+  {
+    "id": "term-66",
+    "term": "Lexical search",
+    "expansion": "Search by words",
+    "definition": "Find results using matching terms or identifiers.",
+    "example": "Search for an exact invoice number.",
+    "aliases": [
+      "lexical"
+    ]
+  },
+  {
+    "id": "term-67",
+    "term": "Semantic search",
+    "expansion": "Search by meaning similarity",
+    "definition": "Compare vector representations to retrieve related content even when wording differs.",
+    "example": "A question about travel expenses can match a note about reimbursement.",
+    "aliases": [
+      "semantic matches",
+      "semantic retrieval"
+    ]
+  },
+  {
+    "id": "term-68",
+    "term": "Hybrid retrieval",
+    "expansion": "Combining search methods",
+    "definition": "Use lexical and semantic signals together.",
+    "example": "Exact file names and similar meanings both influence ranking.",
+    "aliases": [
+      "hybrid search"
+    ]
+  },
+  {
+    "id": "term-69",
+    "term": "Reranker",
+    "expansion": "Second-stage relevance scorer",
+    "definition": "Reorder a retrieved candidate set using a more detailed relevance model.",
+    "example": "Rescore the top 20 passages before selecting five.",
+    "aliases": [
+      "reranking",
+      "rerank",
+      "cross-encoder reranker"
+    ]
+  },
+  {
+    "id": "term-70",
+    "term": "Cross-encoder",
+    "expansion": "Joint query-candidate model",
+    "definition": "Process a query and candidate together to estimate their relationship.",
+    "example": "A reranker reads the question and passage in one input.",
+    "aliases": []
+  },
+  {
+    "id": "term-71",
+    "term": "Dual encoder",
+    "expansion": "Separate representation encoders",
+    "definition": "Represent query/state and candidate separately so their vectors can be compared.",
+    "example": "MFlash compares separately projected state and action vectors.",
+    "aliases": []
+  },
+  {
+    "id": "term-72",
+    "term": "Dot product",
+    "expansion": "Vector comparison calculation",
+    "definition": "Multiply matching coordinates and add them. For unit-length vectors, this equals cosine similarity.",
+    "example": "Use a dot product to compare normalized embeddings.",
+    "aliases": [
+      "dot products"
+    ]
+  },
+  {
+    "id": "term-73",
+    "term": "Reciprocal rank fusion",
+    "expansion": "Combining result positions",
+    "definition": "Combine ordered result lists using scores such as 1/(60+rank) instead of directly comparing incompatible raw scores.",
+    "example": "A note ranking well in both keyword and semantic search gains combined support.",
+    "aliases": [
+      "rank-based fusion",
+      "combines ranks"
+    ]
+  },
+  {
+    "id": "term-74",
+    "term": "E5-small",
+    "expansion": "Small text-embedding model",
+    "definition": "The multilingual E5-small model used in NoteEchoes produces text vectors for semantic matching.",
+    "example": "Use query: and passage: prefixes for its query and stored text inputs.",
+    "aliases": [
+      "multilingual E5-small",
+      "multilingual-e5-small"
+    ]
+  },
+  {
+    "id": "term-75",
+    "term": "EmbeddingGemma",
+    "expansion": "Embedding model family",
+    "definition": "A model used to represent content as vectors for retrieval; the configured profile determines the actual vectors.",
+    "example": "Keep a Gemma index separate from an incompatible MPNet vector space.",
+    "aliases": []
+  },
+  {
+    "id": "term-76",
+    "term": "SQLite",
+    "expansion": "Embedded SQL database",
+    "definition": "A database engine that stores structured data locally, typically in a file, without a separate database server.",
+    "example": "Store notes, chunks, and recovery records on the device.",
+    "aliases": []
+  },
+  {
+    "id": "term-77",
+    "term": "FTS5",
+    "expansion": "SQLite Full-Text Search version 5",
+    "definition": "A SQLite extension that indexes text for word-based queries.",
+    "example": "Search note text without scanning every character in every note.",
+    "aliases": []
+  },
+  {
+    "id": "term-78",
+    "term": "BM25",
+    "expansion": "Best Matching 25",
+    "definition": "A keyword-relevance scoring method that considers matched terms, their rarity, and document length.",
+    "example": "Rare matching words can provide stronger evidence than common words.",
+    "aliases": []
+  },
+  {
+    "id": "term-79",
+    "term": "ANN",
+    "expansion": "Approximate nearest-neighbor search",
+    "definition": "Find nearby vectors faster by accepting that some true closest matches may be missed.",
+    "example": "Compare a fast approximate index against an exact-search baseline.",
+    "aliases": [
+      "approximate nearest-neighbor"
+    ]
+  },
+  {
+    "id": "term-80",
+    "term": "FAISS",
+    "expansion": "Similarity-search library",
+    "definition": "A library for searching and clustering dense vectors, rather than a complete hosted application database.",
+    "example": "Build a local vector index and manage persistence and access separately.",
+    "aliases": []
+  },
+  {
+    "id": "term-81",
+    "term": "Pinecone",
+    "expansion": "Vector database service",
+    "definition": "A service for storing and querying vector representations with associated data and filters.",
+    "example": "Store code-chunk embeddings in a retrieval service.",
+    "aliases": []
+  },
+  {
+    "id": "term-82",
+    "term": "Weaviate",
+    "expansion": "Vector database platform",
+    "definition": "A database platform supporting vector-based search and related indexing capabilities.",
+    "example": "Query similar document representations with metadata filters.",
+    "aliases": []
+  },
+  {
+    "id": "term-83",
+    "term": "Chroma",
+    "expansion": "Embedding database",
+    "definition": "A database for storing embeddings and related documents for retrieval applications.",
+    "example": "Keep chunks and their vectors in a searchable collection.",
+    "aliases": []
+  },
+  {
+    "id": "term-84",
+    "term": "Metadata",
+    "expansion": "Information about content",
+    "definition": "Descriptive fields used for filtering, tracing, and interpretation.",
+    "example": "Document ID, page number, source version, and tenant ID.",
+    "aliases": []
+  },
+  {
+    "id": "term-85",
+    "term": "Knowledge graph",
+    "expansion": "Connected information representation",
+    "definition": "Nodes represent things and edges represent relationships; capabilities depend on which relationships are actually implemented.",
+    "example": "NoteEchoes displays topics connected to member notes.",
+    "aliases": []
+  },
+  {
+    "id": "term-86",
+    "term": "Connected component",
+    "expansion": "Group linked by paths",
+    "definition": "A set of graph nodes connected through one or more edges.",
+    "example": "Similar notes linked together can form a topic group.",
+    "aliases": [
+      "connected-component"
+    ]
+  },
+  {
+    "id": "term-87",
+    "term": "One-hop",
+    "expansion": "One relationship away",
+    "definition": "Follow a single edge from a starting node.",
+    "example": "Add a directly related note to retrieved results.",
+    "aliases": []
+  },
+  {
+    "id": "term-88",
+    "term": "OCR",
+    "expansion": "Optical character recognition",
+    "definition": "Convert text in images or scans into machine-readable text.",
+    "example": "Read an invoice image before extracting its fields.",
+    "aliases": []
+  },
+  {
+    "id": "term-89",
+    "term": "ASR",
+    "expansion": "Automatic speech recognition",
+    "definition": "Convert spoken audio into written text.",
+    "example": "A recorded voice checklist becomes a transcript.",
+    "aliases": []
+  },
+  {
+    "id": "term-90",
+    "term": "WhisperKit",
+    "expansion": "Apple-platform speech toolkit",
+    "definition": "A toolkit for running Whisper speech recognition using Apple-platform model execution.",
+    "example": "NoteEchoes tries WhisperKit for recorded audio.",
+    "aliases": []
+  },
+  {
+    "id": "term-91",
+    "term": "MLX",
+    "expansion": "Apple machine-learning array framework",
+    "definition": "A framework used for efficient machine-learning computation on Apple silicon.",
+    "example": "Swift runs NoteEchoes' local action model through MLX.",
+    "aliases": []
+  },
+  {
+    "id": "term-92",
+    "term": "UI-TARS",
+    "expansion": "User-interface interaction model family",
+    "definition": "A visual model family used to interpret interface observations and propose UI actions.",
+    "example": "MFlash has separate UI-TARS visual experiments.",
+    "aliases": []
+  },
+  {
+    "id": "term-93",
+    "term": "UI",
+    "expansion": "User interface",
+    "definition": "The screens and controls a person interacts with.",
+    "example": "A button that reveals an interview answer.",
+    "aliases": [
+      "user-interface"
+    ]
+  },
+  {
+    "id": "term-94",
+    "term": "PyQt",
+    "expansion": "Python bindings for Qt",
+    "definition": "Tools for building desktop graphical interfaces in Python.",
+    "example": "MFlash's desktop interface uses PyQt.",
+    "aliases": []
+  },
+  {
+    "id": "term-95",
+    "term": "Flutter",
+    "expansion": "Cross-platform UI toolkit",
+    "definition": "A toolkit that uses Dart to build application interfaces.",
+    "example": "NoteEchoes' interface is written in Flutter.",
+    "aliases": []
+  },
+  {
+    "id": "term-96",
+    "term": "Dart",
+    "expansion": "Programming language",
+    "definition": "The language used for Flutter application logic and interfaces.",
+    "example": "NoteEchoes calls its native model bridge from Dart.",
+    "aliases": []
+  },
+  {
+    "id": "term-97",
+    "term": "Swift",
+    "expansion": "Apple-platform programming language",
+    "definition": "A language used for native integrations and applications on Apple platforms.",
+    "example": "Run an MLX session through native Swift code.",
+    "aliases": []
+  },
+  {
+    "id": "term-98",
+    "term": "Method channel",
+    "expansion": "Flutter-to-native message bridge",
+    "definition": "A named communication route between Dart code and platform-specific code.",
+    "example": "Dart requests model generation and Swift handles it.",
+    "aliases": [
+      "Flutter method channel"
+    ]
+  },
+  {
+    "id": "term-99",
+    "term": "React",
+    "expansion": "JavaScript UI library",
+    "definition": "A library for building interactive interfaces from components.",
+    "example": "Build a document review screen with editable fields.",
+    "aliases": []
+  },
+  {
+    "id": "term-100",
+    "term": "Node.js",
+    "expansion": "JavaScript runtime",
+    "definition": "A runtime for executing JavaScript outside a web browser.",
+    "example": "A backend service can run on Node.js; NoteEchoes is a Flutter/Swift application.",
+    "aliases": [
+      "Node"
+    ]
+  },
+  {
+    "id": "term-101",
+    "term": "TestFlight",
+    "expansion": "Apple beta distribution service",
+    "definition": "A service used to distribute test versions of an app to testers.",
+    "example": "Historical TestFlight evidence does not prove a build is available today.",
+    "aliases": []
+  },
+  {
+    "id": "term-102",
+    "term": "CoreV5",
+    "expansion": "Project-specific validation contract",
+    "definition": "The name used in NoteEchoes for its structured action-output contract and validation logic; it is not an industry-wide standard.",
+    "example": "Reject a model JSON response that fails the required action schema.",
+    "aliases": []
+  },
+  {
+    "id": "term-103",
+    "term": "JSON",
+    "expansion": "JavaScript Object Notation",
+    "definition": "A text format for objects, arrays, strings, numbers, booleans, and null.",
+    "example": "An extraction output can be {\"amount\": \"500\"}.",
+    "aliases": []
+  },
+  {
+    "id": "term-104",
+    "term": "Schema",
+    "expansion": "Required data structure",
+    "definition": "Rules for the allowed fields, types, and constraints in a record.",
+    "example": "Require amount to be a string and invoice_id to be present.",
+    "aliases": [
+      "schemas"
+    ]
+  },
+  {
+    "id": "term-105",
+    "term": "API",
+    "expansion": "Application programming interface",
+    "definition": "An agreed way for software components to request services or exchange data.",
+    "example": "A downstream system submits an extraction job.",
+    "aliases": [
+      "APIs"
+    ]
+  },
+  {
+    "id": "term-106",
+    "term": "REST",
+    "expansion": "Representational State Transfer",
+    "definition": "An architectural style often used to design resource-oriented web APIs using HTTP.",
+    "example": "Use GET to read a job resource and POST to create one.",
+    "aliases": []
+  },
+  {
+    "id": "term-107",
+    "term": "HTTP",
+    "expansion": "Hypertext Transfer Protocol",
+    "definition": "The request/response protocol used by web clients and services.",
+    "example": "A server returns 202 when a job is accepted for later processing.",
+    "aliases": []
+  },
+  {
+    "id": "term-108",
+    "term": "GET / POST",
+    "expansion": "HTTP methods",
+    "definition": "GET retrieves a representation; POST submits data for processing or creates a resource under an API contract.",
+    "example": "POST an extraction job, then GET its status.",
+    "aliases": [
+      "GET",
+      "POST"
+    ]
+  },
+  {
+    "id": "term-109",
+    "term": "MCP",
+    "expansion": "Model Context Protocol",
+    "definition": "A protocol that lets compatible AI applications discover and use external tools and context.",
+    "example": "An enterprise server exposes document-search capability.",
+    "aliases": []
+  },
+  {
+    "id": "term-110",
+    "term": "SDK",
+    "expansion": "Software development kit",
+    "definition": "Libraries and tools that help developers use a platform or protocol.",
+    "example": "Use an MCP SDK rather than constructing every protocol message manually.",
+    "aliases": []
+  },
+  {
+    "id": "term-111",
+    "term": "stdio",
+    "expansion": "Standard input/output",
+    "definition": "Process streams used for communication with a local program.",
+    "example": "An AI host exchanges MCP messages with a local subprocess.",
+    "aliases": []
+  },
+  {
+    "id": "term-112",
+    "term": "Streamable HTTP",
+    "expansion": "HTTP-based MCP transport",
+    "definition": "A transport for exchanging MCP messages with remote servers over HTTP.",
+    "example": "Connect an enterprise host to a remote document-tool server.",
+    "aliases": []
+  },
+  {
+    "id": "term-113",
+    "term": "Tool calling",
+    "expansion": "Structured action proposal",
+    "definition": "A model requests a named operation with arguments; trusted application code decides whether to execute.",
+    "example": "The model proposes search_documents with a query.",
+    "aliases": [
+      "tool call",
+      "tool calls"
+    ]
+  },
+  {
+    "id": "term-114",
+    "term": "Argument",
+    "expansion": "Input to a function or tool",
+    "definition": "A value supplied to an operation.",
+    "example": "For move_file, source and destination are arguments.",
+    "aliases": [
+      "arguments"
+    ]
+  },
+  {
+    "id": "term-115",
+    "term": "Intent",
+    "expansion": "Interpreted user goal",
+    "definition": "A structured description of what the user is asking to do.",
+    "example": "Classify a folder question as local_rag_query.",
+    "aliases": []
+  },
+  {
+    "id": "term-116",
+    "term": "Deterministic",
+    "expansion": "Rule-governed repeatable behavior",
+    "definition": "A fixed procedure produces the same result for the same relevant inputs and state.",
+    "example": "A missing-field validator checks a defined rule.",
+    "aliases": []
+  },
+  {
+    "id": "term-117",
+    "term": "Authorization",
+    "expansion": "Permission decision",
+    "definition": "Determine whether a caller is allowed to perform an operation on a resource.",
+    "example": "A signed-in user may still lack access to another customer's document.",
+    "aliases": [
+      "authorize",
+      "authorized"
+    ]
+  },
+  {
+    "id": "term-118",
+    "term": "Authentication",
+    "expansion": "Identity verification",
+    "definition": "Establish who or what the caller is.",
+    "example": "Validate a session or token before checking document permissions.",
+    "aliases": [
+      "authenticate",
+      "authenticated"
+    ]
+  },
+  {
+    "id": "term-119",
+    "term": "Grant",
+    "expansion": "Trusted execution permission",
+    "definition": "An application record authorizing a particular action under specific rules.",
+    "example": "MFlash checks that the action's arguments match its execution grant.",
+    "aliases": [
+      "grants"
+    ]
+  },
+  {
+    "id": "term-120",
+    "term": "Prompt injection",
+    "expansion": "Malicious instructions in untrusted content",
+    "definition": "Content tries to make an AI system violate its real instructions or access rules.",
+    "example": "A document says to upload all private files; the system must treat that as document text.",
+    "aliases": []
+  },
+  {
+    "id": "term-121",
+    "term": "Tenant",
+    "expansion": "Customer or organization boundary",
+    "definition": "An isolation scope in a shared application.",
+    "example": "A retrieval request must only see the authenticated customer's documents.",
+    "aliases": [
+      "tenants"
+    ]
+  },
+  {
+    "id": "term-122",
+    "term": "Idempotency",
+    "expansion": "Safe repeat behavior",
+    "definition": "Repeated equivalent requests have the same intended effect under a defined contract.",
+    "example": "A repeated booking request returns the existing result rather than booking twice.",
+    "aliases": [
+      "idempotent",
+      "idempotency key"
+    ]
+  },
+  {
+    "id": "term-123",
+    "term": "Exactly-once",
+    "expansion": "One effective completion claim",
+    "definition": "A guarantee that an operation takes effect once; it is difficult across independent systems and needs a precise failure model.",
+    "example": "A local receipt alone cannot ensure a remote booking happened exactly once.",
+    "aliases": []
+  },
+  {
+    "id": "term-124",
+    "term": "Receipt",
+    "expansion": "Recorded execution evidence",
+    "definition": "A stored record of an attempted action and its observed result.",
+    "example": "Before retrying, inspect whether the prior file operation completed.",
+    "aliases": [
+      "receipts"
+    ]
+  },
+  {
+    "id": "term-125",
+    "term": "Digest / hash",
+    "expansion": "Content fingerprint",
+    "definition": "A compact value calculated from data that helps detect changes; it does not encrypt the data.",
+    "example": "Compare a source digest before executing an approved file move.",
+    "aliases": [
+      "digest",
+      "hash",
+      "hashes",
+      "fingerprint",
+      "checksum"
+    ]
+  },
+  {
+    "id": "term-126",
+    "term": "SHA-256",
+    "expansion": "Secure Hash Algorithm, 256-bit",
+    "definition": "A cryptographic hash producing a fixed-size digest useful for comparing content integrity.",
+    "example": "Changed file bytes normally produce a different SHA-256 digest.",
+    "aliases": []
+  },
+  {
+    "id": "term-127",
+    "term": "Race condition",
+    "expansion": "Timing-dependent bug",
+    "definition": "Another operation changes shared state between a check and its use.",
+    "example": "A different process edits a file after preview but before execution.",
+    "aliases": [
+      "external-process races",
+      "races"
+    ]
+  },
+  {
+    "id": "term-128",
+    "term": "WAL",
+    "expansion": "Write-ahead log",
+    "definition": "A database journal mode recording changes in a log before updating the main database file.",
+    "example": "SQLite can preserve a history needed for commits and recovery.",
+    "aliases": []
+  },
+  {
+    "id": "term-129",
+    "term": "Transaction",
+    "expansion": "Grouped database operation",
+    "definition": "A set of database changes committed together or rolled back under the database's guarantees.",
+    "example": "Save related note updates together; this does not atomically include an unrelated file move.",
+    "aliases": [
+      "transactions",
+      "atomic"
+    ]
+  },
+  {
+    "id": "term-130",
+    "term": "Hard link",
+    "expansion": "Another name for the same file data",
+    "definition": "A filesystem directory entry pointing to the same underlying file content; normally limited to one filesystem.",
+    "example": "The safer move path links the destination before removing the source name.",
+    "aliases": []
+  },
+  {
+    "id": "term-131",
+    "term": "Tombstone",
+    "expansion": "Deletion marker",
+    "definition": "A saved record that an item was deleted, helping recovery avoid restoring it.",
+    "example": "Skip an old note in a backup if its ID is tombstoned.",
+    "aliases": [
+      "tombstones",
+      "tombstoned"
+    ]
+  },
+  {
+    "id": "term-132",
+    "term": "Snapshot",
+    "expansion": "Saved state at a point in time",
+    "definition": "A stored representation used for recovery or comparison.",
+    "example": "Load the newest valid note snapshot after an interruption.",
+    "aliases": [
+      "snapshots"
+    ]
+  },
+  {
+    "id": "term-133",
+    "term": "Singleton",
+    "expansion": "One shared instance",
+    "definition": "A programming pattern that provides a single instance within its scope.",
+    "example": "A global journal singleton may be shared across paths unless explicitly isolated.",
+    "aliases": []
+  },
+  {
+    "id": "term-134",
+    "term": "Deduplication",
+    "expansion": "Recognizing repeated items",
+    "definition": "Detect repeats by ID or content so they are not processed unnecessarily.",
+    "example": "A PDF hash can detect a second import, but failed imports may still need reprocessing.",
+    "aliases": [
+      "deduplicate",
+      "deduplicated",
+      "deduplication"
+    ]
+  },
+  {
+    "id": "term-135",
+    "term": "Abstention",
+    "expansion": "Declining to make a prediction",
+    "definition": "The system withholds an answer or action when its conditions are not met.",
+    "example": "An uncertain request asks for clarification instead of moving a file.",
+    "aliases": [
+      "abstain",
+      "abstentions"
+    ]
+  },
+  {
+    "id": "term-136",
+    "term": "Holdout",
+    "expansion": "Reserved evaluation data",
+    "definition": "Examples kept separate from training or tuning to test performance.",
+    "example": "New human-authored requests assess unfamiliar scenarios.",
+    "aliases": [
+      "holdouts",
+      "held-out"
+    ]
+  },
+  {
+    "id": "term-137",
+    "term": "Baseline",
+    "expansion": "Reference to compare against",
+    "definition": "A starting system or measurement used to judge a change.",
+    "example": "Compare adapted Qwen with stock Qwen using matched settings.",
+    "aliases": [
+      "baselines"
+    ]
+  },
+  {
+    "id": "term-138",
+    "term": "Synthetic data",
+    "expansion": "Artificially constructed examples",
+    "definition": "Examples created by rules, templates, simulation, or models rather than collected as natural user interactions.",
+    "example": "Generate checklist requests from a finite set of templates.",
+    "aliases": [
+      "synthetic"
+    ]
+  },
+  {
+    "id": "term-139",
+    "term": "Generalization",
+    "expansion": "Performance on unfamiliar examples",
+    "definition": "How well a system works beyond the patterns used during development.",
+    "example": "Test new scenarios instead of only changing identifiers in familiar templates.",
+    "aliases": [
+      "generalize",
+      "generalization"
+    ]
+  },
+  {
+    "id": "term-140",
+    "term": "Data leakage",
+    "expansion": "Evaluation information influencing training",
+    "definition": "Information from evaluation data enters learning or tuning and creates overly optimistic results.",
+    "example": "Nearly identical templates across splits can weaken independence.",
+    "aliases": []
+  },
+  {
+    "id": "term-141",
+    "term": "Overfitting",
+    "expansion": "Learning development-specific patterns too closely",
+    "definition": "A system succeeds on familiar data but fails on genuinely new examples.",
+    "example": "A model memorizes checklist templates without understanding novel phrasing.",
+    "aliases": []
+  },
+  {
+    "id": "term-142",
+    "term": "Precision",
+    "expansion": "Correctness among positive predictions",
+    "definition": "The fraction of predicted positives that are actually correct; numerical precision is a separate meaning involving number representation.",
+    "example": "Eight real issues among ten flagged documents gives precision 8/10.",
+    "aliases": []
+  },
+  {
+    "id": "term-143",
+    "term": "Recall",
+    "expansion": "Coverage of actual positives",
+    "definition": "The fraction of real positives the system finds.",
+    "example": "Eight found issues among twenty actual issues gives recall 8/20.",
+    "aliases": [
+      "recall@k"
+    ]
+  },
+  {
+    "id": "term-144",
+    "term": "F1",
+    "expansion": "Harmonic mean of precision and recall",
+    "definition": "A combined score: 2 times precision times recall divided by their sum, with an appropriate zero convention.",
+    "example": "A model needs both useful hits and good coverage to get a strong F1.",
+    "aliases": []
+  },
+  {
+    "id": "term-145",
+    "term": "Exact match",
+    "expansion": "Equality under a defined rule",
+    "definition": "A prediction equals its reference for specified fields after only the allowed normalization.",
+    "example": "NoteEchoes' seven-field comparison differs from full-response equality.",
+    "aliases": []
+  },
+  {
+    "id": "term-146",
+    "term": "Regression test",
+    "expansion": "Check for broken existing behavior",
+    "definition": "Repeat a known case after a change to catch a loss of functionality or quality.",
+    "example": "A new prompt must still handle missing fields correctly.",
+    "aliases": [
+      "regression evaluations",
+      "regression testing"
+    ]
+  },
+  {
+    "id": "term-147",
+    "term": "LLM-as-a-judge",
+    "expansion": "Model-assisted evaluation",
+    "definition": "A model scores another output using a rubric and evidence, with human calibration needed.",
+    "example": "Score support from retrieved passages without trusting the judge as infallible.",
+    "aliases": []
+  },
+  {
+    "id": "term-148",
+    "term": "Rubric",
+    "expansion": "Explicit scoring rules",
+    "definition": "Written criteria defining how an output is assessed.",
+    "example": "Score factual support separately from writing clarity.",
+    "aliases": [
+      "rubrics"
+    ]
+  },
+  {
+    "id": "term-149",
+    "term": "Calibration",
+    "expansion": "Aligning a score with a reference",
+    "definition": "Check or adjust an evaluator against trusted judgments; model confidence calibration instead compares predicted confidence with actual outcomes.",
+    "example": "Compare judge scores with human labels before relying on them.",
+    "aliases": []
+  },
+  {
+    "id": "term-150",
+    "term": "OOP",
+    "expansion": "Object-oriented programming",
+    "definition": "Organize code into objects with state and behavior, using clear interfaces.",
+    "example": "A retrieval service depends on an interchangeable Retriever object.",
+    "aliases": []
+  },
+  {
+    "id": "term-151",
+    "term": "SOLID",
+    "expansion": "Five object-design principles",
+    "definition": "Single responsibility, Open/closed, Liskov substitution, Interface segregation, Dependency inversion: guidelines for manageable responsibilities and replaceable implementations.",
+    "example": "Depend on a small model-client interface instead of one provider's concrete class.",
+    "aliases": []
+  },
+  {
+    "id": "term-152",
+    "term": "Encapsulation",
+    "expansion": "Hiding internal details",
+    "definition": "Expose a useful interface while controlling access to implementation details.",
+    "example": "Call search without exposing the database's internal tables.",
+    "aliases": []
+  },
+  {
+    "id": "term-153",
+    "term": "Abstraction",
+    "expansion": "Useful simplified interface",
+    "definition": "Describe required behavior without tying callers to all implementation details.",
+    "example": "A ModelClient exposes generate regardless of provider.",
+    "aliases": []
+  },
+  {
+    "id": "term-154",
+    "term": "Polymorphism",
+    "expansion": "Several implementations, one interface",
+    "definition": "Different objects respond to the same operation under a shared contract.",
+    "example": "SQLite and remote retrievers both implement search.",
+    "aliases": []
+  },
+  {
+    "id": "term-155",
+    "term": "Inheritance",
+    "expansion": "Building on a parent class",
+    "definition": "A class reuses or specializes behavior from another class.",
+    "example": "A specialized retriever extends a base implementation.",
+    "aliases": []
+  },
+  {
+    "id": "term-156",
+    "term": "Composition",
+    "expansion": "Combining collaborators",
+    "definition": "Build behavior by giving components other components to use.",
+    "example": "An extraction service contains a model client and a validator.",
+    "aliases": []
+  },
+  {
+    "id": "term-157",
+    "term": "Domain-driven design",
+    "expansion": "Modeling business concepts",
+    "definition": "Organize software around domain language, business rules, and boundaries.",
+    "example": "Separate reservation rules from model prompting.",
+    "aliases": [
+      "DDD"
+    ]
+  },
+  {
+    "id": "term-158",
+    "term": "Bounded context",
+    "expansion": "Business-model boundary",
+    "definition": "An area in which terms and rules have a consistent meaning.",
+    "example": "Payment and reservation can have different models of status.",
+    "aliases": [
+      "bounded contexts"
+    ]
+  },
+  {
+    "id": "term-159",
+    "term": "Aggregate",
+    "expansion": "Consistency boundary in a domain model",
+    "definition": "Related domain objects updated according to invariants within a defined boundary.",
+    "example": "A reservation aggregate enforces valid internal transitions.",
+    "aliases": []
+  },
+  {
+    "id": "term-160",
+    "term": "Invariant",
+    "expansion": "Rule that must remain true",
+    "definition": "A business condition that operations must preserve.",
+    "example": "A confirmed booking must refer to a valid reservation.",
+    "aliases": [
+      "invariants"
+    ]
+  },
+  {
+    "id": "term-161",
+    "term": "TDD",
+    "expansion": "Test-driven development",
+    "definition": "Write a failing behavior test, implement enough to pass, then refactor.",
+    "example": "First test that a changed note cannot be overwritten by late AI output.",
+    "aliases": []
+  },
+  {
+    "id": "term-162",
+    "term": "Mock",
+    "expansion": "Controlled test substitute",
+    "definition": "A stand-in for a dependency that returns chosen responses or records calls.",
+    "example": "Test a timeout without calling a real model API.",
+    "aliases": [
+      "mocking",
+      "mocks"
+    ]
+  },
+  {
+    "id": "term-163",
+    "term": "Contract test",
+    "expansion": "Interface-agreement check",
+    "definition": "Test that components honor required request, response, and error shapes.",
+    "example": "Check an MCP tool's response fields.",
+    "aliases": [
+      "contract tests"
+    ]
+  },
+  {
+    "id": "term-164",
+    "term": "Microservices",
+    "expansion": "Separately deployed services",
+    "definition": "Split an application into services that communicate over networks and have independent operational boundaries.",
+    "example": "Scale OCR workers separately from an interactive API.",
+    "aliases": []
+  },
+  {
+    "id": "term-165",
+    "term": "Monolith",
+    "expansion": "One deployable application",
+    "definition": "A single deployment containing multiple application functions; it can still be well organized into modules.",
+    "example": "A small team can use a modular monolith before splitting services.",
+    "aliases": []
+  },
+  {
+    "id": "term-166",
+    "term": "GIL",
+    "expansion": "Global Interpreter Lock",
+    "definition": "In standard GIL-enabled CPython, a mechanism limiting concurrent execution of Python bytecode by threads.",
+    "example": "Threads can overlap I/O without guaranteeing CPU parallelism.",
+    "aliases": [
+      "GIL-enabled"
+    ]
+  },
+  {
+    "id": "term-167",
+    "term": "CPython",
+    "expansion": "Main Python implementation",
+    "definition": "The common Python interpreter implementation, primarily written in C.",
+    "example": "Behavior about the GIL must be qualified by runtime and configuration.",
+    "aliases": []
+  },
+  {
+    "id": "term-168",
+    "term": "I/O",
+    "expansion": "Input/output",
+    "definition": "Reading or writing to a device, file, database, or network.",
+    "example": "Wait for a model API response while other tasks progress.",
+    "aliases": []
+  },
+  {
+    "id": "term-169",
+    "term": "CPU",
+    "expansion": "Central processing unit",
+    "definition": "A general-purpose processor that executes program instructions.",
+    "example": "Run a small classifier on the CPU.",
+    "aliases": []
+  },
+  {
+    "id": "term-170",
+    "term": "GPU",
+    "expansion": "Graphics processing unit",
+    "definition": "A processor capable of many parallel numerical operations, often useful for model training.",
+    "example": "Train a larger neural network on a GPU.",
+    "aliases": []
+  },
+  {
+    "id": "term-171",
+    "term": "Async",
+    "expansion": "Asynchronous execution",
+    "definition": "Organize work so a task can wait for I/O while other work proceeds.",
+    "example": "Several retrieval requests can be pending concurrently.",
+    "aliases": [
+      "asyncio",
+      "asynchronous"
+    ]
+  },
+  {
+    "id": "term-172",
+    "term": "Thread",
+    "expansion": "Execution path inside a process",
+    "definition": "A unit of execution sharing process memory with other threads.",
+    "example": "A background thread prevents a desktop UI from blocking.",
+    "aliases": [
+      "threads"
+    ]
+  },
+  {
+    "id": "term-173",
+    "term": "Process",
+    "expansion": "Independent running program instance",
+    "definition": "An execution environment with its own resources and usually separate memory.",
+    "example": "Use separate processes for CPU-heavy work.",
+    "aliases": [
+      "processes"
+    ]
+  },
+  {
+    "id": "term-174",
+    "term": "Semaphore",
+    "expansion": "Concurrent-access counter",
+    "definition": "A control limiting how many operations may enter a protected region at once.",
+    "example": "Allow five active retrieval calls, while others wait.",
+    "aliases": []
+  },
+  {
+    "id": "term-175",
+    "term": "Event loop",
+    "expansion": "Asynchronous task scheduler",
+    "definition": "Runs ready tasks and resumes tasks when awaited operations complete.",
+    "example": "Network calls yield control so other work can proceed.",
+    "aliases": []
+  },
+  {
+    "id": "term-176",
+    "term": "O(n)",
+    "expansion": "Linear growth",
+    "definition": "Work or extra storage grows roughly in proportion to the input size under the stated assumptions.",
+    "example": "Deduplicating twice as many IDs takes roughly twice the work on average.",
+    "aliases": []
+  },
+  {
+    "id": "term-177",
+    "term": "Context manager",
+    "expansion": "Scoped resource cleanup",
+    "definition": "Python's with mechanism manages setup and cleanup even when an exception occurs.",
+    "example": "Close a file automatically after reading.",
+    "aliases": []
+  },
+  {
+    "id": "term-178",
+    "term": "Generator",
+    "expansion": "Incremental value producer",
+    "definition": "A function or iterator that yields values as needed rather than building all results immediately.",
+    "example": "Read records one at a time from a large file.",
+    "aliases": [
+      "generators"
+    ]
+  },
+  {
+    "id": "term-179",
+    "term": "Mutability",
+    "expansion": "Whether a value can change",
+    "definition": "Mutable objects can be modified after creation; immutable ones cannot be changed in place.",
+    "example": "A Python list is mutable; a tuple's structure is immutable.",
+    "aliases": [
+      "mutable"
+    ]
+  },
+  {
+    "id": "term-180",
+    "term": "CI/CD",
+    "expansion": "Continuous integration and delivery/deployment",
+    "definition": "Automate checks and preparing or releasing changes. Delivery and deployment have different meanings depending on the release process.",
+    "example": "Run tests and AI evaluations before publishing a new version.",
+    "aliases": []
+  },
+  {
+    "id": "term-181",
+    "term": "DevOps",
+    "expansion": "Development and operations practices",
+    "definition": "Shared practices for delivering and operating software reliably using automation and feedback.",
+    "example": "Developers own release checks and monitor outcomes with operations colleagues.",
+    "aliases": []
+  },
+  {
+    "id": "term-182",
+    "term": "Git",
+    "expansion": "Version control system",
+    "definition": "Track source history and collaborate on changes.",
+    "example": "Commit a prompt and its evaluation configuration together.",
+    "aliases": []
+  },
+  {
+    "id": "term-183",
+    "term": "GitHub Actions",
+    "expansion": "GitHub workflow automation",
+    "definition": "A service that runs configured jobs in response to events.",
+    "example": "Deploy the flashcard site after a push.",
+    "aliases": []
+  },
+  {
+    "id": "term-184",
+    "term": "Jenkins",
+    "expansion": "Automation server",
+    "definition": "A system for running build, test, and deployment pipelines.",
+    "example": "An enterprise pipeline validates a release before deployment.",
+    "aliases": []
+  },
+  {
+    "id": "term-185",
+    "term": "Azure DevOps",
+    "expansion": "Development and delivery platform",
+    "definition": "Microsoft tools for planning, source collaboration, and build/release pipelines.",
+    "example": "Azure Pipelines can run tests and publish artifacts.",
+    "aliases": []
+  },
+  {
+    "id": "term-186",
+    "term": "AWS",
+    "expansion": "Amazon Web Services",
+    "definition": "A cloud platform offering compute, storage, identity, and other services.",
+    "example": "Use object storage and workers for document processing.",
+    "aliases": []
+  },
+  {
+    "id": "term-187",
+    "term": "Azure",
+    "expansion": "Microsoft cloud platform",
+    "definition": "A platform providing infrastructure and managed application services.",
+    "example": "Host an authorized API and its processing workers.",
+    "aliases": []
+  },
+  {
+    "id": "term-188",
+    "term": "GCP",
+    "expansion": "Google Cloud Platform",
+    "definition": "Google's cloud services for compute, storage, data, and applications.",
+    "example": "Deploy a processing job with scoped service permissions.",
+    "aliases": []
+  },
+  {
+    "id": "term-189",
+    "term": "Container",
+    "expansion": "Packaged application environment",
+    "definition": "Bundle application code and dependencies into a runnable image.",
+    "example": "Deploy the same API package across test and production.",
+    "aliases": [
+      "containers",
+      "containerized"
+    ]
+  },
+  {
+    "id": "term-190",
+    "term": "Serverless",
+    "expansion": "Managed execution model",
+    "definition": "A provider manages much of server provisioning and scaling, subject to platform limits.",
+    "example": "Run a short request handler without maintaining its server fleet.",
+    "aliases": []
+  },
+  {
+    "id": "term-191",
+    "term": "Kubernetes",
+    "expansion": "Container orchestration platform",
+    "definition": "Coordinate container deployment, scaling, and operation across compute resources.",
+    "example": "Schedule worker containers when the team's scale justifies it.",
+    "aliases": []
+  },
+  {
+    "id": "term-192",
+    "term": "Queue",
+    "expansion": "Buffer of pending work",
+    "definition": "Store tasks until a worker can process them.",
+    "example": "Uploaded PDFs wait for extraction workers.",
+    "aliases": [
+      "queues",
+      "enqueue"
+    ]
+  },
+  {
+    "id": "term-193",
+    "term": "Object storage",
+    "expansion": "Storage for named data objects",
+    "definition": "Store files or blobs accessed by identifiers rather than as database rows.",
+    "example": "Keep uploaded PDFs in a bucket.",
+    "aliases": []
+  },
+  {
+    "id": "term-194",
+    "term": "Observability",
+    "expansion": "Understanding system behavior from signals",
+    "definition": "Use logs, metrics, traces, and related evidence to investigate how a system behaves.",
+    "example": "Find whether slow extraction comes from OCR or inference.",
+    "aliases": []
+  },
+  {
+    "id": "term-195",
+    "term": "Latency",
+    "expansion": "Time to complete a request",
+    "definition": "Elapsed time from a defined starting point to a defined completion point.",
+    "example": "Measure how long a user waits for an answer.",
+    "aliases": []
+  },
+  {
+    "id": "term-196",
+    "term": "p50 / p95",
+    "expansion": "50th / 95th percentile",
+    "definition": "p50 is the median. p95 is a duration at or below which about 95% of measured requests fall.",
+    "example": "p95 of 3 seconds still leaves about 5% slower than 3 seconds.",
+    "aliases": [
+      "p50",
+      "p95"
+    ]
+  },
+  {
+    "id": "term-197",
+    "term": "Backoff",
+    "expansion": "Increasing delay between retries",
+    "definition": "Wait before trying again to reduce pressure on a failing dependency.",
+    "example": "Retry after 1 second, then 2, then 4, within a total budget.",
+    "aliases": []
+  },
+  {
+    "id": "term-198",
+    "term": "Jitter",
+    "expansion": "Random variation in retry delay",
+    "definition": "Spread retries over time so many clients do not retry simultaneously.",
+    "example": "Add a random delay around the backoff schedule.",
+    "aliases": []
+  },
+  {
+    "id": "term-199",
+    "term": "Circuit breaker",
+    "expansion": "Temporary dependency stop",
+    "definition": "Stop repeated calls to a failing dependency and later allow controlled recovery attempts.",
+    "example": "Fail quickly while a model provider is unavailable.",
+    "aliases": [
+      "circuit breakers"
+    ]
+  },
+  {
+    "id": "term-200",
+    "term": "Rate limiter",
+    "expansion": "Request-frequency control",
+    "definition": "Limit how many requests are allowed during a time interval.",
+    "example": "Permit at most a defined number of requests per second.",
+    "aliases": [
+      "rate limits",
+      "rate limiting"
+    ]
+  },
+  {
+    "id": "term-201",
+    "term": "Cache",
+    "expansion": "Stored reusable result",
+    "definition": "Keep a prior result to avoid repeating work, with freshness and access rules.",
+    "example": "Reuse an embedding only when source and model versions match.",
+    "aliases": [
+      "caches",
+      "caching",
+      "cached"
+    ]
+  },
+  {
+    "id": "term-202",
+    "term": "Drift",
+    "expansion": "Change affecting model-system behavior",
+    "definition": "Changes in inputs, sources, or model behavior can reduce quality over time.",
+    "example": "New invoice layouts raise field-correction rates.",
+    "aliases": []
+  },
+  {
+    "id": "term-203",
+    "term": "Rollback",
+    "expansion": "Return to an earlier working version",
+    "definition": "Restore a known version when a release causes unacceptable issues.",
+    "example": "Revert the model and prompt together after a regression.",
+    "aliases": []
+  },
+  {
+    "id": "term-204",
+    "term": "Immutable manifest",
+    "expansion": "Unchanged release record",
+    "definition": "A fixed record linking the source, model, data, and settings for a release.",
+    "example": "Record hashes so a deployment can be traced to its evaluated artifacts.",
+    "aliases": [
+      "manifest",
+      "manifests",
+      "artifact",
+      "artifacts"
+    ]
+  },
+  {
+    "id": "term-205",
+    "term": "A/B test",
+    "expansion": "Randomized comparison",
+    "definition": "Assign comparable units to different versions and compare a defined outcome with guardrails.",
+    "example": "Compare two assistance workflows on successful resolution.",
+    "aliases": [
+      "A/B testing"
+    ]
+  },
+  {
+    "id": "term-206",
+    "term": "KPI",
+    "expansion": "Key performance indicator",
+    "definition": "A defined measure of an important objective.",
+    "example": "Percent of documents correctly delivered without correction.",
+    "aliases": [
+      "KPIs"
+    ]
+  },
+  {
+    "id": "term-207",
+    "term": "Instrumentation",
+    "expansion": "Adding measurement events",
+    "definition": "Record events needed to understand performance or compute metrics.",
+    "example": "Log job accepted, reviewed, corrected, and delivered.",
+    "aliases": []
+  },
+  {
+    "id": "term-208",
+    "term": "Agile",
+    "expansion": "Iterative delivery approach",
+    "definition": "Develop useful increments with regular feedback and adaptation.",
+    "example": "Review a baseline extraction workflow before adding more features.",
+    "aliases": []
+  },
+  {
+    "id": "term-209",
+    "term": "Scrum",
+    "expansion": "Agile teamwork framework",
+    "definition": "A framework with defined accountabilities and events for iterative work and feedback.",
+    "example": "Use sprint reviews to inspect results with stakeholders.",
+    "aliases": []
+  },
+  {
+    "id": "term-210",
+    "term": "Framework",
+    "expansion": "Reusable application structure",
+    "definition": "Frameworks and SDKs provide conventions and components, but do not decide your business rules.",
+    "example": "Use a framework's tool integration while enforcing permission in the service.",
+    "aliases": [
+      "framework"
+    ]
+  },
+  {
+    "id": "term-211",
+    "term": "LangGraph",
+    "expansion": "Stateful workflow framework",
+    "definition": "A framework for defining graph-based workflows with state and controlled transitions.",
+    "example": "Branch between search, clarification, and answer steps.",
+    "aliases": []
+  },
+  {
+    "id": "term-212",
+    "term": "LangChain",
+    "expansion": "LLM application framework",
+    "definition": "Libraries and abstractions for connecting language models, tools, and application workflows.",
+    "example": "Compose model and retrieval components behind a tested contract.",
+    "aliases": []
+  },
+  {
+    "id": "term-213",
+    "term": "Semantic Kernel",
+    "expansion": "Model-integration SDK",
+    "definition": "Microsoft's SDK for integrating AI models with application code and plugins.",
+    "example": "Expose approved business functions to an AI workflow.",
+    "aliases": []
+  },
+  {
+    "id": "term-214",
+    "term": "Copilot Studio",
+    "expansion": "Graphical agent-building environment",
+    "definition": "Microsoft's low-code environment for constructing and managing agents and workflows.",
+    "example": "A business team can configure a supported workflow through a graphical interface.",
+    "aliases": []
+  },
+  {
+    "id": "term-215",
+    "term": "Ragas",
+    "expansion": "AI evaluation framework",
+    "definition": "A framework offering evaluation methods for retrieval and other AI application behavior.",
+    "example": "Evaluate a grounded-answer dataset rather than relying on a few demos.",
+    "aliases": []
+  },
+  {
+    "id": "term-216",
+    "term": "Component registry",
+    "expansion": "Registered component lookup",
+    "definition": "A registry maps supported names or capabilities to implementations; presence alone does not prove it is wired into execution.",
+    "example": "A provider registry exists, but an application still needs a caller to invoke it.",
+    "aliases": [
+      "provider registry",
+      "registry"
+    ]
+  },
+  {
+    "id": "term-217",
+    "term": "Feature dropout",
+    "expansion": "Training input masking",
+    "definition": "Randomly hide some configured input signals during training to reduce reliance on them.",
+    "example": "Drop request features while retaining observations.",
+    "aliases": []
+  },
+  {
+    "id": "term-218",
+    "term": "Float32",
+    "expansion": "32-bit floating-point numbers",
+    "definition": "A numeric format using 32 bits per value, balancing range and precision.",
+    "example": "Store retrieval vectors as float32 bytes.",
+    "aliases": [
+      "float32"
+    ]
+  },
+  {
+    "id": "term-219",
+    "term": "Encryption",
+    "expansion": "Protecting data with cryptographic keys",
+    "definition": "Transform readable data so access requires the appropriate key; hashes serve a different purpose.",
+    "example": "Encrypt a stored document while using a hash to detect changed content.",
+    "aliases": [
+      "encrypted"
+    ]
+  },
+  {
+    "id": "term-220",
+    "term": "Idempotency reconciliation",
+    "expansion": "Resolving an uncertain action outcome",
+    "definition": "Inspect authoritative records or actual state before deciding whether an interrupted action should be retried.",
+    "example": "Query booking status after a timeout instead of booking again.",
+    "aliases": [
+      "reconcile",
+      "reconciled",
+      "reconciliation"
+    ]
+  },
+  {
+    "id": "term-221",
+    "term": "Inverse-frequency sampling",
+    "expansion": "More exposure for rare labels",
+    "definition": "Draw examples with weights inversely related to their class frequency, so frequent labels do not dominate training.",
+    "example": "A rare restore action can appear more often during training than uniform sampling would allow.",
+    "aliases": [
+      "inverse-frequency",
+      "inverse-class-frequency"
+    ]
+  },
+  {
+    "id": "term-222",
+    "term": "Logit",
+    "expansion": "Unnormalized model score",
+    "definition": "A raw numeric score before converting the scores into probabilities.",
+    "example": "An MLP assigns a logit to each possible action template.",
+    "aliases": [
+      "logits"
+    ]
+  },
+  {
+    "id": "term-223",
+    "term": "Schema validity",
+    "expansion": "Following the required format",
+    "definition": "Check that data obeys structural rules; this does not establish that its values match the source.",
+    "example": "An amount can be a valid numeric string but still be the wrong amount.",
+    "aliases": [
+      "schema pass"
+    ]
+  },
+  {
+    "id": "term-224",
+    "term": "Operational gate",
+    "expansion": "Specific pass/fail checks",
+    "definition": "A project-defined group of conditions required to label an output operationally acceptable. Read its exact checks before interpreting its score.",
+    "example": "NoteEchoes operational flags do not require equality of every output field.",
+    "aliases": [
+      "operational flags"
+    ]
+  },
+  {
+    "id": "term-225",
+    "term": "Strict match",
+    "expansion": "Whole-object comparison",
+    "definition": "Check all fields of the parsed object against the reference under the evaluator's rules.",
+    "example": "A different title can fail a strict check even when selected action fields match.",
+    "aliases": [
+      "strict-check",
+      "strict object"
+    ]
+  },
+  {
+    "id": "term-226",
+    "term": "Validation set",
+    "expansion": "Development evaluation split",
+    "definition": "Examples used during development to evaluate choices; separate final testing is needed for an independent estimate.",
+    "example": "Compare two settings on validation data, then evaluate the selected system on a reserved holdout.",
+    "aliases": [
+      "validation files",
+      "development set",
+      "development candidate"
+    ]
+  },
+  {
+    "id": "term-227",
+    "term": "Cohort / slice",
+    "expansion": "Subset for focused evaluation",
+    "definition": "A group of examples sharing an important property so aggregate scores do not hide weaknesses.",
+    "example": "Evaluate native Mac grounding separately from drawn-interface examples.",
+    "aliases": [
+      "cohort",
+      "cohorts",
+      "failure slices",
+      "slice",
+      "slices"
+    ]
+  },
+  {
+    "id": "term-228",
+    "term": "Grounding",
+    "expansion": "Connecting output to evidence",
+    "definition": "Use relevant source content or observed state to support an answer or action.",
+    "example": "A quoted span supports an extracted field; an observed file path grounds a proposed move.",
+    "aliases": [
+      "grounded",
+      "ground answers"
+    ]
+  },
+  {
+    "id": "term-229",
+    "term": "Completion",
+    "expansion": "Generated response portion",
+    "definition": "The output after the prompt, used as the target in completion-only training.",
+    "example": "The JSON answer is the completion; the input request is the prompt.",
+    "aliases": [
+      "completion"
+    ]
+  },
+  {
+    "id": "term-230",
+    "term": "Embedding space",
+    "expansion": "Compatible representation coordinates",
+    "definition": "The vector system produced by a specific representation model and configuration.",
+    "example": "Do not directly compare an MPNet vector with an E5 vector as if their coordinates meant the same thing.",
+    "aliases": [
+      "embedding spaces",
+      "vector space"
+    ]
+  },
+  {
+    "id": "term-231",
+    "term": "Gate / up / down projections",
+    "expansion": "Feed-forward block components",
+    "definition": "Learned transformations in a gated feed-forward block: the gate modulates a signal, up expands an intermediate representation, and down maps it back.",
+    "example": "LoRA can target these modules as well as attention projections.",
+    "aliases": [
+      "gate/up/down",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  {
+    "id": "term-232",
+    "term": "ID",
+    "expansion": "Identifier",
+    "definition": "An ID labels an example, record, or resource so repeated operations can refer to the same item. An ID is not permission.",
+    "example": "Align a prediction with its reference by example ID.",
+    "aliases": [
+      "IDs"
+    ]
+  },
+  {
+    "id": "term-233",
+    "term": "Runtime",
+    "expansion": "Execution environment",
+    "definition": "The software environment that runs program or model operations.",
+    "example": "MLX runs the local model; CPython runs Python code.",
+    "aliases": [
+      "runtimes"
+    ]
+  },
+  {
+    "id": "term-234",
+    "term": "Sparse features",
+    "expansion": "Mostly empty input signals",
+    "definition": "Represent inputs with many possible features where relatively few have nonzero values.",
+    "example": "Request-word indicators can be mostly zero for a short request.",
+    "aliases": [
+      "sparse"
+    ]
+  },
+  {
+    "id": "term-235",
+    "term": "Synchronous setting",
+    "expansion": "SQLite durability configuration",
+    "definition": "Controls how database writes are synchronized with persistent storage. FULL and NORMAL make different durability/performance tradeoffs under the journal mode.",
+    "example": "WAL with FULL does not make a filesystem move and SQLite update one atomic transaction.",
+    "aliases": [
+      "synchronous=NORMAL",
+      "synchronous=FULL"
+    ]
+  },
+  {
+    "id": "term-236",
+    "term": "Unit test",
+    "expansion": "Small isolated behavior check",
+    "definition": "Test one component under controlled conditions.",
+    "example": "Test that a validator rejects a missing required field.",
+    "aliases": [
+      "unit tests"
+    ]
+  },
+  {
+    "id": "term-237",
+    "term": "Integration test",
+    "expansion": "Check cooperating components",
+    "definition": "Test whether connected components work together correctly.",
+    "example": "Check that a stored note can be retrieved through the real database interface.",
+    "aliases": [
+      "integration tests"
+    ]
+  },
+  {
+    "id": "term-238",
+    "term": "End-to-end test",
+    "expansion": "Complete journey check",
+    "definition": "Exercise a supported user path across the application.",
+    "example": "Import a PDF, wait for indexing, and retrieve a cited passage.",
+    "aliases": [
+      "end-to-end tests"
+    ]
+  },
+  {
+    "id": "term-239",
+    "term": "Dependency injection",
+    "expansion": "Passing collaborators into code",
+    "definition": "Supply the components a service uses instead of hard-coding them inside the service.",
+    "example": "Pass a fake model client during tests and a real one in production.",
+    "aliases": [
+      "inject",
+      "injected"
+    ]
+  },
+  {
+    "id": "term-240",
+    "term": "Managed identity",
+    "expansion": "Platform-managed service identity",
+    "definition": "A cloud-provided identity used to access resources without embedding long-lived credentials in application code.",
+    "example": "A worker accesses its approved storage using its assigned identity.",
+    "aliases": [
+      "managed identity"
+    ]
+  },
+  {
+    "id": "term-241",
+    "term": "Cold start",
+    "expansion": "Startup before useful work",
+    "definition": "The delay to initialize an execution environment or load a model before serving a request.",
+    "example": "A local model reload can make the first response slower than later ones.",
+    "aliases": [
+      "cold-start",
+      "cold starts"
+    ]
+  },
+  {
+    "id": "term-242",
+    "term": "Garbage collection",
+    "expansion": "Automatic memory reclamation",
+    "definition": "A runtime reclaims memory no longer needed by reachable program objects under its rules.",
+    "example": "Java manages many memory allocations automatically; files and sockets still need proper cleanup.",
+    "aliases": [
+      "garbage collection"
+    ]
+  },
+  {
+    "id": "term-243",
+    "term": "Pagination",
+    "expansion": "Results in bounded pages",
+    "definition": "Return only a limited portion of a potentially large result set with a way to continue.",
+    "example": "Return 50 search results and a continuation cursor instead of an unbounded response.",
+    "aliases": [
+      "pagination"
+    ]
+  },
+  {
+    "id": "term-244",
+    "term": "PII",
+    "expansion": "Personally identifiable information",
+    "definition": "Information that identifies or can reasonably be linked to an individual.",
+    "example": "A transcript can include a name, contact detail, or other identifying context.",
+    "aliases": [
+      "PII"
+    ]
+  },
+  {
+    "id": "term-245",
+    "term": "Confidence score",
+    "expansion": "Model certainty estimate",
+    "definition": "A score used to express or approximate certainty; it may not align with actual correctness without calibration.",
+    "example": "A high action score still cannot authorize a write.",
+    "aliases": [
+      "confidence"
+    ]
+  }
+]

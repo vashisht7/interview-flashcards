@@ -36,3 +36,9 @@ Answers reflect supplied resume and technical briefings. They distinguish implem
 Cards 73-114 add LLMs and prompting, RAG and data science, agents and MCP, software engineering, cloud operations, governance, experimentation, and Agile delivery. Each adds a short answer, example, optional deeper explanation, and guidance for discussing knowledge without inventing experience. Original IDs and browser storage keys are retained.
 
 The downloadable PDF remains the original 72-card project guide. The additional cards are available on the site.
+
+## Learning aids
+
+All 114 cards are scanned for matching technical terms. Each match has a plain-language definition and an example in the answer. The sidebar's Technical terms button opens the searchable glossary. Nine diagrams cover classification, attention, adapter training, retrieval, note capture, authorization, evaluation, crash recovery, and release. Use Next/Previous Step or Play/Pause; nothing auto-plays on opening a card.
+
+Glossary reference sources include scikit-learn neural-network documentation, PyTorch CrossEntropyLoss and AdamW documentation, SQLite FTS5 and WAL documentation, the QLoRA paper, and the rank-stabilized LoRA paper. Definitions are simplified learning explanations, not additional claims about personal project ownership.

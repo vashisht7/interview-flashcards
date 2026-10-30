@@ -22,7 +22,7 @@
     "topic": "CORE",
     "difficulty": "Easy",
     "question": "What is the difference between an LLM and a classifier?",
-    "answer": "A classifier selects among labels. An LLM generates token sequences. MFlash's structured classifier selects action templates; it is a randomly initialized MLP, not a fine-tuned LLM. NoteEchoes uses a specialized pretrained Qwen3 model to produce structured action analysis. I choose a model according to the task's output space and operational constraints.",
+    "answer": "A classifier selects among labels. A large language model (LLM) generates token sequences. MFlash's structured classifier selects action templates; it is a randomly initialized multilayer perceptron (MLP), a neural network with input, hidden, and output layers, not a fine-tuned LLM. NoteEchoes uses a specialized pretrained Qwen3 model to produce structured action analysis. I choose a model according to the task's output space and operational constraints.",
     "cue": "MLP selects; Qwen generates.",
     "followup": "MFlash also has an MPNet candidate ranker, which is a third, separate role."
   },

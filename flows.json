@@ -1,0 +1,315 @@
+[
+  {
+    "id": "mlp",
+    "title": "How an MLP chooses an action",
+    "cards": [
+      3,
+      35,
+      36,
+      38,
+      87
+    ],
+    "steps": [
+      {
+        "label": "Input features",
+        "explanation": "Represent the request and observed state as numbers. These are input signals, not executable commands."
+      },
+      {
+        "label": "Hidden layers",
+        "explanation": "Learned weights and nonlinear transformations combine those input signals."
+      },
+      {
+        "label": "Action scores",
+        "explanation": "The output layer assigns a score to each learned template. A template is a supported action pattern."
+      },
+      {
+        "label": "Choose or abstain",
+        "explanation": "Use the configured acceptance rules. A score alone does not grant permission to change files."
+      },
+      {
+        "label": "Validate separately",
+        "explanation": "Trusted code checks the proposal, arguments, authority, and current state before execution."
+      }
+    ]
+  },
+  {
+    "id": "rag",
+    "title": "How retrieval supports an answer",
+    "cards": [
+      5,
+      6,
+      25,
+      26,
+      49,
+      50,
+      60,
+      81,
+      82,
+      83
+    ],
+    "steps": [
+      {
+        "label": "Prepare content",
+        "explanation": "Extract source text, divide it into chunks, and retain page and version metadata. This usually happens before the user query."
+      },
+      {
+        "label": "Index",
+        "explanation": "Store keyword-search data and compatible embedding vectors representing the content."
+      },
+      {
+        "label": "Retrieve",
+        "explanation": "For a question, find relevant authorized chunks using words, vector similarity, or both."
+      },
+      {
+        "label": "Answer or excerpt",
+        "explanation": "Use the evidence to form an answer. NoteEchoes active document paths return cited excerpts; a generative RAG system may synthesize an answer."
+      },
+      {
+        "label": "Check and cite",
+        "explanation": "Validate support and freshness, return source references, or abstain when evidence is insufficient."
+      }
+    ]
+  },
+  {
+    "id": "capture",
+    "title": "Why saving before AI protects a note",
+    "cards": [
+      13,
+      14,
+      28,
+      63
+    ],
+    "steps": [
+      {
+        "label": "Transcribe",
+        "explanation": "Convert recorded speech to text and reject meaningless input."
+      },
+      {
+        "label": "Parse and save",
+        "explanation": "Create a usable note using the initial parsing rules. Persistence happens before optional enhancement."
+      },
+      {
+        "label": "Generate enhancement",
+        "explanation": "Ask the local action model for structured analysis of the original transcript."
+      },
+      {
+        "label": "Compare fingerprint",
+        "explanation": "Check whether the user edited or deleted the note while generation was running."
+      },
+      {
+        "label": "Apply or discard",
+        "explanation": "Apply valid output only to the unchanged note. Otherwise discard the late enhancement and preserve the user edit."
+      }
+    ]
+  },
+  {
+    "id": "safe-action",
+    "title": "From model proposal to controlled execution",
+    "cards": [
+      7,
+      30,
+      37,
+      43,
+      44,
+      45,
+      53,
+      54,
+      59,
+      88,
+      90,
+      91,
+      92
+    ],
+    "steps": [
+      {
+        "label": "Request and observe",
+        "explanation": "Capture the user goal and relevant current state."
+      },
+      {
+        "label": "Propose",
+        "explanation": "A model or deterministic router proposes a supported tool and arguments."
+      },
+      {
+        "label": "Authorize",
+        "explanation": "Trusted application policy or a specific approval grants only the permitted operation."
+      },
+      {
+        "label": "Revalidate and execute",
+        "explanation": "Check arguments and fresh state before invoking the tool. Stop if the assumptions have changed."
+      },
+      {
+        "label": "Record and verify",
+        "explanation": "Inspect the outcome and save a receipt. Reconcile uncertain side effects before retrying."
+      }
+    ]
+  },
+  {
+    "id": "training",
+    "title": "How adapter training differs from inference",
+    "cards": [
+      16,
+      17,
+      18,
+      19,
+      23,
+      80
+    ],
+    "steps": [
+      {
+        "label": "Start with a base model",
+        "explanation": "Load pretrained weights. Quantized adapter training can keep this base frozen."
+      },
+      {
+        "label": "Pair inputs and targets",
+        "explanation": "Prepare training examples and keep evaluation scenarios appropriately independent."
+      },
+      {
+        "label": "Predict and measure loss",
+        "explanation": "Generate predictions and compute the configured loss on the target tokens or labels."
+      },
+      {
+        "label": "Update adapters",
+        "explanation": "Use gradients and an optimizer to update trainable adapters. Repeat for the configured training schedule."
+      },
+      {
+        "label": "Evaluate then run",
+        "explanation": "Evaluate the chosen artifact and deploy a compatible inference format. Ordinary inference predicts without training the weights."
+      }
+    ]
+  },
+  {
+    "id": "attention",
+    "title": "How self-attention combines context",
+    "cards": [
+      4,
+      73,
+      74
+    ],
+    "steps": [
+      {
+        "label": "Token vectors",
+        "explanation": "Start with representations of the text tokens and information about their positions."
+      },
+      {
+        "label": "Queries, keys, values",
+        "explanation": "Learn projections: queries seek relevant information, keys are matched to queries, and values carry information to combine."
+      },
+      {
+        "label": "Scores and mask",
+        "explanation": "Compare queries with keys. In causal generation, mask future positions before normalizing scores."
+      },
+      {
+        "label": "Softmax weights",
+        "explanation": "Turn scores into weights summing to one across the allowed positions."
+      },
+      {
+        "label": "Weighted values",
+        "explanation": "Combine values according to those weights. Other layers further transform the resulting representation."
+      }
+    ]
+  },
+  {
+    "id": "evaluation",
+    "title": "What a model score actually establishes",
+    "cards": [
+      10,
+      11,
+      20,
+      21,
+      22,
+      24,
+      41,
+      42,
+      70,
+      84,
+      85,
+      86
+    ],
+    "steps": [
+      {
+        "label": "Define the task",
+        "explanation": "Specify the fields, action, or ranking decision being measured."
+      },
+      {
+        "label": "Choose independent cases",
+        "explanation": "Reserve representative evaluation examples; check shared templates and related sources."
+      },
+      {
+        "label": "Run or inspect outputs",
+        "explanation": "Record whether these are fresh predictions or archived outputs being rescored."
+      },
+      {
+        "label": "Score defined criteria",
+        "explanation": "Compute schema, selected-field, strict-match, or task metrics with the correct denominators."
+      },
+      {
+        "label": "Inspect limits",
+        "explanation": "Review error slices and uncertainty. Output matching does not establish successful side effects or real-user outcomes."
+      }
+    ]
+  },
+  {
+    "id": "recovery",
+    "title": "Recovering a file move after a crash",
+    "cards": [
+      46,
+      47,
+      72
+    ],
+    "steps": [
+      {
+        "label": "Record intent",
+        "explanation": "Create the prepared journal record before the safer move changes the filesystem."
+      },
+      {
+        "label": "Link and verify",
+        "explanation": "Create the destination hard link and check its content under the supported filesystem constraints."
+      },
+      {
+        "label": "Remove source name",
+        "explanation": "Remove the original name only after the required verification."
+      },
+      {
+        "label": "Record completion",
+        "explanation": "Update the database. A crash between filesystem and database changes can leave an uncertain state."
+      },
+      {
+        "label": "Reconcile actual state",
+        "explanation": "Compare real file bytes with journal evidence. Restore safely or require review rather than assume exactly-once behavior."
+      }
+    ]
+  },
+  {
+    "id": "release",
+    "title": "How an AI change reaches production",
+    "cards": [
+      56,
+      98,
+      102,
+      104,
+      107
+    ],
+    "steps": [
+      {
+        "label": "Define success",
+        "explanation": "Agree on expected behavior, business acceptance criteria, and failure limits."
+      },
+      {
+        "label": "Build and version",
+        "explanation": "Connect code, prompt, model, and retrieval settings to a traceable artifact."
+      },
+      {
+        "label": "Test and evaluate",
+        "explanation": "Run software checks and representative AI regressions before accepting the change."
+      },
+      {
+        "label": "Roll out gradually",
+        "explanation": "Release under suitable controls with a known rollback option."
+      },
+      {
+        "label": "Monitor and improve",
+        "explanation": "Track outcome quality, errors, latency, cost, and changed inputs. Investigate the failing stage."
+      }
+    ]
+  }
+]

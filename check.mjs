@@ -24,3 +24,19 @@ assert.equal(filterCards(cards,{topic:'SOFTWARE'}).length,8);
 assert.equal(filterCards(cards,{topic:'GOVERNANCE'}).length,6);
 assert.equal(sanitizeProgress(progress,cards)[1].rating,'confident');
 console.log('Passed: new JD topic counts, layered explanations, and original progress IDs.');
+
+const {termsForCard,searchTerms}=await import('./glossary-core.mjs');
+const glossary=JSON.parse(readFileSync(new URL('./glossary.json',import.meta.url)));
+const flows=JSON.parse(readFileSync(new URL('./flows.json',import.meta.url)));
+for(const c of cards)assert(termsForCard(c,glossary).length,`No terms for card ${c.id}`);
+for(const term of glossary)assert(term.term&&term.expansion&&term.definition&&term.example);
+assert.equal(new Set(glossary.map(t=>t.term)).size,glossary.length);
+assert(termsForCard(cards[2],glossary).some(t=>t.term==='MLP'));
+assert(!termsForCard({answer:'chair fair training'},glossary).some(t=>t.term==='AI'));
+assert(!termsForCard({answer:'QLoRA'},glossary).some(t=>t.term==='LoRA'));
+assert(searchTerms(glossary,'multilayer').some(t=>t.term==='MLP'));
+assert(searchTerms(glossary,'write-ahead').some(t=>t.term==='WAL'));
+assert.equal(searchTerms(glossary,'zzzznonexistent').length,0);
+assert.equal(flows.length,9);
+for(const f of flows){assert(f.steps.length>=3);for(const s of f.steps)assert(s.label&&s.explanation);for(const id of f.cards)assert(cards.some(c=>c.id===id));}
+console.log(`Passed: all ${cards.length} cards have definitions; ${glossary.length} unique glossary terms; boundary-safe matching and search; nine valid flows.`);
